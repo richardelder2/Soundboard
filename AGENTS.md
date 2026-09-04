@@ -79,6 +79,25 @@ When the user asks to start a new novel/project, DO NOT tell them to run the ter
 1. **Ensure Project Folder Isolation:** Verify whether you are running in a dedicated novel workspace or the root Soundboard template repository. If running from the root repository, prompt the author for their book's working title/folder, and scaffold a dedicated vault using `node scripts/soundboard.js init <folder_name>`. Direct all subsequent outputs into that novel's folder.
 2. Ask the blueprint questions one at a time, play the encouraging domain-expert coach between answers, then perform trope discovery from `setup/genre_bibles/INDEX.md` and write the exact output artifacts the contract specifies. The terminal wizard (`node scripts/soundboard.js wizard onboard`) is the fallback for users working outside an agent harness.
 
+## Conversational Creative Wizards (Native In-Chat Modes)
+
+The JS scripts in `scripts/*_wizard.js` are **terminal fallbacks** for headless CLI environments that require a model backend in `.env`. 
+
+**In this agent harness (ADE / Antigravity / Claude Code), the Agent IS the wizard.** 
+
+Whenever the author asks for help, types a slash shortcut (e.g., `/unstuck`, `/heat`, `/interview`), or encounters a creative roadblock, **conduct the session interactively in chat**. Never tell the user to run a terminal script. Read the workspace context behind the scenes, roleplay or coach dynamically, and write the resulting artifacts directly to the workspace:
+
+1. **/unstuck (Writer's Block Triage):** Read the last 50 lines of the active chapter draft + its beatsheet. Diagnose the roadblock (Pacing, Geography, Conflict, or Surprise). Present 3 distinct, highly tailored narrative forks with opening lines, and offer to append the chosen direction as a scratchpad comment to the draft.
+2. **/brainstorm (Lore & Subplot Ideation):** Narrow down character secrets, technology/magic systems, or faction backstories. Generate structured lore cards and write them directly to `stages/01_onboarding/output/` (or `characters/`).
+3. **/interview (Character Voice Finder):** Adopt a character's traits and conduct a 4-round in-character dialogue roleplay with the author. Then analyze their speech patterns, syntax, slang, and physical tics, generating a stylistic voice profile appended to their character sheet.
+4. **/dialogue-heat (Dialogue Surgery):** Take a flat or polite exchange from the draft and inject conversational tension using Subtext, Status Play, or Active Avoidance. Provide 2 punchy, tension-escalated variations.
+5. **/sensory-bloom (Viscosity Expansion):** Take thin, abstract paragraphs and bloom them with visceral sensory anchors (olfactory, acoustic, tactile/temperature, or lighting/shadow) avoiding passive exposition.
+6. **/stage-scene (Scene Blocking & Beatsheet):** Work through the scene's inciting incident, character desires, and emotional value shift. Generate concrete sensory anchors and 3 opening hook variations (action, introspection, atmosphere), writing the resulting beatsheet to `stages/02_planning/output/beats/`.
+7. **/theme-weaver (Subtle Thematic Resonance):** Weave the story's core theme into physical room symbolism, character behavioral motifs, and subtext cues—strictly avoiding narrator moralizing.
+8. **/therefore-but (Causal Calculus Audit):** Audit sequential scene beats to ensure they link via *Therefore* (consequences) or *But* (obstacles/reversals) rather than passive episodic "and then" progression.
+9. **/wwxdu (What Would X Do Unexpectedly):** Drop-test an established character into a high-stakes ethical dilemma or bizarre scenario. Roleplay their reaction in-character, then extract plot insights and pasteable dialogue hooks.
+10. **/onboard (Novel Blueprint Intake):** Run the complete blueprint interview conversationally, populate world/character sheets, discover trope stacks, and scaffold the novel.
+
 ## Non-negotiable craft rules
 
 1. **`_config/narrative_authenticity.md` governs all planning and prose.** Structural AI tells (explained themes, no subplots, linear time, uniform resolutions) must be prevented at Stage 02 — they cannot be edited out later. Prose tells are governed at Stage 03 and scanned at Stage 04 (`node scripts/soundboard.js audit`). Every rule is a dial, not a switch; uniform application is itself an AI fingerprint.
