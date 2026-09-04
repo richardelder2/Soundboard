@@ -1,0 +1,25 @@
+{
+  "title": "[working title]",
+  "author": "[author or pen name]",
+  "target_words": 90000,
+  "genre_bible": "setup/genre_bibles/[bible].md",
+  "trope_stack": "[dynamic] + [situation] + [flavor]",
+  "chapters": [
+    {
+      "id": 1,
+      "title": "[chapter working title]",
+      "pov": "[POV character]",
+      "escalation": 3,
+      "beat_file": "stages/02_planning/output/beats/ch01.md",
+      "draft_file": "stages/03_drafting/output/chapters/ch01.md",
+      "status": "planned",
+      "target_words": 2500,
+      "last_audit": null
+    }
+  ],
+  "_conventions": {
+    "status": "planned → drafted → audited → passed (set by stages 02/03/04; 'audited' means scanned+rubric-scored with open findings, 'passed' means the Stage 04 gate cleared)",
+    "last_audit": "CLEAN | REVIEW | FAIL — written automatically by scripts/narrative_audit.js when it can match the draft file",
+    "escalation": "1–5, copied from structure_plan.md's escalation contour"
+  }
+}

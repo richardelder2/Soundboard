@@ -1,0 +1,14 @@
+﻿{
+  "name": "soundboard",
+  "version": "1.0.0",
+  "description": "Soundboard: The Author's Intelligent Sounding Board & Narrative Console (Token-disciplined novel engineering system)",
+  "type": "module",
+  "bin": {
+    "soundboard": "./scripts/soundboard.js",
+    "sb": "./scripts/soundboard.js",
+    "saga": "./scripts/soundboard.js"
+  },
+  "author": "Richard Elder & Antigravity",
+  "license": "MIT",
+  "dependencies": {}
+}

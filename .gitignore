@@ -1,0 +1,4 @@
+node_modules/
+.env
+stages/*/output/
+.claude/settings.local.json
