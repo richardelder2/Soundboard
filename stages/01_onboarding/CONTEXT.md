@@ -17,9 +17,17 @@ outputs:
   - stages/01_onboarding/output/preferences.json
   - stages/01_onboarding/output/bible/world_bible.md
   - stages/01_onboarding/output/bible/genre_bible.md
+  - stages/01_onboarding/output/bible/locations/
+  - stages/01_onboarding/output/bible/factions/
   - stages/01_onboarding/output/characters/
 templates:
+  - _config/templates/world_bible.template.md
   - _config/templates/character.template.md
+  - _config/templates/location.template.md
+  - _config/templates/faction.template.md
+  - _config/templates/magic_tech_system.template.md
+  - _config/templates/timeline.template.md
+  - _config/templates/sensory_lexicon.template.md
 ---
 
 # Stage 01: Onboarding Context

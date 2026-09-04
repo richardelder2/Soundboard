@@ -10,7 +10,7 @@ last_indexed: 2026-09-04
 - [Adversarial Prose Auditing: Slop Density, POV Filter Stripping & Sensory Anchors](adversarial_prose_auditing_and_slop_filtering.md) — `type: craft_rule`
 - [Anthropological Worldbuilding: Culture, Taboo & Internal Logic](anthropological_worldbuilding.md) — `type: craft_structure`
 - [The Anti-Hero Arc: Moral Ambiguity, Justified Transgression & Downfall/Redemption](anti_hero_moral_ambiguity.md) — `type: craft_structure`
-- [Suppression of Narrative Theme Explanation](anti_tell_suppression.md) — `type: craft_rule`
+- [Suppression of Narrative Theme Explanation & Dialectical Dramatization](anti_tell_suppression.md) — `type: craft_rule`
 - [Archetypal Character Transformation Arcs: From Persona Breakdown to Archetypal Metamorphosis](archetypal_character_transformation_arcs.md) — `type: craft_structure`
 - [The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration](bildungsroman_moral_awakening.md) — `type: craft_structure`
 - [The Character Arc Anatomy: Lie, Wound, Want & Need](character_arc_anatomy_lie_wound_want_need.md) — `type: craft_structure`
@@ -47,11 +47,11 @@ last_indexed: 2026-09-04
 - [Jungian Psychological Archetypes: Shadow Integration, Anima/Animus & The Individuation Drive](jungian_archetypes_and_shadow_integration.md) — `type: craft_structure`
 - [Kishōtenketsu: East Asian Four-Act Structure & The Non-Binary Disjunctive Twist](kishotenketsu_four_act_non_conflict_structure.md) — `type: craft_structure`
 - [The Typology of Moral Degeneration: Five Models of Psychological Descent & Rationalization Engines](moral_degeneration_typology_and_rationalization_engines.md) — `type: craft_structure`
-- [Multi-POV Orchestration & Perspective Alternation](multi_pov_structure.md) — `type: craft_structure`
+- [Multi-POV Structural Orchestration & Perspective Alternation](multi_pov_structure.md) — `type: craft_structure`
 - [Walter Murch's Rule of Six: Scene Cutting & Narrative Rhythm](murch_rule_of_six_pacing.md) — `type: craft_structure`
 - [The Mythic Archetypal Journey: Collective Unconscious & Cyclical Trials](mythic_archetypal_journey.md) — `type: craft_structure`
 - [Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall](noir_hardboiled_fatalism.md) — `type: craft_structure`
-- [Nonlinear Timelines, Anachrony & Information Delay](nonlinear_timeline_framework.md) — `type: craft_structure`
+- [Nonlinear Timelines: Anachrony, Chronesthesia & Retroactive Recontextualization](nonlinear_timeline_framework.md) — `type: craft_structure`
 - [Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs](non_human_cognitive_narration.md) — `type: craft_structure`
 - [The Police & Legal Procedural: Evidentiary Fair-Play, Institutional Friction & The Interrogation Crucible](police_procedural_evidentiary_and_institutional_engine.md) — `type: craft_structure`
 - [Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay](primitive_causal_calculus.md) — `type: craft_primitive`
@@ -77,7 +77,7 @@ last_indexed: 2026-09-04
 - [The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine](scene_level_five_commandments_coyne.md) — `type: craft_structure`
 - [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw](status_transactions_and_dominance_choreography.md) — `type: craft_rule`
-- [Story Grid 5 Core Primal Shifts](story_grid_macro.md) — `type: craft_structure`
+- [Story Grid Macro Architecture: Beginning Hook, Middle Build & Ending Payoff](story_grid_macro.md) — `type: craft_structure`
 - [Dialogue Subtext: The Iceberg Theory & Surface-Depth Tension](subtext_and_implied_meaning.md) — `type: craft_structure`
 - [Surreal Atmosphere & Dream Logic: Synesthesia & Cognitive Destabilization](surreal_atmosphere_dream_logic.md) — `type: craft_rule`
 - [Dwight Swain's MRU Architecture & The Pacing Velocity Equation: Micro-Pacing & Compression Curves](swain_mru_and_pacing_velocity_equations.md) — `type: craft_rule`
@@ -85,7 +85,7 @@ last_indexed: 2026-09-04
 - [The Tenacious Engine: Prolific Architecture, Closed Doors & Relentless Execution](tenacious_writing_and_sanderson_le_guin_habits.md) — `type: craft_rule`
 - [Textual Actual Worlds (TAW) & Modal Narratology: The Narrative Tension Matrix](textual_actual_worlds_and_modal_narratology.md) — `type: craft_primitive`
 - [The Three Registers of Dramatic Dialogue: Text, Tactical Subtext & Deep-Text Pathology](three_registers_of_dialogue_subtext.md) — `type: craft_rule`
-- [Thriller Escalation: Reversals, False Relief & Pacing Loops](thriller_escalation_pacing.md) — `type: craft_structure`
+- [Thriller Escalation: Reversals, False Relief & Pacing Compression Loops](thriller_escalation_pacing.md) — `type: craft_structure`
 - [The Tragic Corruption Arc: The Inevitable Surrender to the Shadow](tragic_corruption_arc_godfather.md) — `type: craft_structure`
 - [The Tragic Flaw Investigation: Chinatown's Fatal Epistemic Hubris](tragic_flaw_investigation_chinatown.md) — `type: craft_structure`
 - [John Truby's Designing Principle, Moral Need & The 22 Building Blocks](truby_designing_principle_and_moral_argument.md) — `type: craft_structure`
