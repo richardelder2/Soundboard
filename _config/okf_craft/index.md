@@ -13,6 +13,7 @@ last_indexed: 2026-09-04
 - [Suppression of Narrative Theme Explanation](anti_tell_suppression.md) — `type: craft_rule`
 - [Archetypal Character Transformation Arcs: From Persona Breakdown to Archetypal Metamorphosis](archetypal_character_transformation_arcs.md) — `type: craft_structure`
 - [The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration](bildungsroman_moral_awakening.md) — `type: craft_structure`
+- [The Character Arc Anatomy: Lie, Wound, Want & Need](character_arc_anatomy_lie_wound_want_need.md) — `type: craft_structure`
 - [Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers](chekhovs_gun_and_plant_payoff.md) — `type: craft_rule`
 - [Cinematic Staging: Camera Distance, Depth of Field & Character Blocking](cinematic_blocking_and_lens.md) — `type: craft_rule`
 - [The Architecture of Comedy, Farce & Satirical Timing: Steve Kaplan, John Vorhaus, Wodehouse & Pratchett](comedy_farce_and_satirical_timing_engine.md) — `type: craft_structure`
@@ -70,7 +71,9 @@ last_indexed: 2026-09-04
 - [John Gardner's Five Levels of Psychic Distance: The Cinematic Zoom of Narrative Consciousness](psychic_distance_and_narrative_zoom.md) — `type: craft_primitive`
 - [The Misdirection Matrix: Red Herrings, Plausible Guilt & Double Bluffs](red_herring_misdirection_matrix.md) — `type: craft_rule`
 - [The Romance Heat & Vulnerability Ladder: Resistance to Intimacy](romance_escalation_ladder.md) — `type: craft_structure`
+- [Brandon Sanderson's Three Laws of Magic & Magic System Engineering](sandersons_laws_of_magic_and_magic_system_engineering.md) — `type: craft_rule`
 - [Satirical Escalation & Institutional Irony: The Straight-Man Dynamic](satirical_escalation_blueprint.md) — `type: craft_structure`
+- [Save the Cat! The 15-Beat Structural Blueprint & Pacing Percentages](save_the_cat_fifteen_beat_structural_blueprint.md) — `type: craft_structure`
 - [The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine](scene_level_five_commandments_coyne.md) — `type: craft_structure`
 - [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw](status_transactions_and_dominance_choreography.md) — `type: craft_rule`
@@ -80,10 +83,12 @@ last_indexed: 2026-09-04
 - [Dwight Swain's MRU Architecture & The Pacing Velocity Equation: Micro-Pacing & Compression Curves](swain_mru_and_pacing_velocity_equations.md) — `type: craft_rule`
 - [Syntactic Symbolism & Cumulative Sentence Rhetoric: Virginia Tufte, Francis Christensen & Rhetorical Figures](syntactic_symbolism_and_cumulative_sentence_rhetoric.md) — `type: craft_rule`
 - [The Tenacious Engine: Prolific Architecture, Closed Doors & Relentless Execution](tenacious_writing_and_sanderson_le_guin_habits.md) — `type: craft_rule`
+- [Textual Actual Worlds (TAW) & Modal Narratology: The Narrative Tension Matrix](textual_actual_worlds_and_modal_narratology.md) — `type: craft_primitive`
 - [The Three Registers of Dramatic Dialogue: Text, Tactical Subtext & Deep-Text Pathology](three_registers_of_dialogue_subtext.md) — `type: craft_rule`
 - [Thriller Escalation: Reversals, False Relief & Pacing Loops](thriller_escalation_pacing.md) — `type: craft_structure`
 - [The Tragic Corruption Arc: The Inevitable Surrender to the Shadow](tragic_corruption_arc_godfather.md) — `type: craft_structure`
 - [The Tragic Flaw Investigation: Chinatown's Fatal Epistemic Hubris](tragic_flaw_investigation_chinatown.md) — `type: craft_structure`
+- [John Truby's Designing Principle, Moral Need & The 22 Building Blocks](truby_designing_principle_and_moral_argument.md) — `type: craft_structure`
 - [The Universal Narrative Rosetta Stone: Cross-School Craft Lexicon & Structural Mapping Ontology](universal_narrative_lexicon_rosetta_stone.md) — `type: craft_structure`
 - [The Unreliable Narrator: Fractured Perception, Active Gaslighting & The Breadcrumb Trial](unreliable_narrator_psychological_fracture.md) — `type: craft_structure`
 - [Vertical Spatial Allegory: Architecture as Class Conflict & The Sub-Basement Reveal](vertical_spatial_allegory_parasite.md) — `type: craft_structure`
