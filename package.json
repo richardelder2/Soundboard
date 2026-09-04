@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "soundboard",
   "version": "1.0.0",
   "description": "Soundboard: The Author's Intelligent Sounding Board & Narrative Console (Token-disciplined novel engineering system)",
@@ -8,7 +8,27 @@
     "sb": "./scripts/soundboard.js",
     "saga": "./scripts/soundboard.js"
   },
-  "author": "Richard Elder & Antigravity",
+  "author": "Richard Elder",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardelder2/Soundboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/richardelder2/Soundboard/issues"
+  },
+  "homepage": "https://github.com/richardelder2/Soundboard#readme",
+  "keywords": [
+    "novel-writing",
+    "creative-writing",
+    "narrative-architecture",
+    "storytelling",
+    "story-grid",
+    "icm",
+    "ade",
+    "antigravity",
+    "claude-code",
+    "agents"
+  ],
   "dependencies": {}
 }
