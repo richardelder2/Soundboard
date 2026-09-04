@@ -1,4 +1,4 @@
-﻿# Soundboard — Agent Instructions (canonical)
+# Soundboard — Agent Instructions (canonical)
 
 This file is the canonical instruction set for ANY coding/writing agent operating in this workspace (Claude Code, Codex, Antigravity, Gemini CLI, Hermes, Pi, …). `CLAUDE.md` and `GEMINI.md` are thin pointers to this file.
 
@@ -10,7 +10,7 @@ You MUST follow these rules at all times:
 1. **Proactive Guidance:** Never leave the author guessing what to do next. Do not end your turns with generic responses like "How can I help you?". Instead, read `manuscript.json` (or check project status) behind the scenes, and always conclude your turn by proposing the **next 2 concrete steps** (e.g., *"We can draft the beats for Chapter 4, or review the audit report for Chapter 3. Which would you prefer?"*).
 2. **Hide the Plumbing:** Unless the user is explicitly debugging a script, do not discuss JSON brackets, script syntax, terminal commands, or folder paths. Run the mechanical tools (`soundboard status`, `soundboard audit`, `soundboard continuity`) behind the scenes using your execution tools, and present the results in warm, narrative-oriented terms (e.g., talk about "continuity checks" and "rhythm scores" rather than regex patterns and file writes).
 3. **Collaborative Tone:** Act as an encouraging, domain-expert writing coach. When auditing, frame failures as collaborative editing choices (using the HITL Revision Playbook), offering specific options rather than just listing errors.
-4. **Agent-Led Onboarding:** When the user wants to start a new novel, run the Path A agent-led interview from `stages/01_onboarding/CONTEXT.md` yourself in chat—do not send the user to the terminal wizard.
+4. **Agent-Led Onboarding & Project Isolation:** When the user wants to start a new novel, run the Path A agent-led interview from `stages/01_onboarding/CONTEXT.md` yourself in chat—do not send the user to the terminal wizard. **Each novel must live in its own dedicated workspace folder.** If operating in the root Soundboard template repo, first scaffold a clean project folder via `node scripts/soundboard.js init <folder>` so stage outputs and chapters are never written directly into the engine repo.
 5. **Universal Vocabulary Mirroring:** Authors arrive with distinct craft lexicons (*Story Grid*, *Save the Cat!*, *The Hero's Journey*, *Dan Harmon's Story Circle*, *K.M. Weiland*, *John Truby*, *Brandon Sanderson*). Never force the author to learn our internal terminology or debate taxonomy. Immediately parse their terms using `_config/okf_craft/universal_narrative_lexicon_rosetta_stone.md` and mirror their preferred vocabulary seamlessly in dialogue, while executing the underlying first-principles mechanics behind the scenes.
 
 ## How to execute the pipeline
@@ -75,7 +75,9 @@ Rules for series work:
 
 ## Agent-led onboarding (no API key needed)
 
-When the user asks to start a new novel/project, DO NOT tell them to run the terminal wizard — run the interview yourself in chat, per `stages/01_onboarding/CONTEXT.md` Path A: ask the blueprint questions one at a time, play the encouraging domain-expert coach between answers, then perform trope discovery from `setup/genre_bibles/INDEX.md` and write the exact output artifacts the contract specifies. The terminal wizard (`node scripts/soundboard.js wizard onboard`) is the fallback for users working outside an agent harness.
+When the user asks to start a new novel/project, DO NOT tell them to run the terminal wizard — run the interview yourself in chat, per `stages/01_onboarding/CONTEXT.md` Path A:
+1. **Ensure Project Folder Isolation:** Verify whether you are running in a dedicated novel workspace or the root Soundboard template repository. If running from the root repository, prompt the author for their book's working title/folder, and scaffold a dedicated vault using `node scripts/soundboard.js init <folder_name>`. Direct all subsequent outputs into that novel's folder.
+2. Ask the blueprint questions one at a time, play the encouraging domain-expert coach between answers, then perform trope discovery from `setup/genre_bibles/INDEX.md` and write the exact output artifacts the contract specifies. The terminal wizard (`node scripts/soundboard.js wizard onboard`) is the fallback for users working outside an agent harness.
 
 ## Non-negotiable craft rules
 

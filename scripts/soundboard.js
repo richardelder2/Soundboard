@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -37,18 +37,27 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
-function handleInit() {
+function handleInit(targetFolder) {
   printHeader('Initializing Soundboard Workspace');
   
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const templateDir = path.dirname(__dirname); // The template Soundboard folder
-  const targetDir = process.cwd();
+  
+  let targetDir = process.cwd();
+  if (targetFolder) {
+    targetDir = path.isAbsolute(targetFolder) ? targetFolder : path.resolve(process.cwd(), targetFolder);
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
+  }
 
-  if (templateDir === targetDir) {
+  if (path.resolve(templateDir) === path.resolve(targetDir)) {
     console.log('\x1b[33mWarning: You are running init inside the template repository itself.\x1b[0m');
-    console.log('To start a clean project, create a blank directory elsewhere, cd into it, and run:');
-    console.log(`  node "${path.join(templateDir, 'scripts', 'Soundboard.js')}" init`);
+    console.log('Each novel must live in its own separate project folder.');
+    console.log('To initialize a clean novel workspace in a dedicated folder, run:');
+    console.log(`  node "${path.join(templateDir, 'scripts', 'soundboard.js')}" init <folder_name>`);
+    console.log('Or create a blank directory elsewhere, cd into it, and run init.');
     return;
   }
 
@@ -515,7 +524,7 @@ function showHelp() {
 Soundboard novel engineering CLI
 
 Usage:
-  node scripts/soundboard.js init                   Scaffold template files into a new project directory
+  node scripts/soundboard.js init [folder]          Scaffold a self-contained novel workspace in [folder]
   node scripts/soundboard.js status                 Show the status of each pipeline stage
   node scripts/soundboard.js craft search <query>   Search the 80+ craft modules in _config/okf_craft/
   node scripts/soundboard.js wizard onboard         Start the interactive onboarding session
@@ -535,7 +544,7 @@ Usage:
 
 switch (command) {
   case 'init':
-    handleInit();
+    handleInit(subCommand);
     break;
   case 'status':
     handleStatus();

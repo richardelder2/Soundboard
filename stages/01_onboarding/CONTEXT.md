@@ -1,4 +1,4 @@
-﻿---
+---
 type: StageContract
 stage_id: "01_onboarding"
 name: Project Kickoff & Context Compilation
@@ -15,6 +15,12 @@ templates:
 ---
 
 # Stage 01: Onboarding Context
+
+## 📁 Workspace Isolation Rule: One Book = One Dedicated Folder
+**Every novel project MUST exist in its own dedicated workspace folder.** Never write novel artifacts or draft chapters directly inside the Soundboard engine/template repository.
+- **Check Workspace Context:** Before launching the onboarding interview, verify if the agent is operating inside the root Soundboard tool repository or a dedicated book folder.
+- **Scaffold Dedicated Folder:** If starting a new novel from the root tool repository, determine the project title or directory name with the author and scaffold the book vault: `node scripts/soundboard.js init <folder_path>`.
+- **Target Outputs to Project Vault:** All onboarding artifacts (`preferences.json`, `world_bible.md`, `genre_bible.md`, `characters/`) and downstream stages belong strictly inside that novel's dedicated folder.
 
 Three execution paths produce **identical artifacts**. Path A is preferred whenever an agent harness (Claude Code, Codex, Antigravity, …) is present; Path B is the fallback for terminal-only or headless use; Path C applies whenever the author arrives with existing material — which is often.
 
