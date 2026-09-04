@@ -4,10 +4,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
+import { getBeatsDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const PLANNING_DIR = path.join(cwd, '01_Planning');
-const BEATS_DIR = path.join(PLANNING_DIR, 'beats');
+const BEATS_DIR = getBeatsDir(cwd);
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -21,7 +21,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA Scene Setup Wizard (/stage-scene) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard Scene Setup Wizard (/stage-scene) ===\x1b[0m\n');
 
   if (!fs.existsSync(BEATS_DIR)) {
     fs.mkdirSync(BEATS_DIR, { recursive: true });
@@ -42,9 +42,9 @@ async function main() {
   const stateShift = await askQuestion('\nHow should the emotional state shift by the end? (e.g., suspicious -> terrified)\n> ');
   const setting = await askQuestion('\nDescribe the setting or room atmosphere:\n> ');
 
-  console.log('\n\x1b[36mCalling SAGA Brain to generate sensory anchors and opening hooks...\x1b[0m');
+  console.log('\n\x1b[36mCalling model to generate sensory anchors and opening hooks...\x1b[0m');
 
-  const systemInstruction = 'You are the SAGA Architect. Your goal is to construct a rigorous scene setup beatsheet. Output a clean markdown structure containing sensory anchors and opening hook recommendations. Do not add introductory conversational text.';
+  const systemInstruction = 'You are the Soundboard Architect. Your goal is to construct a rigorous scene setup beatsheet. Output a clean markdown structure containing sensory anchors and opening hook recommendations. Do not add introductory conversational text.';
   
   const prompt = `SCENE DETAILS:
 - Chapter Number: ${paddedNum}
@@ -92,7 +92,8 @@ ${suggestions}
 - [ ] Beat 5: Resolution (The new emotional state established)
 `;
     fs.writeFileSync(beatsPath, beatsheetContent, 'utf8');
-    console.log(`\n\x1b[32mBeatsheet initialized and saved to: 01_Planning/beats/${beatsFile}\x1b[0m`);
+    const relBeatsPath = path.relative(cwd, beatsPath).replace(/\\/g, '/');
+    console.log(`\n\x1b[32mBeatsheet initialized and saved to: ${relBeatsPath}\x1b[0m`);
   }
 }
 

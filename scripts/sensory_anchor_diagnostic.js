@@ -11,29 +11,19 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const cwd = process.cwd();
-const DRAFTING_DIR = path.join(cwd, '02_Drafting');
-const REVIEW_DIR = path.join(cwd, '04_Review');
+import { getReviewDir, getChapterFiles } from './path_helper.js';
+
+const customTarget = process.argv[2];
+const files = getChapterFiles(customTarget);
+const REVIEW_DIR = getReviewDir();
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'sensory_anchor_report.md');
 
-if (!fs.existsSync(DRAFTING_DIR)) {
-  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
-  process.exit(1);
+if (files.length === 0) {
+  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
+  process.exit(0);
 }
 
-if (!fs.existsSync(REVIEW_DIR)) {
-  fs.mkdirSync(REVIEW_DIR, { recursive: true });
-}
-
-const files = fs.readdirSync(DRAFTING_DIR)
-  .filter(f => /^chapter_\d+\.md$/.test(f))
-  .sort((a, b) => {
-    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-    return numA - numB;
-  });
-
-console.log(`Analyzing sensory anchors in ${files.length} chapters...`);
+console.log(`Analyzing sensory anchors across ${files.length} chapter(s)...`);
 
 const SENSORY_WORDS = {
   visual: [
@@ -103,7 +93,8 @@ const SENSORY_LEXICON = {
 const chaptersData = [];
 
 files.forEach(file => {
-  const filePath = path.join(DRAFTING_DIR, file);
+  const filePath = file;
+  const fileName = path.basename(file);
   const content = fs.readFileSync(filePath, 'utf8');
   
   // Clean frontmatter
@@ -151,7 +142,7 @@ files.forEach(file => {
   const sensoryDensity = ((totalChSensory / wordCount) * 1000 || 0).toFixed(1);
 
   chaptersData.push({
-    file,
+    file: fileName,
     wordCount,
     visual: chVisual,
     auditory: chAuditory,

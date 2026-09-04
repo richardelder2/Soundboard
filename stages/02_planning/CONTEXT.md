@@ -1,4 +1,4 @@
-﻿---
+---
 type: StageContract
 stage_id: "02_planning"
 name: Beat Sheet Planning & Narrative Structures
@@ -21,12 +21,17 @@ outputs:
   - manuscript.json
 templates:
   - _config/templates/foolscap.template.md
+  - _config/templates/outline.template.md
   - _config/templates/structure_plan.template.md
   - _config/templates/character_arcs.template.md
   - _config/templates/scene_beat.template.md
   - _config/templates/manuscript.template.json
   - _config/templates/canon.template.md
   - _config/templates/voice_exemplars.template.md
+  - _config/templates/tracker_lore_debt.template.md
+  - _config/templates/tracker_romance_heat_ladder.template.md
+  - _config/templates/tracker_power_escalation.template.md
+  - _config/templates/tracker_fair_play_clues.template.md
 ---
 
 # Stage 02: Planning Beat Sheets

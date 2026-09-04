@@ -1,6 +1,6 @@
-# SAGA-ICM Local & Edge Setup Guide
+# Soundboard Local & Edge Setup Guide
 
-This guide walks you through setting up and running your SAGA Interpretable Context Methodology (ICM) workspace using local edge models (like Gemma or Llama) or cloud fallbacks like OpenRouter.
+This guide walks you through setting up and running your Soundboard Interpretable Context Methodology (ICM) workspace using local edge models (like Gemma or Llama) or cloud fallbacks like OpenRouter or Gemini.
 
 ---
 
@@ -69,65 +69,52 @@ The SAGA-ICM system will automatically route routine wizard prompts locally to s
 ### Option E: Maximize Your Paid CLI Subscriptions (Claude Code & Antigravity CLI)
 If you run this pipeline inside **Claude Code** or **Antigravity CLI** (using your standard $20/month subscription accounts):
 1. **Agent-Guided Stage Execution (Zero API Costs)**: 
-   Because ICM is built around plain markdown files and folders, you don't need to configure external API keys for the agent itself. You can simply command your active agent (Claude Code / Antigravity) in chat:
-   > *"Read stages/02_planning/CONTEXT.md and process the beat sheet outputs."*
-   The agent will read the stage contract, ingest the inputs from the folder, and generate the files directly in the output directory. All reasoning tokens are billed directly to your active CLI agent subscription.
-2. **Free API Setup for Diagnostics Scripts**:
-   For standalone background diagnostic programs (such as `prose_rhythm_diagnostic.js` or the onboarding coach validation checks) that run directly inside your terminal shell:
-   - Configure `.env` to point to **OpenRouter's free tier** (`meta-llama/llama-3-8b-instruct:free`).
-   - The diagnostic scripts will perform their automated checks for free, without needing personal credit card billing.
 
 ---
 
 ## 🏗️ Step 3: Scaffold a Clean Novel Project Folder
 
-To ensure your master template repository (wherever you cloned `saga-icm`) remains completely clean and free of narrative files, use the CLI's `init` command to generate a new, blank workspace elsewhere:
+To ensure your master Soundboard repository remains completely clean and free of narrative files, each novel must live in its own dedicated folder.
 
-1. Create a blank folder where you want to write your book (e.g. `~/my_new_novel` or `C:\Users\<you>\my_new_novel`).
-2. Open your terminal inside this new folder:
-   ```bash
-   cd path/to/my_new_novel
-   ```
-3. Run the SAGA-ICM initializer pointing to the template CLI script (use your clone's path):
-   ```bash
-   node "path/to/saga-icm/scripts/saga.js" init
-   ```
-4. Run `npm install` inside your new directory to configure dependencies.
-5. **Launch Claude Code using your chosen profile**:
-   - To launch **Vanilla Claude Code** (using standard subscription auth):
-     ```powershell
-     powershell -File ./scripts/claude-vanilla.ps1
-     ```
-   - To launch **OpenRouter Claude Code** (using API key from `.env`):
-     ```powershell
-     powershell -File ./scripts/claude-openrouter.ps1
-     ```
-
-
----
-
-## 🎭 Step 4: Run the Onboarding Wizard
-
-Once your clean project workspace is scaffolded and the `.env` file is set up, start the interactive onboarding wizard inside Warp or your Obsidian integrated terminal:
-
+Run the initializer directly specifying your new novel's folder:
 ```bash
-node scripts/saga.js wizard onboard
+node scripts/soundboard.js init novels/my-new-novel
 ```
 
-### What happens next:
-1. The script loads the Hard Sci-Fi Comfort Book blueprint from `setup/comfort_scifi_blueprint.md`.
-2. It guides you step-by-step through **16 targeted Q&A questions** (asking exactly one question at a time).
-3. The coach validates the scientific rigor of your inputs in real-time.
-4. After completing the interview, it synthesizes the answers into an Open Knowledge Format (OKF) world bible and characters profile files under `stages/01_onboarding/output/`.
+Or cd into a new directory elsewhere and run:
+```bash
+node "path/to/soundboard/scripts/soundboard.js" init
+```
+
+Run `npm install` inside your new directory to configure dependencies.
 
 ---
 
-## 📊 Step 5: Check Pipeline Status
+## 🎭 Step 4: Run the Onboarding Wizard (or Agent-Led Chat)
+
+Once your clean project workspace is scaffolded and the `.env` file is set up, start the interactive onboarding wizard:
+
+```bash
+node scripts/soundboard.js wizard onboard --blueprint=comfort_scifi
+# or any other genre blueprint, e.g.:
+node scripts/soundboard.js wizard onboard --blueprint=thriller_domestic
+```
+
+*(Note: If you are using Antigravity or Claude Code, simply ask the agent to onboard a new novel directly in chat!)*
+
+---
+
+## 📊 Step 5: Check Pipeline Status & Run Diagnostics
 
 At any point, verify which stages of the novel have been completed by running:
 
 ```bash
-node scripts/saga.js status
+node scripts/soundboard.js status
 ```
 
-This will print the status of all 5 stages along with files generated under their respective `output/` directories.
+To run diagnostics:
+```bash
+node scripts/soundboard.js diag rhythm
+node scripts/soundboard.js diag dialogue
+node scripts/soundboard.js diag all
+```

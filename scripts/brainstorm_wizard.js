@@ -4,9 +4,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
+import { getStoryBibleDir, getCharactersDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const STORY_BIBLE_DIR = path.join(cwd, '00_Story_Bible');
+const STORY_BIBLE_DIR = getStoryBibleDir(cwd);
+const CHARACTERS_DIR = getCharactersDir(cwd);
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -20,7 +22,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA Lore & Subplot Brainstorming Wizard (/brainstorm) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard Lore & Subplot Brainstorming Wizard (/brainstorm) ===\x1b[0m\n');
 
   if (!fs.existsSync(STORY_BIBLE_DIR)) {
     fs.mkdirSync(STORY_BIBLE_DIR, { recursive: true });
@@ -46,9 +48,9 @@ async function main() {
   const tone = await askQuestion('Should the tone be clinical and corporate, or gritty and decaying? (or enter custom style guide terms):\n> ');
   const connection = await askQuestion('How does this affect our protagonist or create immediate scene conflict?\n> ');
 
-  console.log('\n\x1b[36mGenerating brainstorming cards with Gemini...\x1b[0m');
+  console.log('\n\x1b[36mGenerating brainstorming cards with model...\x1b[0m');
 
-  const systemInstruction = 'You are the SAGA Lorekeeper. Output a clean, structured markdown world-building entry card with clear, punchy sections. No greetings or meta-chatter.';
+  const systemInstruction = 'You are the Soundboard Lorekeeper. Output a clean, structured markdown world-building entry card with clear, punchy sections. No greetings or meta-chatter.';
   
   const prompt = `TOPIC: ${topicName}
 CORE IDEA: ${coreIdea}
@@ -73,15 +75,15 @@ Avoid passive tells and AI slop words.`;
     const defaultFileName = topicName.toLowerCase().replace(/[^a-z0-9]/g, '_') + '_card.md';
     const filename = await askQuestion(`Enter filename (default: ${defaultFileName}): `) || defaultFileName;
     
-    // Check characters folder
-    const targetFolder = topicChoice === '1' ? path.join(STORY_BIBLE_DIR, 'characters') : STORY_BIBLE_DIR;
+    const targetFolder = topicChoice === '1' ? CHARACTERS_DIR : STORY_BIBLE_DIR;
     if (!fs.existsSync(targetFolder)) {
       fs.mkdirSync(targetFolder, { recursive: true });
     }
 
     const finalPath = path.join(targetFolder, filename);
-    fs.writeFileSync(finalPath, `# Brainstorm Card: ${coreIdea.slice(0, 40)}\n\n*Created via SAGA Brainstorm Wizard*\n\n${suggestions}\n`, 'utf8');
-    console.log(`\n\x1b[32mSaved card directly to: 00_Story_Bible/${topicChoice === '1' ? 'characters/' : ''}${filename}\x1b[0m`);
+    fs.writeFileSync(finalPath, `# Brainstorm Card: ${coreIdea.slice(0, 40)}\n\n*Created via Soundboard Brainstorm Wizard*\n\n${suggestions}\n`, 'utf8');
+    const relSavedPath = path.relative(cwd, finalPath).replace(/\\/g, '/');
+    console.log(`\n\x1b[32mSaved card directly to: ${relSavedPath}\x1b[0m`);
   }
 }
 

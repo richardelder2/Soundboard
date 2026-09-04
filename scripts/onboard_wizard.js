@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
 
-const BLUEPRINT_PATH = process.env.SAGA_BLUEPRINT || path.join('setup', 'comfort_scifi_blueprint.md');
+const BLUEPRINT_PATH = process.env.SOUNDBOARD_BLUEPRINT || process.env.SB_BLUEPRINT || process.env.SAGA_BLUEPRINT || path.join('setup', 'comfort_scifi_blueprint.md');
 const OUTPUT_DIR = path.join('stages', '01_onboarding', 'output');
 const BIBLE_DIR = path.join(OUTPUT_DIR, 'bible');
 const CHARACTERS_DIR = path.join(OUTPUT_DIR, 'characters');

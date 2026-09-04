@@ -4,9 +4,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
+import { getCharactersDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const CHARACTERS_DIR = path.join(cwd, '00_Story_Bible', 'characters');
+const CHARACTERS_DIR = getCharactersDir(cwd);
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -20,7 +21,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA "What Would X Do" Scenario Wizard (/wwxdu) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard "What Would X Do" Scenario Wizard (/wwxdu) ===\x1b[0m\n');
 
   if (!fs.existsSync(CHARACTERS_DIR)) {
     fs.mkdirSync(CHARACTERS_DIR, { recursive: true });
@@ -29,7 +30,8 @@ async function main() {
   // Find characters
   const charFiles = fs.readdirSync(CHARACTERS_DIR).filter(f => f.endsWith('.md'));
   if (charFiles.length === 0) {
-    console.log('No characters found in 00_Story_Bible/characters/. Let\'s register one first.');
+    const relCharDir = path.relative(cwd, CHARACTERS_DIR).replace(/\\/g, '/');
+    console.log(`No characters found in ${relCharDir}/. Let's register one first.`);
     const name = await askQuestion('Character name: ');
     if (!name) {
       console.error('Error: Character name is required.');
@@ -81,7 +83,7 @@ ${charName}, respond to the Author's latest statement in your authentic voice, s
 
   console.log('\n\x1b[36mCompiling character choices and plot insights...\x1b[0m');
 
-  const analysisSystem = 'You are the SAGA Lorekeeper. Output a clean markdown summary of the character\'s choices, motives, and dialogue beats in the scenario. No greetings or meta-chatter.';
+  const analysisSystem = 'You are the Soundboard Lorekeeper. Output a clean markdown summary of the character\'s choices, motives, and dialogue beats in the scenario. No greetings or meta-chatter.';
   const analysisPrompt = `CHARACTER NAME: ${charName}
 SCENARIO: ${scenario}
 CONVERSATION LOG:
@@ -102,7 +104,8 @@ Generate a structured scenario logcard.`;
   const saveChoice = await askQuestion('\nWould you like to save this scenario logcard to the character profile? (y/n): ');
   if (saveChoice.toLowerCase() === 'y') {
     fs.appendFileSync(charPath, `\n\n## 🧪 Scenario Log: ${scenario.slice(0, 40)}\n\n${logcard}\n`);
-    console.log(`\nCharacter profile 00_Story_Bible/characters/${chosenFile} updated!`);
+    const relCharPath = path.relative(cwd, charPath).replace(/\\/g, '/');
+    console.log(`\nCharacter profile ${relCharPath} updated!`);
   }
 }
 

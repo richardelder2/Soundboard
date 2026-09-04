@@ -4,10 +4,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
+import { getCharactersDir, getStoryBibleDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const CHARACTERS_DIR = path.join(cwd, '00_Story_Bible', 'characters');
-const STYLE_GUIDE_PATH = path.join(cwd, '00_Story_Bible', 'style_guide.md');
+const CHARACTERS_DIR = getCharactersDir(cwd);
+const STORY_BIBLE_DIR = getStoryBibleDir(cwd);
+const STYLE_GUIDE_PATH = path.join(STORY_BIBLE_DIR, 'style_guide.md');
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -21,7 +23,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA Character Voice Finder Interview (/interview) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard Character Voice Finder Interview (/interview) ===\x1b[0m\n');
 
   if (!fs.existsSync(CHARACTERS_DIR)) {
     fs.mkdirSync(CHARACTERS_DIR, { recursive: true });
@@ -30,7 +32,8 @@ async function main() {
   // Find characters
   const charFiles = fs.readdirSync(CHARACTERS_DIR).filter(f => f.endsWith('.md'));
   if (charFiles.length === 0) {
-    console.log('No characters found in 00_Story_Bible/characters/. Let\'s register one.');
+    const relCharDir = path.relative(cwd, CHARACTERS_DIR).replace(/\\/g, '/');
+    console.log(`No characters found in ${relCharDir}/. Let's register one.`);
     const name = await askQuestion('Character name: ');
     if (!name) {
       console.error('Error: Character name is required.');
@@ -75,7 +78,7 @@ ${charName}, respond to the Author's latest statement in your authentic voice. K
 
   console.log('\n\x1b[36mAnalyzing voice mannerisms and dialect...\x1b[0m');
 
-  const analysisSystem = 'You are the SAGA Line & Copy Editor. Extract concrete dialogue rules, mannerisms, slang, and structural habits from the conversation log. Output clean markdown rules.';
+  const analysisSystem = 'You are the Soundboard Line & Copy Editor. Extract concrete dialogue rules, mannerisms, slang, and structural habits from the conversation log. Output clean markdown rules.';
   const analysisPrompt = `CHARACTER NAME: ${charName}
 CONVERSATION LOG:
 ${conversationHistory.map(h => `${h.role === 'author' ? 'Author' : charName}: "${h.text}"`).join('\n')}
@@ -95,11 +98,13 @@ Generate a structured voice card.`;
   const saveChoice = await askQuestion('\nWould you like to save this voice card to the character profile? (y/n): ');
   if (saveChoice.toLowerCase() === 'y') {
     fs.appendFileSync(charPath, `\n\n## 🗣️ Stylistic Voice Profile\n\n${voiceCard}\n`);
-    console.log(`\nCharacter profile 00_Story_Bible/characters/${chosenFile} updated!`);
+    const relCharPath = path.relative(cwd, charPath).replace(/\\/g, '/');
+    console.log(`\nCharacter profile ${relCharPath} updated!`);
 
     if (fs.existsSync(STYLE_GUIDE_PATH)) {
       fs.appendFileSync(STYLE_GUIDE_PATH, `\n\n### Character Voice: ${charName.toUpperCase()}\n\n${voiceCard}\n`);
-      console.log('Story Bible style_guide.md updated with voice profiles!');
+      const relStyleGuide = path.relative(cwd, STYLE_GUIDE_PATH).replace(/\\/g, '/');
+      console.log(`Style guide ${relStyleGuide} updated with voice profiles!`);
     }
   }
 }

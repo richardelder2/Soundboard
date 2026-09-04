@@ -9,7 +9,7 @@ last_modified: 2026-07-07
 
 # Narrative Authenticity Audit Rubric
 
-This rubric runs the published AI-fiction detector *in reverse*: an LLM (or human editor) scores the manuscript on the same discourse-level questions researchers used to separate AI from human fiction. Score every question, then compare to the target. Questions the mechanical scanner (`node scripts/saga.js audit`) already covers are marked [SCAN] and need no manual scoring.
+This rubric runs the published AI-fiction detector *in reverse*: an LLM (or human editor) scores the manuscript on the same discourse-level questions researchers used to separate AI from human fiction. Score every question, then compare to the target. Questions the mechanical scanner (`node scripts/soundboard.js audit`) already covers are marked [SCAN] and need no manual scoring.
 
 **Scoring discipline**: answer from evidence in the text, quote the supporting passage, and resist grading generously. A chapter that "mostly" avoids a tell still fails that item.
 

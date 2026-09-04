@@ -209,12 +209,116 @@ function getFilesRecursive(dir) {
   return results;
 }
 
-function handleWizard(type) {
+async function handleDiagnostic(subCmd, extraArgs = []) {
+  const diagMap = {
+    rhythm: 'prose_rhythm_diagnostic.js',
+    dialogue: 'dialogue_diagnostic.js',
+    tense: 'tense_slip_diagnostic.js',
+    sensory: 'sensory_anchor_diagnostic.js',
+    dread: 'dread_pacing_diagnostic.js',
+    lore: 'lore_density_diagnostic.js',
+    heatmap: 'character_heatmap_diagnostic.js',
+    resource: 'resource_consistency_diagnostic.js',
+    playbook: 'generate_curated_playbook.js',
+  };
+
+  if (!subCmd || subCmd === 'list' || subCmd === '--help' || subCmd === 'help') {
+    printHeader('Soundboard Diagnostics Suite');
+    console.log(`
+Available diagnostics:
+  node scripts/soundboard.js diag audit [path]         Full AI prose tell & rhythm scan
+  node scripts/soundboard.js diag continuity [dir]     Proper noun & character continuity scan
+  node scripts/soundboard.js diag rhythm [chapter]     Sentence length standard deviation & cadence
+  node scripts/soundboard.js diag dialogue [chapter]   Speaker attribution & dialogue ratio
+  node scripts/soundboard.js diag tense [chapter]      Past vs. present tense consistency & slips
+  node scripts/soundboard.js diag sensory [chapter]    Sensory anchor density (visual/auditory/tactile)
+  node scripts/soundboard.js diag dread [chapter]      Dread pacing & sluggish suspense blocks
+  node scripts/soundboard.js diag lore [chapter]       Lore density & exposition info-dump scanner
+  node scripts/soundboard.js diag heatmap              Character presence & interaction matrix
+  node scripts/soundboard.js diag resource             Physical resource tracking (oxygen, battery, ammo)
+  node scripts/soundboard.js diag playbook [chapter]   Generate curated revision playbook
+  node scripts/soundboard.js diag all [chapter]        Run all mechanical diagnostics sequentially
+    `);
+    return;
+  }
+
+  if (subCmd === 'audit') {
+    await handleAudit(extraArgs);
+    return;
+  }
+  if (subCmd === 'continuity') {
+    await handleContinuity(extraArgs);
+    return;
+  }
+
+  if (subCmd === 'all') {
+    printHeader('Running Full Soundboard Diagnostic Suite');
+    console.log('\n--- 1. Narrative Prose Audit ---');
+    await handleAudit(extraArgs);
+    console.log('\n--- 2. Character & Proper-Noun Continuity ---');
+    await handleContinuity(extraArgs);
+
+    const sequence = ['rhythm', 'dialogue', 'tense', 'sensory', 'dread', 'lore'];
+    for (let i = 0; i < sequence.length; i++) {
+      const name = sequence[i];
+      console.log(`\n--- ${i + 3}. ${name.toUpperCase()} Diagnostic ---`);
+      const child = fork(path.join('scripts', diagMap[name]), extraArgs);
+      await new Promise(res => child.on('close', res));
+    }
+    return;
+  }
+
+  const scriptFile = diagMap[subCmd];
+  if (!scriptFile) {
+    console.error(`Unknown diagnostic: "${subCmd}". Run "node scripts/soundboard.js diag" to see available tools.`);
+    return;
+  }
+
+  const child = fork(path.join('scripts', scriptFile), extraArgs);
+  child.on('close', code => process.exit(code || 0));
+}
+
+function handleWizard(type, extraArgs = []) {
+  const wizardMap = {
+    onboard: 'onboard_wizard.js',
+    unstuck: 'unstuck_wizard.js',
+    brainstorm: 'brainstorm_wizard.js',
+    interview: 'interview_wizard.js',
+    heat: 'dialogue_heat_wizard.js',
+    bloom: 'sensory_bloom_wizard.js',
+    scene: 'stage_scene_wizard.js',
+    theme: 'theme_weaver_wizard.js',
+    'therefore-but': 'therefore_but_wizard.js',
+    wwxdu: 'wwxdu_wizard.js'
+  };
+
+  if (!type || type === 'list' || type === '--help' || type === 'help') {
+    printHeader('Soundboard Creative Wizards');
+    console.log(`
+Available interactive wizards:
+  node scripts/soundboard.js wizard onboard [--blueprint=<name>]   Start novel onboarding session
+  node scripts/soundboard.js wizard unstuck                         Overcome writer's block (pacing, twists)
+  node scripts/soundboard.js wizard brainstorm                      Brainstorm premise & core tensions
+  node scripts/soundboard.js wizard interview                       Character deep-dive interrogation
+  node scripts/soundboard.js wizard heat                            Dialogue escalation & subtext intensifier
+  node scripts/soundboard.js wizard bloom                           Sensory expansion & setting viscosity
+  node scripts/soundboard.js wizard scene                           Scene staging & physical blocking
+  node scripts/soundboard.js wizard theme                           Theme weaver & subtle resonance
+  node scripts/soundboard.js wizard therefore-but                   Causal calculus ("Therefore / But" links)
+  node scripts/soundboard.js wizard wwxdu                           "What Would X Do Unexpectedly" subversion
+    `);
+    return;
+  }
+
+  const scriptFile = wizardMap[type];
+  if (!scriptFile) {
+    console.error(`Unknown wizard: "${type}". Run "node scripts/soundboard.js wizard" to see available wizards.`);
+    return;
+  }
+
+  const env = { ...process.env };
   if (type === 'onboard') {
-    // Resolve --blueprint=<name> into a setup/ file (dashes map to underscores,
-    // "_blueprint.md" suffix optional). Passed to the wizard via env var.
     const blueprintArg = args.find(a => a.startsWith('--blueprint='));
-    const env = { ...process.env };
     if (blueprintArg) {
       const name = blueprintArg.split('=')[1].replace(/-/g, '_');
       const candidates = [
@@ -226,25 +330,28 @@ function handleWizard(type) {
         console.error(`Blueprint not found. Tried: ${candidates.join(', ')}`);
         process.exit(1);
       }
-      env.Soundboard_BLUEPRINT = resolved;
+      env.SOUNDBOARD_BLUEPRINT = resolved;
+      env.SB_BLUEPRINT = resolved;
+      env.SAGA_BLUEPRINT = resolved;
     }
-    const wizardProcess = fork(path.join('scripts', 'onboard_wizard.js'), [], { env });
-    wizardProcess.on('close', (code) => {
-      process.exit(code);
-    });
-  } else {
-    console.error(`Unknown wizard: ${type}. Available: onboard`);
   }
+
+  const wizardProcess = fork(path.join('scripts', scriptFile), extraArgs, { env });
+  wizardProcess.on('close', (code) => {
+    process.exit(code || 0);
+  });
 }
 
-async function handleAudit() {
+async function handleAudit(customArgs) {
   const { runAudit } = await import('./narrative_audit.js');
-  runAudit(args.slice(1));
+  const auditArgs = customArgs !== undefined ? customArgs : args.slice(1);
+  runAudit(auditArgs);
 }
 
-async function handleContinuity() {
+async function handleContinuity(customArgs) {
   const { runContinuityScan } = await import('./continuity_scan.js');
-  runContinuityScan(args.slice(1));
+  const contArgs = customArgs !== undefined ? customArgs : args.slice(1);
+  runContinuityScan(contArgs);
 }
 
 async function handleCompile() {
@@ -527,18 +634,14 @@ Usage:
   node scripts/soundboard.js init [folder]          Scaffold a self-contained novel workspace in [folder]
   node scripts/soundboard.js status                 Show the status of each pipeline stage
   node scripts/soundboard.js craft search <query>   Search the 80+ craft modules in _config/okf_craft/
-  node scripts/soundboard.js wizard onboard         Start the interactive onboarding session
-                       [--blueprint=<name>]   Pick a setup/ questionnaire (default: comfort-scifi)
-  node scripts/soundboard.js run-stage <stage_id>   Compile the stage packet (contract + declared inputs +
-                                              templates) for the executing agent or API pipeline
+  node scripts/soundboard.js diag [name] [args]     Run diagnostic tools (rhythm, dialogue, tense, sensory, dread, lore, all)
+  node scripts/soundboard.js wizard [name] [args]   Run creative wizards (onboard, unstuck, brainstorm, heat, bloom, etc.)
+  node scripts/soundboard.js run-stage <stage_id>   Compile the stage packet for the executing agent
   node scripts/soundboard.js pack-chapter <N>       Assemble token-disciplined drafting kit for Chapter N
   node scripts/soundboard.js okf-index              Rebuild index.md catalogs for OKF knowledge bundles
-  node scripts/soundboard.js audit [path ...]       Scan chapters for AI prose tells (default: stage 03 output);
-                                              writes reports to stages/04_diagnostics_edits/output/reports/
-  node scripts/soundboard.js continuity [dir]       Scan chapters for name inconsistencies (near-duplicate /
-                                              orphaned proper nouns) feeding the canon check
-  node scripts/soundboard.js compile [--all]        Compile passed chapters into manuscript.html (+ .epub via
-                                              pandoc); --all ignores the Stage 04 gate
+  node scripts/soundboard.js audit [path ...]       Scan chapters for AI prose tells
+  node scripts/soundboard.js continuity [dir]       Scan chapters for proper-noun & character name inconsistencies
+  node scripts/soundboard.js compile [--all]        Compile passed chapters into manuscript.html (+ .epub via pandoc)
   `);
 }
 
@@ -552,8 +655,14 @@ switch (command) {
   case 'craft':
     handleCraftSearch(args.slice(1));
     break;
+  case 'diag':
+  case 'diagnostic':
+  case 'diagnostics':
+    handleDiagnostic(subCommand, args.slice(2));
+    break;
   case 'wizard':
-    handleWizard(subCommand);
+  case 'wizards':
+    handleWizard(subCommand, args.slice(2));
     break;
   case 'run-stage':
     handleRunStage(subCommand || args[2]);

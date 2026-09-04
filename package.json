@@ -8,6 +8,13 @@
     "sb": "./scripts/soundboard.js",
     "saga": "./scripts/soundboard.js"
   },
+  "scripts": {
+    "status": "node ./scripts/soundboard.js status",
+    "okf-index": "node ./scripts/soundboard.js okf-index",
+    "audit": "node ./scripts/soundboard.js audit",
+    "diag": "node ./scripts/soundboard.js diag all",
+    "test": "node ./scripts/soundboard.js status && node ./scripts/soundboard.js okf-index"
+  },
   "author": "Richard Elder",
   "license": "MIT",
   "repository": {

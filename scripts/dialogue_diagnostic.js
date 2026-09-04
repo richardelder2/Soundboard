@@ -11,10 +11,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const cwd = process.cwd();
-const DRAFTING_DIR = path.join(cwd, '02_Drafting');
-const STORY_BIBLE_CHARS_DIR = path.join(cwd, '00_Story_Bible', 'characters');
-const REVIEW_DIR = path.join(cwd, '04_Review');
+import { getCharactersDir, getReviewDir, getChapterFiles } from './path_helper.js';
+
+const customTarget = process.argv[2];
+const files = getChapterFiles(customTarget);
+const STORY_BIBLE_CHARS_DIR = getCharactersDir();
+const REVIEW_DIR = getReviewDir();
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'dialogue_diagnostic_report.md');
 const OUTPUT_JSON = path.join(REVIEW_DIR, 'dialogue_diagnostic_data.json');
 
@@ -85,25 +87,12 @@ const TARGET_WORDS = {
   ]
 };
 
-// 3. Scan and Analyze drafting files
-if (!fs.existsSync(DRAFTING_DIR)) {
-  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
-  process.exit(1);
+if (files.length === 0) {
+  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
+  process.exit(0);
 }
 
-if (!fs.existsSync(REVIEW_DIR)) {
-  fs.mkdirSync(REVIEW_DIR, { recursive: true });
-}
-
-const files = fs.readdirSync(DRAFTING_DIR)
-  .filter(f => /^chapter_\d+\.md$/.test(f))
-  .sort((a, b) => {
-    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-    return numA - numB;
-  });
-
-console.log(`Analyzing dialogue in ${files.length} chapters...`);
+console.log(`Analyzing dialogue across ${files.length} chapter(s)...`);
 
 let dialogueLines = [];
 let overallStats = {
@@ -124,9 +113,10 @@ Object.values(CHARACTER_MAP).forEach(c => {
 overallStats.byCharacter['Unknown'] = { linesCount: 0, wordsCount: 0, profanity: 0, slang: 0, slurs: 0 };
 
 files.forEach(file => {
-  const filePath = path.join(DRAFTING_DIR, file);
+  const filePath = file;
+  const fileName = path.basename(file);
   const content = fs.readFileSync(filePath, 'utf8');
-  const chNumber = file.match(/\d+/)?.[0] || '00';
+  const chNumber = fileName.match(/\d+/)?.[0] || '00';
   
   const paragraphs = content.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
   

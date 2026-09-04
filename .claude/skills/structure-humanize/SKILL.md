@@ -33,7 +33,7 @@ For each confirmed failure, propose the *minimal structural intervention*, e.g.:
 Present the map as a table (failure → intervention → affected chapters/scenes) and **wait for user approval**.
 
 ### 3. Execute
-Apply approved interventions chapter by chapter, preserving voice, characters, and all content the diagnosis didn't flag. After rewriting, re-run the rubric on changed sections and `node scripts/saga.js audit` for prose regressions, and update `stages/02_planning/output/structure_plan.md` so the plan matches the new reality.
+Apply approved interventions chapter by chapter, preserving voice, characters, and all content the diagnosis didn't flag. After rewriting, re-run the rubric on changed sections and `node scripts/soundboard.js audit` for prose regressions, and update `stages/02_planning/output/structure_plan.md` so the plan matches the new reality.
 
 ## Cautions
 - Change structure, not voice: this pass must not introduce new prose tells (check the Layer 2 rules in `_config/narrative_authenticity.md` while rewriting).

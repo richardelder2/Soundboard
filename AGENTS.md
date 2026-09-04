@@ -71,7 +71,7 @@ Rules for series work:
 - Book drafting treats `series/series_canon.md` exactly like local canon: draft loses conflicts; amendments are deliberate and logged with a retrofit list (which may span published books — flag those to the author, they may be unfixable and must constrain the new book instead).
 - The genre bibles' series trackers ("never reuse a motive-mechanism pair within 5 books", "one romance-ladder rung per 1–2 books") are audited at Stage 02 of each new book, not just Stage 04.
 
-**Upgrading a project** to a newer template version: re-run `node <template>/scripts/saga.js init` from inside the project folder. Verified safe: it refreshes `scripts/`, `_config/`, stage contracts, and docs while preserving `manuscript.json`, `.env`, and every `output/` directory. Caveat: locally customized stage contracts or config files are overwritten — diff before/after (`git diff`) if the project is under git, which it should be.
+**Upgrading a project** to a newer template version: re-run `node <template>/scripts/soundboard.js init` from inside the project folder. Verified safe: it refreshes `scripts/`, `_config/`, stage contracts, and docs while preserving `manuscript.json`, `.env`, and every `output/` directory. Caveat: locally customized stage contracts or config files are overwritten — diff before/after (`git diff`) if the project is under git, which it should be.
 
 ## Agent-led onboarding (no API key needed)
 
@@ -103,7 +103,7 @@ When the user asks to start a new novel/project, DO NOT tell them to run the ter
 - `_config/` — style + authenticity rules, audit rubric, `templates/` output skeletons
 - `setup/` — questionnaires/blueprints; `genre_bibles/` trope-stack series templates + INDEX
 - `stages/01–05/` — contracts (`CONTEXT.md`) and working artifacts (`output/`)
-- `scripts/` — `saga.js` CLI, wizards, `narrative_audit.js`, model helper, Claude Code launchers
+- `scripts/` — `soundboard.js` CLI, wizards, `narrative_audit.js`, diagnostics, Claude Code launchers
 - `.claude/skills/` — Claude Code skill wrappers (content lives in `_config/`; other agents just read those files directly)
 
 ## Model backends (optional — only for the terminal wizard / headless scripts)

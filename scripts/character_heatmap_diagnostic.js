@@ -11,20 +11,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const cwd = process.cwd();
-const DRAFTING_DIR = path.join(cwd, '02_Drafting');
-const STORY_BIBLE_CHARS_DIR = path.join(cwd, '00_Story_Bible', 'characters');
-const REVIEW_DIR = path.join(cwd, '04_Review');
+import { getCharactersDir, getReviewDir, getChapterFiles } from './path_helper.js';
+
+const customTarget = process.argv[2];
+const files = getChapterFiles(customTarget);
+const STORY_BIBLE_CHARS_DIR = getCharactersDir();
+const REVIEW_DIR = getReviewDir();
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'character_heatmap_report.md');
-
-if (!fs.existsSync(DRAFTING_DIR)) {
-  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
-  process.exit(1);
-}
-
-if (!fs.existsSync(REVIEW_DIR)) {
-  fs.mkdirSync(REVIEW_DIR, { recursive: true });
-}
 
 // 1. Load Character Aliases from Story Bible
 const CHARACTER_PROFILES = [];
@@ -71,17 +64,16 @@ if (fs.existsSync(STORY_BIBLE_CHARS_DIR)) {
 }
 
 if (CHARACTER_PROFILES.length === 0) {
-  console.log('No characters profiles found in 00_Story_Bible/characters/. Exiting.');
+  console.log('No character profiles found in stages/01_onboarding/output/characters/. Exiting.');
   process.exit(0);
 }
 
-const files = fs.readdirSync(DRAFTING_DIR)
-  .filter(f => /^chapter_\d+\.md$/.test(f))
-  .sort((a, b) => {
-    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-    return numA - numB;
-  });
+if (files.length === 0) {
+  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
+  process.exit(0);
+}
+
+console.log(`Analyzing character presence across ${files.length} chapter(s)...`);
 
 const matrix = {}; // character interactions grid
 CHARACTER_PROFILES.forEach(c1 => {
@@ -94,11 +86,12 @@ CHARACTER_PROFILES.forEach(c1 => {
 const chapterBreakdown = [];
 
 files.forEach(file => {
-  const filePath = path.join(DRAFTING_DIR, file);
+  const filePath = file;
+  const fileName = path.basename(file);
   const content = fs.readFileSync(filePath, 'utf8');
   const cleanContent = content.replace(/^---[\s\S]*?---/, '');
   const paragraphs = cleanContent.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-  const chNum = parseInt(file.match(/\d+/)?.[0] || '0', 10);
+  const chNum = parseInt(fileName.match(/\d+/)?.[0] || '0', 10);
   
   const chMentions = {};
   CHARACTER_PROFILES.forEach(c => { chMentions[c.id] = 0; });
@@ -144,7 +137,7 @@ files.forEach(file => {
   });
 
   chapterBreakdown.push({
-    file,
+    file: fileName,
     chapter: chNum,
     mentions: chMentions,
     active: activeCharsInCh

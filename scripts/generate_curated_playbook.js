@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { getDraftingDir, getReviewDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const DRAFTING_DIR = path.join(cwd, '02_Drafting');
-const REVISION_DIR = path.join(cwd, '03_Revision');
+const DRAFTING_DIR = getDraftingDir(cwd);
+const REVISION_DIR = getReviewDir(cwd);
 const PLAYBOOK_PATH = path.join(REVISION_DIR, 'curated_grammar_playbook.md');
 
 if (!fs.existsSync(DRAFTING_DIR)) {
@@ -152,7 +153,8 @@ files.forEach(file => {
   });
   
   if (chPlaybook.length > 0) {
-    markdown += `## [${file}](file:///./02_Drafting/${file})\n\n`;
+    const relDraftPath = path.relative(cwd, path.join(DRAFTING_DIR, file)).replace(/\\/g, '/');
+    markdown += `## [${file}](file:///${relDraftPath})\n\n`;
     chPlaybook.forEach(s => {
       markdown += `### Line ${s.lineNum} — ${s.type}\n`;
       markdown += `- **Original**: \`${s.original}\`\n`;
@@ -164,6 +166,7 @@ files.forEach(file => {
 });
 
 fs.writeFileSync(PLAYBOOK_PATH, markdown, 'utf8');
+const relPlaybookPath = path.relative(cwd, PLAYBOOK_PATH).replace(/\\/g, '/');
 console.log(`Curated playbook generated:`);
-console.log(`- Path: 03_Revision/curated_grammar_playbook.md`);
+console.log(`- Path: ${relPlaybookPath}`);
 console.log(`- Total suggested edits: ${playbookCount}`);

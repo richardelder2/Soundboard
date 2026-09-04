@@ -11,29 +11,19 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const cwd = process.cwd();
-const DRAFTING_DIR = path.join(cwd, '02_Drafting');
-const REVIEW_DIR = path.join(cwd, '04_Review');
+import { getReviewDir, getChapterFiles } from './path_helper.js';
+
+const customTarget = process.argv[2];
+const files = getChapterFiles(customTarget);
+const REVIEW_DIR = getReviewDir();
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'tense_consistency_report.md');
 
-if (!fs.existsSync(DRAFTING_DIR)) {
-  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
-  process.exit(1);
+if (files.length === 0) {
+  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
+  process.exit(0);
 }
 
-if (!fs.existsSync(REVIEW_DIR)) {
-  fs.mkdirSync(REVIEW_DIR, { recursive: true });
-}
-
-const files = fs.readdirSync(DRAFTING_DIR)
-  .filter(f => /^chapter_\d+\.md$/.test(f))
-  .sort((a, b) => {
-    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-    return numA - numB;
-  });
-
-console.log(`Analyzing tense consistency in ${files.length} chapters...`);
+console.log(`Analyzing tense consistency across ${files.length} chapter(s)...`);
 
 // High-confidence past/present verb indicators (expanded for high recall)
 const PAST_INDICATORS = /\b(walked|ran|said|whispered|looked|noticed|saw|gasped|grunted|seemed|turned|reached|pulled|pushed|tensed|held|stood|collapsed|degraded|overloaded|booted|was|were|had|went|did|took|made|told|came|asked|thought|knew|shouted|replied|cried|called|felt|heard|spoke|left|began|started|tried)\b/i;
@@ -42,7 +32,8 @@ const PRESENT_INDICATORS = /\b(walks|runs|says|whispers|looks|notices|sees|gasps
 const chaptersData = [];
 
 files.forEach(file => {
-  const filePath = path.join(DRAFTING_DIR, file);
+  const filePath = file;
+  const fileName = path.basename(file);
   const content = fs.readFileSync(filePath, 'utf8');
   
   const cleanContent = content.replace(/^---[\s\S]*?---/, '');
@@ -132,7 +123,7 @@ files.forEach(file => {
   });
 
   chaptersData.push({
-    file,
+    file: fileName,
     dominantTense,
     confidence: parseFloat(confidence.toFixed(1)),
     pastCount,

@@ -15,7 +15,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA Sensory Expansion Wizard (/sensory-bloom) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard Sensory Expansion Wizard (/sensory-bloom) ===\x1b[0m\n');
 
   console.log('Paste the paragraph you want to bloom (press Enter when done):');
   const passage = await askQuestion('> ');
@@ -39,9 +39,9 @@ async function main() {
   };
   const selectedSense = sensesMap[senseChoice] || sensesMap['3'];
 
-  console.log('\n\x1b[36mCalling SAGA Scribe to bloom this passage...\x1b[0m');
+  console.log('\n\x1b[36mCalling model to bloom this passage...\x1b[0m');
 
-  const systemInstruction = 'You are the SAGA Scribe. Your goal is to write high-viscosity, sensory-rich prose. Avoid all clichés, tells, and AI slop words. Provide only the expanded paragraphs and a brief explanation of the added details. No conversational intro.';
+  const systemInstruction = 'You are the Soundboard Scribe. Your goal is to write high-viscosity, sensory-rich prose. Avoid all clichés, tells, and AI slop words. Provide only the expanded paragraphs and a brief explanation of the added details. No conversational intro.';
   
   const prompt = `PASSAGE TO ENRICH:
 "${passage}"

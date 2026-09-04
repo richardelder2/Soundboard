@@ -4,10 +4,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
+import { getBeatsDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const PLANNING_DIR = path.join(cwd, '01_Planning');
-const BEATS_DIR = path.join(PLANNING_DIR, 'beats');
+const BEATS_DIR = getBeatsDir(cwd);
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -21,7 +21,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== SAGA Causal Plot Linker Wizard (/therefore-but) ===\x1b[0m\n');
+  console.log('\x1b[36m=== Soundboard Causal Plot Linker Wizard (/therefore-but) ===\x1b[0m\n');
 
   if (!fs.existsSync(BEATS_DIR)) {
     console.error(`Error: Beatsheet directory ${BEATS_DIR} does not exist. Please run stage-scene first.`);
@@ -30,7 +30,8 @@ async function main() {
 
   const beatsFiles = fs.readdirSync(BEATS_DIR).filter(f => f.endsWith('.md'));
   if (beatsFiles.length === 0) {
-    console.log('No beatsheets found under 01_Planning/beats/. Run /stage-scene to initialize one.');
+    const relBeats = path.relative(cwd, BEATS_DIR).replace(/\\/g, '/');
+    console.log(`No beatsheets found under ${relBeats}/. Run /stage-scene to initialize one.`);
     process.exit(1);
   }
 
@@ -40,8 +41,9 @@ async function main() {
   const choice = await askQuestion('\nChoose [1-' + beatsFiles.length + ']: ');
   const chosenFile = beatsFiles[parseInt(choice, 10) - 1] || beatsFiles[0];
   const beatsPath = path.join(BEATS_DIR, chosenFile);
+  const relChosen = path.relative(cwd, beatsPath).replace(/\\/g, '/');
 
-  console.log(`\nReading \x1b[33m01_Planning/beats/${chosenFile}\x1b[0m...`);
+  console.log(`\nReading \x1b[33m${relChosen}\x1b[0m...`);
   const lines = fs.readFileSync(beatsPath, 'utf8').split('\n');
 
   // Extract beat lines
@@ -85,9 +87,9 @@ async function main() {
     }
 
     const type = relationChoice === '1' ? 'therefore' : 'but';
-    console.log(`\n\x1b[36mCalling Gemini to suggest a causal link rewrite...\x1b[0m`);
+    console.log(`\n\x1b[36mCalling model to suggest a causal link rewrite...\x1b[0m`);
 
-    const systemInstruction = 'You are the SAGA Architect. Rewrite Beat B to connect causally to Beat A using either a "therefore" (direct consequence) or a "but" (obstacle/turn) relationship. Output only the rewritten beat in one sentence. No conversational intro.';
+    const systemInstruction = 'You are the Soundboard Architect. Rewrite Beat B to connect causally to Beat A using either a "therefore" (direct consequence) or a "but" (obstacle/turn) relationship. Output only the rewritten beat in one sentence. No conversational intro.';
     const prompt = `BEAT A: "${beatA.beatText}"
 BEAT B: "${beatB.beatText}"
 RELATIONSHIP TYPE: ${type === 'therefore' ? 'Therefore (Consequence)' : 'But (Obstacle/Turn)'}
@@ -109,7 +111,7 @@ Provide a rewritten version of Beat B that establishes a clear causal link from 
 
   if (modifiedCount > 0) {
     fs.writeFileSync(beatsPath, lines.join('\n'), 'utf8');
-    console.log(`\n\x1b[32mCausality audit complete! Updated ${modifiedCount} beats in 01_Planning/beats/${chosenFile}\x1b[0m`);
+    console.log(`\n\x1b[32mCausality audit complete! Updated ${modifiedCount} beats in ${relChosen}\x1b[0m`);
   } else {
     console.log('\nNo changes made to the beatsheet.');
   }
