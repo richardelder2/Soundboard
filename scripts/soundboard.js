@@ -656,8 +656,19 @@ function handleOkfIndex() {
   printHeader('Rebuilding OKF Catalogs');
   const craftDir = path.join('_config', 'okf_craft');
   if (fs.existsSync(craftDir)) {
-    const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && f !== 'index.md' && f !== 'CONTEXT.md');
-    let indexContent = `---\ntype: okf_index\ntitle: "Static Narrative Craft OKF Catalog"\nlast_indexed: ${new Date().toISOString().split('T')[0]}\n---\n\n# ${APP_NAME} Static Craft Knowledge Catalog\n\n`;
+    const files = fs.readdirSync(craftDir)
+      .filter(f => f.endsWith('.md') && f !== 'index.md' && f !== 'CONTEXT.md')
+      .sort();
+    let lastIndexed = new Date().toISOString().split('T')[0];
+    const indexPath = path.join(craftDir, 'index.md');
+    if (fs.existsSync(indexPath)) {
+      const existing = readText(indexPath);
+      const dateMatch = existing.match(/last_indexed:\s*(\d{4}-\d{2}-\d{2})/);
+      if (dateMatch) {
+        lastIndexed = dateMatch[1];
+      }
+    }
+    let indexContent = `---\ntype: okf_index\ntitle: "Static Narrative Craft OKF Catalog"\nlast_indexed: ${lastIndexed}\n---\n\n# ${APP_NAME} Static Craft Knowledge Catalog\n\n`;
     
     files.forEach(f => {
       const fullPath = path.join(craftDir, f);

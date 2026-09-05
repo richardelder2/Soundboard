@@ -6,6 +6,7 @@ last_indexed: 2026-09-05
 
 # Soundboard Static Craft Knowledge Catalog
 
+- [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [The Adventure Quest: Environmental Hostility, Resource Attrition & Team Dynamics](adventure_quest_survival_dynamics.md) — `type: craft_structure`
 - [Adversarial Prose Auditing: Slop Density, POV Filter Stripping & Sensory Anchors](adversarial_prose_auditing_and_slop_filtering.md) — `type: craft_rule`
 - [Anthropological Worldbuilding: Culture, Taboo & Internal Logic](anthropological_worldbuilding.md) — `type: craft_structure`
@@ -53,8 +54,8 @@ last_indexed: 2026-09-05
 - [Walter Murch's Rule of Six: Scene Cutting & Narrative Rhythm](murch_rule_of_six_pacing.md) — `type: craft_structure`
 - [The Mythic Archetypal Journey: Collective Unconscious & Cyclical Trials](mythic_archetypal_journey.md) — `type: craft_structure`
 - [Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall](noir_hardboiled_fatalism.md) — `type: craft_structure`
-- [Nonlinear Timelines: Anachrony, Chronesthesia & Retroactive Recontextualization](nonlinear_timeline_framework.md) — `type: craft_structure`
 - [Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs](non_human_cognitive_narration.md) — `type: craft_structure`
+- [Nonlinear Timelines: Anachrony, Chronesthesia & Retroactive Recontextualization](nonlinear_timeline_framework.md) — `type: craft_structure`
 - [The Novella Form: Physics of the 20,000–40,000 Word Corridor](novella_form_and_compressed_turn.md) — `type: craft_structure`
 - [The Police & Legal Procedural: Evidentiary Fair-Play, Institutional Friction & The Interrogation Crucible](police_procedural_evidentiary_and_institutional_engine.md) — `type: craft_structure`
 - [Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay](primitive_causal_calculus.md) — `type: craft_primitive`
@@ -80,7 +81,6 @@ last_indexed: 2026-09-05
 - [The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine](scene_level_five_commandments_coyne.md) — `type: craft_structure`
 - [Series Architecture: Macro-Arcs, Lore Debt, and Value Shifts](series_architecture_and_cross_book_arcs.md) — `type: craft_structure`
 - [The Short Story Engine: Single Effect, Compression, and Late Entry](short_story_form_and_single_effect.md) — `type: craft_structure`
-- [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw](status_transactions_and_dominance_choreography.md) — `type: craft_rule`
 - [Story Grid Macro Architecture: Beginning Hook, Middle Build & Ending Payoff](story_grid_macro.md) — `type: craft_structure`
 - [Dialogue Subtext: The Iceberg Theory & Surface-Depth Tension](subtext_and_implied_meaning.md) — `type: craft_structure`
