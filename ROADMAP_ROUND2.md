@@ -13,7 +13,7 @@
 | Sprint | Focus | Tickets | Status |
 |---|---|---|---|
 | **Sprint 1** | Budget Conformance & Bundle Integrity | T-01, T-02, T-03, T-04 | ✅ Completed |
-| **Sprint 2** | Make the Knowledge Teach | T-05, T-06, T-07 | 📋 Backlog |
+| **Sprint 2** | Make the Knowledge Teach | T-05, T-06, T-07 | ✅ Completed |
 | **Sprint 3** | State & The Concierge | T-09, T-10, T-08 | 📋 Backlog |
 | **Sprint 4** | Reach & Polish | T-11, T-12, T-13 | 📋 Backlog |
 
@@ -124,14 +124,14 @@
 
 ## Sprint 2: Make the Knowledge Teach
 
-### [ ] T-05 · Operational Diagnostic → Craft-Module Links
+### [x] T-05 · Operational Diagnostic → Craft-Module Links
 - **Priority:** P2 · Depends on T-02, T-03
 - **Goal:** Diagnostic failures must provide educational remediation, linking the audit flag to the relevant craft module and technique from `_config/okf_craft/CONTEXT.md`.
 - **Tasks:**
   - Map flags to remediation modules (e.g. rhythm monotony → `prose_syntax_and_acoustic_cadence`, embodied emotion overuse → `free_indirect_discourse_and_voice_blending`, dialogue ratio → `three_registers_of_dialogue_subtext`, tells → `adversarial_prose_auditing_and_slop_filtering`).
   - Add `## Corrective Craft Remediation` section to the chapter audit report.
 
-### [ ] T-06 · Retrieval Upgrade for `craft search`
+### [x] T-06 · Retrieval Upgrade for `craft search`
 - **Priority:** P2 · Depends on T-02
 - **Goal:** Intelligent plain-text retrieval without vector/binary dependencies.
 - **Tasks:**
@@ -140,7 +140,7 @@
   - Create `_config/okf_craft/synonyms.md` mapping author symptom terms to modules.
   - Fallback to router table when 0 matches found.
 
-### [ ] T-07 · Form-Based Routing (Short Story, Novella, Series)
+### [x] T-07 · Form-Based Routing (Short Story, Novella, Series)
 - **Priority:** P2 · Depends on T-03
 - **Goal:** Support non-novel structures without forcing 40-chapter novel infrastructure.
 - **Tasks:**

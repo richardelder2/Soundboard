@@ -59,7 +59,7 @@ export function runOkfLint(options = {}) {
   }
 
   const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md'));
-  const craftModules = files.filter(f => !['index.md', 'CONTEXT.md', 'SPECIFICATION.md'].includes(f));
+  const craftModules = files.filter(f => !['index.md', 'CONTEXT.md', 'SPECIFICATION.md', 'synonyms.md'].includes(f));
   const moduleIds = new Set(craftModules.map(f => f.replace(/\.md$/, '')));
 
   let totalBoms = 0;

@@ -57,7 +57,7 @@ function testBOM() {
 // Test 2: OKF Frontmatter & Linter against Spec
 function testOkfLint() {
   const craftDir = path.join(rootDir, '_config', 'okf_craft');
-  const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && f !== 'index.md' && f !== 'CONTEXT.md' && f !== 'SPECIFICATION.md');
+  const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && f !== 'index.md' && f !== 'CONTEXT.md' && f !== 'SPECIFICATION.md' && f !== 'synonyms.md');
   
   // A. All 92 modules have stages: frontmatter
   let missingStages = 0;
@@ -230,6 +230,71 @@ function testContinuityScan() {
   }
 }
 
+
+// Test 7: Operational Diagnostic -> Craft Remediation Links (T-05)
+function testCraftRemediationLinks() {
+  const auditScript = path.join(rootDir, 'scripts', 'narrative_audit.js');
+  const repeatedFixture = path.join(rootDir, 'tests', 'fixtures', 'tell_4000w_repeated.md');
+  try {
+    execSync(`node "${auditScript}" "${repeatedFixture}"`, { cwd: rootDir, encoding: 'utf8' });
+    const repPath = path.join(rootDir, 'stages', '04_diagnostics_edits', 'output', 'reports', 'audit_tell_4000w_repeated.md');
+    const repContent = fs.existsSync(repPath) ? fs.readFileSync(repPath, 'utf8') : '';
+    const hasRemediationSection = repContent.includes('## Corrective Craft Remediation');
+    const hasSlopLink = repContent.includes('adversarial_prose_auditing_and_slop_filtering.md');
+    const hasSyntaxLink = repContent.includes('prose_syntax_and_acoustic_cadence.md');
+    assert(hasRemediationSection && hasSlopLink && hasSyntaxLink, 'Audit report contains Corrective Craft Remediation section with active OKF module links');
+  } catch (e) {
+    assert(false, 'Craft remediation link test failed', e.message);
+  }
+}
+
+// Test 8: Intelligent Craft Search & Synonym Retrieval (T-06)
+function testCraftSearch() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  try {
+    // A. Synonym expansion
+    const synOut = execSync(`node ${cliScript} craft search "sagging middle" --json`, { cwd: rootDir, encoding: 'utf8' });
+    const synJson = JSON.parse(synOut);
+    const topMatch = synJson.length > 0 ? synJson[0].file : '';
+    const validTop = ['murch_rule_of_six_pacing.md', 'thriller_escalation_pacing.md', 'story_grid_macro.md'].includes(topMatch);
+    assert(validTop, 'Craft search expands author symptom ("sagging middle") via synonyms.md to top pacing modules');
+
+    // B. Stage flag filtering
+    const stageOut = execSync(`node ${cliScript} craft search "dialogue" --stage=03_drafting --json`, { cwd: rootDir, encoding: 'utf8' });
+    const stageJson = JSON.parse(stageOut);
+    const allDrafting = stageJson.length > 0 && stageJson.every(item => item.stages && item.stages.includes('03_drafting'));
+    assert(allDrafting, 'Craft search --stage=03_drafting filters strictly to modules active in stage 03');
+
+    // C. Graceful fallback on zero matches
+    const zeroOut = execSync(`node ${cliScript} craft search "gobbledygooktermxyz"`, { cwd: rootDir, encoding: 'utf8' });
+    const hasFallback = zeroOut.includes('No matching craft modules found') && zeroOut.includes('Recommended Starting Points');
+    assert(hasFallback, 'Craft search provides educational router fallback when 0 results match');
+  } catch (e) {
+    assert(false, 'Craft search retrieval test failed', e.message);
+  }
+}
+
+// Test 9: Form-Based Routing & Short Fiction Packaging (T-07)
+function testFormRouting() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  try {
+    // A. Short story adaptation in Stage 02 packet
+    const storyOut = execSync(`node ${cliScript} run-stage 02 --form=short_story`, { cwd: rootDir, encoding: 'utf8' });
+    const hasAdaptation = storyOut.includes('FORM ADAPTATION: SHORT_STORY');
+    const noNovelTracker = !storyOut.includes('GENRE TEMPLATE:');
+    assert(hasAdaptation && noNovelTracker, 'Stage 02 packet adapts for short_story form, omitting novel-length trackers');
+
+    // B. Expanded modules word count check
+    const p1 = path.join(rootDir, '_config', 'okf_craft', 'short_story_form_and_single_effect.md');
+    const p2 = path.join(rootDir, '_config', 'okf_craft', 'novella_form_and_compressed_turn.md');
+    const w1 = fs.readFileSync(p1, 'utf8').split(/\s+/).length;
+    const w2 = fs.readFileSync(p2, 'utf8').split(/\s+/).length;
+    assert(w1 >= 400 && w1 <= 550 && w2 >= 400 && w2 <= 550, `Form modules expanded to ~400-550 words (actual: ${w1}w, ${w2}w)`);
+  } catch (e) {
+    assert(false, 'Form-based routing test failed', e.message);
+  }
+}
+
 // Run all test groups
 testBOM();
 testOkfLint();
@@ -237,6 +302,9 @@ testStagePackets();
 testDensityNormalizedTells();
 testNarrativeAuditFixtures();
 testContinuityScan();
+testCraftRemediationLinks();
+testCraftSearch();
+testFormRouting();
 
 console.log('\n----------------------------------------');
 console.log(`Results: ${passed} passed, ${failed} failed`);

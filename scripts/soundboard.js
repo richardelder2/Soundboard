@@ -107,6 +107,25 @@ function handleInit(targetFolder) {
     console.log('  ✔ Created project .gitignore (preserves manuscript.json and stage outputs).');
   }
 
+  // Support --form flag in preferences.json
+  const formArg = (process.argv.slice(2) || []).find(a => a.startsWith('--form='));
+  const formVal = formArg ? formArg.split('=')[1].toLowerCase() : 'novel';
+  const validForms = ['short_story', 'novelette', 'novella', 'novel', 'series'];
+  const chosenForm = validForms.includes(formVal) ? formVal : 'novel';
+  const isShort = ['short_story', 'novelette'].includes(chosenForm);
+
+  const onboardingDir = path.join(targetDir, 'stages', '01_onboarding', 'output');
+  if (!fs.existsSync(onboardingDir)) fs.mkdirSync(onboardingDir, { recursive: true });
+  const prefTarget = path.join(onboardingDir, 'preferences.json');
+  if (!fs.existsSync(prefTarget)) {
+    fs.writeFileSync(prefTarget, JSON.stringify({
+      form: chosenForm,
+      unit_type: isShort ? 'section' : 'chapter',
+      target_words: chosenForm === 'short_story' ? 5000 : chosenForm === 'novella' ? 30000 : 90000
+    }, null, 2), 'utf8');
+    console.log(`  ✔ Configured project form: ${chosenForm} in preferences.json`);
+  }
+
   // Write default .env template if it doesn't exist
   const envPath = path.join(targetDir, '.env');
   if (!fs.existsSync(envPath)) {
@@ -501,7 +520,25 @@ function handleRunStage(stageId) {
       genre = genreArg.split('=')[1].toLowerCase();
     }
 
-    if (genre) {
+    let form = 'novel';
+    if (fs.existsSync(prefPath)) {
+      try {
+        const pref = JSON.parse(readText(prefPath));
+        if (pref.form) form = pref.form.toLowerCase();
+      } catch (_) {}
+    }
+    const formArg = (process.argv.slice(2) || []).find(a => a.startsWith('--form='));
+    if (formArg) {
+      form = formArg.split('=')[1].toLowerCase();
+    }
+
+    const isShortForm = ['short_story', 'novelette'].includes(form);
+
+    if (isShortForm) {
+      console.log(`\n--- FORM ADAPTATION: ${form.toUpperCase()} ---`);
+      console.log(`Form-Based Architecture: Single beat structure (beats/main.md), living canon, and zero-subplot discipline.`);
+      console.log(`Novel continuity trackers omitted per _config/okf_craft/short_story_form_and_single_effect.md.\n`);
+    } else if (genre) {
       let tracker = null;
       if (genre.includes('romance') || genre.includes('romantasy')) {
         tracker = path.join('_config', 'templates', 'tracker_romance_heat_ladder.template.md');
@@ -737,13 +774,60 @@ const CRAFT_SYNONYMS = {
   'cliffhanger': ['chapter_architecture_and_ending_hooks', 'hitchcock_bomb_suspense'],
 };
 
+function loadSynonyms(rootDir) {
+  const synPath = path.join(rootDir, '_config', 'okf_craft', 'synonyms.md');
+  const map = { ...CRAFT_SYNONYMS };
+  if (!fs.existsSync(synPath)) return map;
+  const content = fs.readFileSync(synPath, 'utf8');
+  const lines = content.split(/\r?\n/);
+  for (const line of lines) {
+    if (!line.startsWith('|') || line.includes('Author Symptom')) continue;
+    const parts = line.split('|').map(p => p.trim()).filter(Boolean);
+    if (parts.length >= 2) {
+      const phrase = parts[0].toLowerCase();
+      const targets = parts[1].replace(/[`\s]/g, '').split(',').map(t => t.replace(/\.md$/, ''));
+      map[phrase] = targets;
+    }
+  }
+  return map;
+}
+
+function parseYamlListFromContent(text, key) {
+  const m = text.match(new RegExp(`^${key}:\\s*\\[([^\\]]*)\\]`, 'm'));
+  if (m) {
+    return m[1].split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+  }
+  const lines = text.split(/\r?\n/);
+  let inKey = false;
+  const items = [];
+  for (const line of lines) {
+    if (new RegExp(`^${key}:\\s*$`).test(line)) {
+      inKey = true;
+      continue;
+    }
+    if (inKey) {
+      const itemMatch = line.match(/^\s+-\s+["']?([^"'\\r\\n#]+)["']?/);
+      if (itemMatch) {
+        items.push(itemMatch[1].trim());
+      } else if (/^\S/.test(line)) {
+        inKey = false;
+      }
+    }
+  }
+  return items;
+}
+
 function handleCraftSearch(searchArgs) {
   const isJson = searchArgs.includes('--json');
-  const terms = searchArgs.filter(a => a !== '--json' && a !== 'search');
+  const stageFlag = (searchArgs.find(a => a.startsWith('--stage=')) || '').replace('--stage=', '').trim();
+  const genreFlag = (searchArgs.find(a => a.startsWith('--genre=')) || '').replace('--genre=', '').trim().toLowerCase();
+  const scopeFlag = (searchArgs.find(a => a.startsWith('--scope=')) || '').replace('--scope=', '').trim();
+
+  const terms = searchArgs.filter(a => !a.startsWith('--') && a !== 'search');
   const query = terms.join(' ').trim();
   
-  if (!query) {
-    console.log(`\x1b[33mUsage: node scripts/${binName}.js craft search <query> [--json]\x1b[0m`);
+  if (!query && !stageFlag && !genreFlag && !scopeFlag) {
+    console.log(`\x1b[33mUsage: node scripts/${binName}.js craft search <query> [--stage=<id>] [--genre=<name>] [--scope=<level>] [--json]\x1b[0m`);
     return;
   }
   
@@ -753,9 +837,10 @@ function handleCraftSearch(searchArgs) {
     return;
   }
   
-  const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && f !== 'index.md');
+  const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && !['index.md', 'CONTEXT.md', 'SPECIFICATION.md', 'synonyms.md'].includes(f));
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter(w => w.length > 1);
+  const synonyms = loadSynonyms(process.cwd());
   const results = [];
   
   files.forEach(f => {
@@ -765,34 +850,49 @@ function handleCraftSearch(searchArgs) {
     const title = titleMatch ? titleMatch[1].trim() : f;
     const typeMatch = content.match(/type:\s*([^\r\n]+)/);
     const type = typeMatch ? typeMatch[1].trim() : 'uncategorized';
+    const scopeMatch = content.match(/scope:\s*([^"\r\n]+)/);
+    const scope = scopeMatch ? scopeMatch[1].trim() : '';
 
-    const keywordsMatch = content.match(/keywords:\s*\[([^\]]+)\]/);
-    const keywords = keywordsMatch ? keywordsMatch[1].toLowerCase() : '';
+    const stages = parseYamlListFromContent(content, 'stages');
+    const genres = parseYamlListFromContent(content, 'genres');
+    const keywordsList = parseYamlListFromContent(content, 'keywords');
+    const keywords = keywordsList.join(' ').toLowerCase();
     
+    // Apply CLI flag filters
+    if (stageFlag && !stages.includes(stageFlag)) return;
+    if (genreFlag && genres.length > 0 && !genres.some(g => g.toLowerCase().includes(genreFlag))) return;
+    if (scopeFlag && scope !== scopeFlag) return;
+
     let score = 0;
     const lowerTitle = title.toLowerCase();
     const lowerContent = content.toLowerCase();
-    const lowerFile = f.toLowerCase();
+    const baseName = f.replace(/\.md$/, '').toLowerCase();
     
-    if (lowerTitle.includes(queryLower)) score += 30;
-    if (lowerFile.includes(queryLower.replace(/\s+/g, '_'))) score += 25;
-    if (keywords.includes(queryLower)) score += 35; // 3x keyword boost
-    if (lowerContent.includes(queryLower)) score += 15;
-    
-    // Check synonym expansions
-    for (const [synonym, targets] of Object.entries(CRAFT_SYNONYMS)) {
-      if (queryLower.includes(synonym) && targets.some(t => lowerFile.includes(t))) {
-        score += 40;
+    if (queryLower) {
+      // Whole phrase matches
+      if (lowerTitle.includes(queryLower)) score += 30;
+      if (baseName.includes(queryLower.replace(/\s+/g, '_'))) score += 25;
+      if (keywords.includes(queryLower)) score += 35;
+      if (lowerContent.includes(queryLower)) score += 10;
+      
+      // Synonym mappings lookup
+      for (const [synonym, targets] of Object.entries(synonyms)) {
+        if ((queryLower.includes(synonym) || synonym.includes(queryLower)) && targets.some(t => baseName.includes(t))) {
+          score += 40;
+        }
       }
-    }
 
-    queryWords.forEach(w => {
-      if (lowerTitle.includes(w)) score += 8;
-      if (keywords.includes(w)) score += 12;
-      if (lowerFile.includes(w)) score += 5;
-      const count = (lowerContent.match(new RegExp(`\\b${w}`, 'gi')) || []).length;
-      score += Math.min(count, 10);
-    });
+      // Word-level weighted scoring: keywords 3x, title 2x, id 2x, body 1x
+      queryWords.forEach(w => {
+        if (keywords.includes(w)) score += 36;
+        if (lowerTitle.includes(w)) score += 24;
+        if (baseName.includes(w)) score += 20;
+        const bodyCount = (lowerContent.match(new RegExp(`\\b${w}`, 'gi')) || []).length;
+        score += Math.min(bodyCount, 10);
+      });
+    } else {
+      score = 10;
+    }
     
     if (score > 0) {
       const lines = content.split('\n');
@@ -809,6 +909,9 @@ function handleCraftSearch(searchArgs) {
         path: path.join(craftDir, f).replace(/\\/g, '/'),
         title,
         type,
+        scope,
+        stages,
+        genres,
         score,
         summary: summary.slice(0, 160) + (summary.length > 160 ? '...' : '')
       });
@@ -823,14 +926,32 @@ function handleCraftSearch(searchArgs) {
     return;
   }
   
-  printHeader(`${APP_NAME} Craft Search: "${query}" (${results.length} matches found)`);
+  const filterDesc = [
+    stageFlag ? `stage=${stageFlag}` : null,
+    genreFlag ? `genre=${genreFlag}` : null,
+    scopeFlag ? `scope=${scopeFlag}` : null,
+  ].filter(Boolean).join(', ');
+
+  const titleHeader = query 
+    ? `${APP_NAME} Craft Search: "${query}"${filterDesc ? ` [${filterDesc}]` : ''} (${results.length} matches)`
+    : `${APP_NAME} Craft Search [${filterDesc}] (${results.length} matches)`;
+
+  printHeader(titleHeader);
+
   if (topResults.length === 0) {
     console.log(`  No matching craft modules found for "${query}".\n`);
+    console.log(`  \x1b[1m\x1b[36mRecommended Starting Points from Layer 3 Router (_config/okf_craft/CONTEXT.md):\x1b[0m`);
+    console.log(`  • Macro Planning:      story_grid_macro.md, four_corner_opposition_and_foil_matrix.md`);
+    console.log(`  • Scene & Beats:       scene_level_five_commandments_coyne.md, cpocl_plan_threat_conflict_engine.md`);
+    console.log(`  • Pacing & Rhythm:     murch_rule_of_six_pacing.md, thriller_escalation_pacing.md`);
+    console.log(`  • Dialogue & Subtext:  three_registers_of_dialogue_subtext.md, subtext_and_implied_meaning.md`);
+    console.log(`  • Diagnostics & Slop:  adversarial_prose_auditing_and_slop_filtering.md, anti_tell_suppression.md\n`);
+    console.log(`  \x1b[90mTip: Consult _config/okf_craft/synonyms.md for full author symptom search index.\x1b[0m\n`);
     return;
   }
   
   topResults.forEach((r, idx) => {
-    console.log(`  \x1b[36m${idx + 1}. [${r.title}]\x1b[0m (${r.type})`);
+    console.log(`  \x1b[36m${idx + 1}. [${r.title}]\x1b[0m (${r.type} | ${r.scope || 'universal'})`);
     console.log(`     \x1b[90mPath: ${r.path}\x1b[0m`);
     if (r.summary) {
       console.log(`     \x1b[37m${r.summary}\x1b[0m`);
@@ -844,10 +965,10 @@ function showHelp() {
 ${APP_NAME} novel engineering CLI
 
 Usage:
-  node scripts/${BIN_NAME}.js init [folder]          Scaffold a self-contained novel workspace in [folder]
+  node scripts/${BIN_NAME}.js init [folder] [--form]  Scaffold workspace (forms: short_story, novella, novel, series)
   node scripts/${BIN_NAME}.js status                 Show the status of each pipeline stage
   node scripts/${BIN_NAME}.js brief                  Executive summary of manuscript progress & state
-  node scripts/${BIN_NAME}.js craft search <query>   Search craft modules in _config/okf_craft/
+  node scripts/${BIN_NAME}.js craft search <query>   Search craft modules (flags: --stage, --genre, --scope, --json)
   node scripts/${BIN_NAME}.js okf-lint              Validate all craft modules against ICM standards
   node scripts/${BIN_NAME}.js diag [name] [args]     Run diagnostic tools (rhythm, dialogue, tense, etc.)
   node scripts/${BIN_NAME}.js wizard [name] [args]   Run creative wizards (onboard, unstuck, heat, etc.)

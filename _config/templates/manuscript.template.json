@@ -1,6 +1,8 @@
 {
   "title": "[working title]",
   "author": "[author or pen name]",
+  "form": "novel",
+  "unit_type": "chapter",
   "target_words": 90000,
   "genre_bible": "setup/genre_bibles/[bible].md",
   "trope_stack": "[dynamic] + [situation] + [flavor]",

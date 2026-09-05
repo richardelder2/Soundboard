@@ -210,33 +210,91 @@ function analyze(text) {
   };
 }
 
-// ---------- flags (thresholds from _config/narrative_authenticity.md) ----------
+// ---------- flags & remediation (thresholds from _config/narrative_authenticity.md & okf_craft) ----------
 
-function flag(cond, level, msg) {
-  return cond ? { level, msg } : null;
+const REMEDIATIONS = {
+  rhythm: {
+    flag: 'Sentence-Length Monotony (Low CV)',
+    module: 'prose_syntax_and_acoustic_cadence.md',
+    technique: 'Christensen cumulative syntax & Provost variation (mix fragments with long compound sentences)'
+  },
+  opener_run: {
+    flag: 'Sentence Opener Repetition',
+    module: 'syntactic_symbolism_and_cumulative_sentence_rhetoric.md',
+    technique: 'Syntactic inversion, participial phrases, subject rotation'
+  },
+  embodied_emotion: {
+    flag: 'Embodied Emotion Overuse',
+    module: 'free_indirect_discourse_and_voice_blending.md',
+    technique: 'Objective correlative, free indirect discourse, named feeling labels'
+  },
+  no_explicit_emotion: {
+    flag: 'No Explicitly Named Feelings',
+    module: 'free_indirect_discourse_and_voice_blending.md',
+    technique: 'Name feelings outright (anger, grief, relief) to balance physical symptoms'
+  },
+  dialogue_ratio: {
+    flag: 'Low Dialogue Ratio',
+    module: 'three_registers_of_dialogue_subtext.md',
+    technique: 'Convert descriptive narration into character speech with subtext and status play'
+  },
+  tells: {
+    flag: 'AI Lexical Tells',
+    module: 'adversarial_prose_auditing_and_slop_filtering.md',
+    technique: 'Anti-tell suppression, vocabulary replacement, physical blocking'
+  },
+  olfactory: {
+    flag: 'Olfactory Sensory Overuse',
+    module: 'cinematic_blocking_and_lens.md',
+    technique: 'Sensory hierarchy rotation (shift from smell to tactile, visual framing, sound)'
+  },
+  em_dash: {
+    flag: 'Em-Dash Overuse',
+    module: 'prose_syntax_and_acoustic_cadence.md',
+    technique: 'Replace punctuation crutches with deliberate sentence architecture and semicolons'
+  },
+  triads: {
+    flag: 'Rhetorical / List Triad Repetition',
+    module: 'prose_syntax_and_acoustic_cadence.md',
+    technique: 'Break formulaic three-item lists into pairs, single assertions, or full clauses'
+  },
+  moralizing: {
+    flag: 'Narrator Theme Explanation / Moralizing Tail',
+    module: 'anti_tell_suppression.md',
+    technique: 'Dramatize theme through character crisis and consequence; never state the moral'
+  },
+  anachrony: {
+    flag: 'Linear-Only Time / Missing Anachrony',
+    module: 'nonlinear_timeline_framework.md',
+    technique: 'Delayed disclosure, backward narrative jumps, associative memory triggers'
+  }
+};
+
+function flag(cond, level, msg, remKey = null) {
+  return cond ? { level, msg, remKey } : null;
 }
 
 function buildFlags(r) {
   const isShort = r.words < 800;
   return [
     flag(isShort, 'INFO', `Sample is short (${r.words} words < 800) — rate-based metrics (CV, em-dash rate, olfactory density) are informational only until full chapter length.`),
-    flag(!isShort && r.embodiedShare > 0.5 && r.embodied >= 4, 'RED', `Embodied emotion dominates (${(r.embodiedShare * 100).toFixed(0)}% of detected emotion beats; target ≤ ~40%). Rotate in explicit labels and behavioral cues.`),
-    flag(!isShort && r.explicit === 0 && r.embodied >= 4, 'WARN', 'No plainly named feelings detected. Humans state emotions outright far more than AI does.'),
-    flag(!isShort && r.olfactoryPer1k > 1.5 && r.olfactoryCount >= 3, 'WARN', `Olfactory density ${r.olfactoryPer1k.toFixed(2)}/1k words (${r.olfactoryCount} refs) — smell is the most over-used AI sense. Keep only beats that earn their place.`),
-    flag(!isShort && r.sentence.cv < 0.5, 'RED', `Sentence-length variation too low (CV ${r.sentence.cv.toFixed(2)}; target ≥ 0.5). Mix fragments with long winding sentences.`),
-    flag(!isShort && r.emDashPer1k > 4 && r.emDashCount >= 4, 'RED', `Em-dash rate ${r.emDashPer1k.toFixed(1)}/1k words (${r.emDashCount} total; target ≤ 4/1k). Swap some for commas, parentheses, periods.`),
+    flag(!isShort && r.embodiedShare > 0.5 && r.embodied >= 4, 'RED', `Embodied emotion dominates (${(r.embodiedShare * 100).toFixed(0)}% of detected emotion beats; target ≤ ~40%). Rotate in explicit labels and behavioral cues.`, 'embodied_emotion'),
+    flag(!isShort && r.explicit === 0 && r.embodied >= 4, 'WARN', 'No plainly named feelings detected. Humans state emotions outright far more than AI does.', 'no_explicit_emotion'),
+    flag(!isShort && r.olfactoryPer1k > 1.5 && r.olfactoryCount >= 3, 'WARN', `Olfactory density ${r.olfactoryPer1k.toFixed(2)}/1k words (${r.olfactoryCount} refs) — smell is the most over-used AI sense. Keep only beats that earn their place.`, 'olfactory'),
+    flag(!isShort && r.sentence.cv < 0.5, 'RED', `Sentence-length variation too low (CV ${r.sentence.cv.toFixed(2)}; target ≥ 0.5). Mix fragments with long winding sentences.`, 'rhythm'),
+    flag(!isShort && r.emDashPer1k > 4 && r.emDashCount >= 4, 'RED', `Em-dash rate ${r.emDashPer1k.toFixed(1)}/1k words (${r.emDashCount} total; target ≤ 4/1k). Swap some for commas, parentheses, periods.`, 'em_dash'),
     // Density-normalized lexical tells:
     // RED: repeated tell (count >= 2, regardless of sample size) OR high density in full sample (density > 2.0/1k && total >= 3 && words >= 800)
-    flag(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3), 'RED', Object.values(r.tells).some(c => c >= 2) ? `Repeated lexical tell found in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words, ${r.tellTotal} total): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`),
+    flag(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3), 'RED', Object.values(r.tells).some(c => c >= 2) ? `Repeated lexical tell found in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words, ${r.tellTotal} total): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`, 'tells'),
     // WARN: non-repeated tells in short sample (< 800w) OR density > 0.8/1k OR single isolated tell
-    flag(!(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3)) && r.tellTotal > 0, 'WARN', isShort ? `Short sample (${r.words} words < 800) contains lexical tells: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Below 800 words capped at review.` : (r.tellsPer1k > 0.8 ? `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Isolated lexical tell in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Review context or add to allowlist if intentional.`)),
-    flag(!isShort && r.patternTriads > 1, 'WARN', `"Not X, not Y, but Z"-style constructions: ${r.patternTriads}. One rhetorical triad per chapter max.`),
-    flag(!isShort && r.listTriadsPer1k > 2 && r.words >= 800, 'WARN', `Three-item lists at ${r.listTriadsPer1k.toFixed(1)}/1k words — the rule-of-three is an AI rhythm. Break some into ones and twos.`),
-    flag(!isShort && r.dialogueRatio < 0.15, 'WARN', `Dialogue is only ${(r.dialogueRatio * 100).toFixed(0)}% of text. Humans write proportionally more dialogue; convert narration to talk where possible.`),
-    flag(r.maxOpenerRun >= 3, 'WARN', `${r.maxOpenerRun} consecutive sentences open with the same word.`),
-    flag(r.topOpener.share > 0.25 && r.sentenceCount > 20, 'WARN', `"${r.topOpener.word}" opens ${(r.topOpener.share * 100).toFixed(0)}% of sentences.`),
-    flag(r.moralizing.length > 0, 'WARN', `Possible stated-lesson language near the ending: ${r.moralizing.join(', ')}. The narrator must not explain the theme.`),
-    flag(r.anachronyPer1k < 1 && r.words > 1500, 'INFO', 'Few time-shift markers detected — verify this chapter\'s anachrony assignment in structure_plan.md (linear-only time is an AI tell at book level).'),
+    flag(!(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3)) && r.tellTotal > 0, 'WARN', isShort ? `Short sample (${r.words} words < 800) contains lexical tells: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Below 800 words capped at review.` : (r.tellsPer1k > 0.8 ? `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Isolated lexical tell in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Review context or add to allowlist if intentional.`), 'tells'),
+    flag(!isShort && r.patternTriads > 1, 'WARN', `"Not X, not Y, but Z"-style constructions: ${r.patternTriads}. One rhetorical triad per chapter max.`, 'triads'),
+    flag(!isShort && r.listTriadsPer1k > 2 && r.words >= 800, 'WARN', `Three-item lists at ${r.listTriadsPer1k.toFixed(1)}/1k words — the rule-of-three is an AI rhythm. Break some into ones and twos.`, 'triads'),
+    flag(!isShort && r.dialogueRatio < 0.15, 'WARN', `Dialogue is only ${(r.dialogueRatio * 100).toFixed(0)}% of text. Humans write proportionally more dialogue; convert narration to talk where possible.`, 'dialogue_ratio'),
+    flag(r.maxOpenerRun >= 3, 'WARN', `${r.maxOpenerRun} consecutive sentences open with the same word.`, 'opener_run'),
+    flag(r.topOpener.share > 0.25 && r.sentenceCount > 20, 'WARN', `"${r.topOpener.word}" opens ${(r.topOpener.share * 100).toFixed(0)}% of sentences.`, 'opener_run'),
+    flag(r.moralizing.length > 0, 'WARN', `Possible stated-lesson language near the ending: ${r.moralizing.join(', ')}. The narrator must not explain the theme.`, 'moralizing'),
+    flag(r.anachronyPer1k < 1 && r.words > 1500, 'INFO', 'Few time-shift markers detected — verify this chapter\'s anachrony assignment in structure_plan.md (linear-only time is an AI tell at book level).', 'anachrony'),
   ].filter(Boolean);
 }
 
@@ -271,6 +329,29 @@ function fmtReport(name, r, flags) {
   lines.push(`| Rhetorical triads / list triads per 1k | ${r.patternTriads} / ${r.listTriadsPer1k.toFixed(1)} | ≤ 1 per chapter / ≤ 2 |`);
   lines.push(`| Max same-word sentence-opener run | ${r.maxOpenerRun} | ≤ 2 |`);
   lines.push(`| Time-shift markers per 1k | ${r.anachronyPer1k.toFixed(1)} | cross-check structure_plan |`);
+  lines.push('');
+  const activeRemediations = [];
+  const seenModules = new Set();
+  flags.forEach(f => {
+    if (f.remKey && REMEDIATIONS[f.remKey]) {
+      const rem = REMEDIATIONS[f.remKey];
+      if (!seenModules.has(rem.module)) {
+        seenModules.add(rem.module);
+        activeRemediations.push(rem);
+      }
+    }
+  });
+
+  if (activeRemediations.length) {
+    lines.push('');
+    lines.push('## Corrective Craft Remediation');
+    lines.push('| Flag / Symptom | Target Craft Module | Remediation Technique |');
+    lines.push('|---|---|---|');
+    activeRemediations.forEach(rem => {
+      lines.push(`| ${rem.flag} | [\`${rem.module}\`](../../../../_config/okf_craft/${rem.module}) | ${rem.technique} |`);
+    });
+  }
+
   lines.push('');
   lines.push('> Structural features (subplots, resolution variety, recontextualizing revelations, moral ambivalence) cannot be counted mechanically — score them with `_config/narrative_audit_rubric.md`.');
   return lines.join('\n');
