@@ -1,9 +1,18 @@
 ---
 type: craft_rule
-id: anti-tell-suppression
+id: anti_tell_suppression
 title: "Suppression of Narrative Theme Explanation & Dialectical Dramatization"
 academic_basis: "Computational Narratology, Robert McKee (Story: Substance, Structure, Style), David Bordwell"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting, 04_diagnostics_edits]
+genres: []
+scope: scene
+subtype: prose_style
+confidence: peer_reviewed
+provides: [theme_suppression, dialectical_dramatization]
+requires: [primitive_dialectic_value_shift]
+diagnostics: [lexical_tells, narrative_audit]
+keywords: ["show don't tell", "theme explanation", "moralizing tail", "unstated theme"]
 ---
 
 # Narrative Tell Suppression & Dialectical Dramatization

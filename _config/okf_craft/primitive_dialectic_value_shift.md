@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-dialectic-value-shift
+id: primitive_dialectic_value_shift
 title: "The Dialectic Value Shift: The Quantum of Narrative Change"
 academic_basis: "Hegelian Dialectics & Classical Dramaturgy (Robert McKee / Shawn Coyne)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: dialectic_pattern
+confidence: practitioner_method
+provides: [value_charge_shift, polarity_inversion]
+requires: [scene_level_five_commandments_coyne]
+diagnostics: [narrative_audit, dread]
+keywords: ["value shift", "dramatic charge", "polarity change", "scene turn"]
 ---
 
 # The Dialectic Value Shift: The Story Quantum

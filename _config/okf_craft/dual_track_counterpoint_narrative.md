@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: dual-track-counterpoint-narrative
+id: dual_track_counterpoint_narrative
 title: "The Dual-Track Counterpoint: Symmetrical Antagonism & Narrative Cross-Cutting"
 academic_basis: "Cormac McCarthy ('No Country for Old Men'), Michael Mann ('Heat'), Gillian Flynn"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [counterpoint_braiding, polyphonic_resonance]
+requires: [multi_pov_structure]
+diagnostics: [narrative_audit]
+keywords: ["dual track", "counterpoint", "thematic resonance", "contrasting narratives"]
 ---
 
 # The Dual-Track Counterpoint Engine

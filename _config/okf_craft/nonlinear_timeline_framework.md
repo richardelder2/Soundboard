@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: nonlinear-timeline-framework
+id: nonlinear_timeline_framework
 title: "Nonlinear Timelines: Anachrony, Chronesthesia & Retroactive Recontextualization"
 academic_basis: "Gérard Genette (Narrative Discourse: An Essay in Method), David Bordwell (Narration in the Fiction Film)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 04_diagnostics_edits]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [anachrony_mapping, delayed_disclosure]
+requires: [chekhovs_gun_and_plant_payoff]
+diagnostics: [continuity]
+keywords: ["nonlinear timeline", "anachrony", "flashbacks", "prolepsis", "analepsis"]
 ---
 
 # Nonlinear Timelines: The Architecture of Anachrony

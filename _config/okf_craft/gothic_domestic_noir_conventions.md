@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: gothic-domestic-noir-conventions
+id: gothic_domestic_noir_conventions
 title: "Gothic & Domestic Thriller Conventions: The Claustrophobic House & Gaslight Engines"
 academic_basis: "Gothic Literary Theory, Shirley Jackson, Daphne du Maurier & Gillian Flynn"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime, horror_weird, mystery_detective]
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [gothic_claustrophobia, domestic_peril]
+requires: [cosmic_horror_existential_dread]
+diagnostics: [dread]
+keywords: ["gothic noir", "domestic suspense", "haunted house", "claustrophobia"]
 ---
 
 # Gothic & Domestic Noir: Conventions & Reader Expectations

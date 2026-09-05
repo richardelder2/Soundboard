@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: truby-designing-principle-and-moral-argument
+id: truby_designing_principle_and_moral_argument
 title: "John Truby's Designing Principle, Moral Need & The 22 Building Blocks"
 academic_basis: "John Truby (The Anatomy of Story: 22 Steps to Becoming a Master Storyteller)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: dialectic_pattern
+confidence: practitioner_method
+provides: [designing_principle, moral_argument]
+requires: [four_corner_opposition_and_foil_matrix]
+diagnostics: [narrative_audit]
+keywords: ["John Truby", "designing principle", "moral argument", "premise line"]
 ---
 
 # John Truby's Designing Principle, Moral Need & The 22 Building Blocks

@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: kishotenketsu-four-act-non-conflict-structure
+id: kishotenketsu_four_act_non_conflict_structure
 title: "Kishōtenketsu: East Asian Four-Act Structure & The Non-Binary Disjunctive Twist"
-source_provenance: "Adapted from Classical Chinese Poetic Poetics (Qi Cheng Zhuan He), Japanese Narratology & Haruki Murakami / Studio Ghibli Structural Analyses"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning]
+genres: [kishotenketsu]
+scope: book
+subtype: plot_template
+confidence: peer_reviewed
+provides: [four_act_twist, non_western_structure]
+requires: [primitive_dialectic_value_shift]
+conflicts_with: [story_grid_macro, save_the_cat_fifteen_beat_structural_blueprint]
+diagnostics: [narrative_audit]
+keywords: ["kishotenketsu", "ki sho ten ketsu", "non-conflict structure", "Japanese narrative"]
 ---
 
 # Kishōtenketsu: The Four-Act Structure Without Binary Conflict

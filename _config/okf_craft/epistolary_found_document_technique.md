@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: epistolary-found-document-technique
+id: epistolary_found_document_technique
 title: "Epistolary Architecture: Found Documents, Polyphonic Truth & Narrative Redaction"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/epistolary-structure.md & Bram Stoker"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [horror_weird, mystery_detective]
+scope: chapter
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [documentary_realism, diegetic_artifacts]
+requires: [framing_device_and_nested_narratives]
+diagnostics: [voice_drift]
+keywords: ["epistolary", "found footage", "letters and logs", "diegetic documents"]
 ---
 
 # Epistolary & Found-Document Architecture

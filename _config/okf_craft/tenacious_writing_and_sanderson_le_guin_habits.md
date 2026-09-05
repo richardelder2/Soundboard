@@ -1,10 +1,18 @@
 ---
 type: craft_rule
-id: tenacious-writing-and-sanderson-le-guin-habits
+id: tenacious_writing_and_sanderson_le_guin_habits
 title: "The Tenacious Engine: Prolific Architecture, Closed Doors & Relentless Execution"
 academic_basis: "Stephen King ('On Writing'), Brandon Sanderson, Anne Lamott ('Bird by Bird') & Ursula K. Le Guin ('Steering the Craft')"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/writing-techniques/tenacious-writing.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 03_drafting]
+genres: []
+scope: book
+subtype: prose_style
+confidence: practitioner_method
+provides: [writerly_discipline, output_habits]
+requires: [story_grid_macro]
+diagnostics: [narrative_audit]
+keywords: ["writing habits", "Ursula Le Guin", "word count pacing", "creative stamina"]
 ---
 
 # The Tenacious Engine: Discipline, Voice Consistency & The Closed Door

@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: cpocl-plan-threat-conflict-engine
+id: cpocl_plan_threat_conflict_engine
 title: "The CPOCL Conflict Engine: Plan-Threat Architecture & The Seven Dimensions of Dramatic Conflict"
-source_provenance: "Adapted from Stephen Ware & R. Michael Young (A Computational Model of Plan-Based Narrative Conflict) & setup/deep_research/Cognitive Narratology and Novel Craft.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: plot_template
+confidence: practitioner_method
+provides: [cpocl_scene_engine, threat_escalation]
+requires: [scene_level_five_commandments_coyne]
+diagnostics: [dread]
+keywords: ["CPOCL", "conflict engine", "scene stakes", "threat escalate", "pacing"]
 ---
 
 # The CPOCL Conflict Engine: Plan-Threat Architecture

@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: subtext-and-implied-meaning
+id: subtext_and_implied_meaning
 title: "Dialogue Subtext: The Iceberg Theory & Surface-Depth Tension"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/writing-techniques/subtext.md & Ernest Hemingway"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: scene
+subtype: prose_style
+confidence: peer_reviewed
+provides: [dialogue_subtext, conversational_implicature]
+requires: [three_registers_of_dialogue_subtext]
+diagnostics: [dialogue_ratio, lexical_tells]
+keywords: ["subtext", "implicature", "Gricean maxims", "unspoken desire"]
 ---
 
 # Dialogue Subtext & The Iceberg Principle

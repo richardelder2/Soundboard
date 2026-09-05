@@ -1,6 +1,6 @@
 ---
 type: craft_structure
-id: novella-form-and-compressed-turn
+id: novella_form_and_compressed_turn
 title: "The Novella Form: Physics of the 20,000–40,000 Word Corridor"
 academic_basis: "Henry James (The Art of the Novel), Ian McEwan & Stephen King"
 last_modified: 2026-09-04

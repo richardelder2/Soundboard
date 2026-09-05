@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: vertical-spatial-allegory-parasite
+id: vertical_spatial_allegory_parasite
 title: "Vertical Spatial Allegory: Architecture as Class Conflict & The Sub-Basement Reveal"
 academic_basis: "Bong Joon-ho ('Parasite'), Spatial Dramaturgy & Architectural Allegory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [thriller_suspense, comedy_satire]
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [spatial_allegory, vertical_class_architecture]
+requires: [anthropological_worldbuilding]
+diagnostics: [narrative_audit]
+keywords: ["Parasite", "vertical allegory", "spatial geography", "class architecture"]
 ---
 
 # Vertical Spatial Allegory: The Architecture of Class Conflict

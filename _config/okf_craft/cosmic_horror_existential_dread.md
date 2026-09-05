@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: cosmic-horror-existential-dread
+id: cosmic_horror_existential_dread
 title: "Cosmic Horror & Existential Dread: The Epistemological Break"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/genres/cosmic-horror-framework.md & H.P. Lovecraft"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting]
+genres: [horror_weird]
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [existential_dread, unknowable_sublime]
+requires: [procedural_dread_and_administrative_terror]
+diagnostics: [dread]
+keywords: ["cosmic horror", "existential dread", "Lovecraftian", "epistemic horror"]
 ---
 
 # Cosmic Horror & Epistemological Dread

@@ -1,10 +1,18 @@
 ---
 type: craft_structure
-id: historical-fiction-authenticity
+id: historical_fiction_authenticity
 title: "Historical Fiction & Period Immersion: The Double Horizon & Social Presuppositions"
 academic_basis: "Historical Narratology, Hilary Mantel & Georg Lukács"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/genres/historical-fiction.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting]
+genres: []
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [period_anachronism_filter, historical_texture]
+requires: [anthropological_worldbuilding]
+diagnostics: [lore_density, continuity]
+keywords: ["historical fiction", "period accuracy", "anachronism prevention", "sensory detail"]
 ---
 
 # Historical Fiction & Period Immersion

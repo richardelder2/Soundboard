@@ -1,9 +1,17 @@
 ---
 type: craft_primitive
-id: free-indirect-discourse-and-voice-blending
+id: free_indirect_discourse_and_voice_blending
 title: "Free Indirect Discourse (FID): Voice Blending, Cognitive Dissolution & Narrative Irony"
-source_provenance: "Adapted from James Wood (How Fiction Works) & Dorrit Cohn (Transparent Minds: Narrative Modes for Presenting Consciousness in Fiction)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [fid_voice_blending, internal_monologue_suppression]
+requires: [psychic_distance_and_narrative_zoom]
+diagnostics: [voice_drift, lexical_tells]
+keywords: ["free indirect discourse", "narrative distance", "character voice", "internal monologue"]
 ---
 
 # Free Indirect Discourse & Voice Blending

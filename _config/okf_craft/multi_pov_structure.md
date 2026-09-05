@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: multi-pov-structure
+id: multi_pov_structure
 title: "Multi-POV Structural Orchestration & Perspective Alternation"
 academic_basis: "Orson Scott Card (Characters & Viewpoint), George R.R. Martin Ensemble Mechanics"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [epic_fantasy, thriller_suspense]
+scope: book
+subtype: narrative_mode
+confidence: practitioner_method
+provides: [multi_pov_braiding, cliffhanger_handshakes]
+requires: [psychic_distance_and_narrative_zoom]
+diagnostics: [voice_drift, continuity]
+keywords: ["multi-POV", "ensemble cast", "POV rotation", "braided perspectives"]
 ---
 
 # Multi-POV Structural Orchestration

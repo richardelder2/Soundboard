@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: foreshadowing-architecture-and-subtle-plants
+id: foreshadowing_architecture_and_subtle_plants
 title: "Foreshadowing Architecture: Subtle Cues, Inevitability & Retroactive Clarity"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/narrative-devices/foreshadowing.md & Ray Bradbury"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting, 04_diagnostics_edits]
+genres: []
+scope: book
+subtype: plot_template
+confidence: practitioner_method
+provides: [subtle_foreshadowing, cognitive_seeding]
+requires: [chekhovs_gun_and_plant_payoff]
+diagnostics: [continuity]
+keywords: ["foreshadowing", "subtle plants", "payoff timing", "narrative resonance"]
 ---
 
 # Foreshadowing Architecture: Engineering Inevitability

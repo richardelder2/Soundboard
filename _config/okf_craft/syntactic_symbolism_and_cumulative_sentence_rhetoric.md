@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: syntactic-symbolism-and-cumulative-sentence-rhetoric
+id: syntactic_symbolism_and_cumulative_sentence_rhetoric
 title: "Syntactic Symbolism & Cumulative Sentence Rhetoric: Virginia Tufte, Francis Christensen & Rhetorical Figures"
-source_provenance: "Adapted from setup/deep_research/Advanced Fiction Stylistics and Mechanics.md, Virginia Tufte (Artful Sentences: Syntax as Style) & Francis Christensen"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: prose_style
+confidence: peer_reviewed
+provides: [cumulative_syntax, syntactic_mimicry]
+requires: [prose_syntax_and_acoustic_cadence]
+diagnostics: [rhythm]
+keywords: ["Christensen rhetoric", "cumulative sentences", "syntactic symbolism", "cadence"]
 ---
 
 # Syntactic Symbolism & Cumulative Sentence Rhetoric

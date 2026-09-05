@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: bildungsroman-moral-awakening
+id: bildungsroman_moral_awakening
 title: "The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/bildungsroman.md & Johann Wolfgang von Goethe"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: plot_template
+confidence: peer_reviewed
+provides: [coming_of_age_stages, loss_of_innocence]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["bildungsroman", "coming of age", "moral awakening", "loss of innocence"]
 ---
 
 # The Bildungsroman: Moral Awakening & Maturation

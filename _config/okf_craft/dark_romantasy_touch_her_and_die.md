@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: dark-romantasy-touch-her-and-die
+id: dark_romantasy_touch_her_and_die
 title: "Dark Romantasy: Fated Mates, Morally Gray Leads & The 'Touch Her and Die' Engine"
 academic_basis: "Romance Narratology, Archetypal Shadow Integration & Commercial Romantasy Tropes"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting]
+genres: [romance_romantasy]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [shadow_protector, forced_proximity]
+requires: [romance_escalation_ladder]
+diagnostics: [narrative_audit]
+keywords: ["dark romantasy", "touch her and die", "enemies to lovers", "shadow daddy"]
 ---
 
 # Dark Romantasy: Conventions & Reader Expectations

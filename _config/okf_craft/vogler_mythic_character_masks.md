@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: vogler-mythic-character-masks
+id: vogler_mythic_character_masks
 title: "The Mythic Character Masks: Archetypal Functions & Dynamic Mask-Shifting in Storytelling"
-source_provenance: "Adapted from Christopher Vogler (The Writer's Journey) & Joseph Campbell (The Hero with a Thousand Faces)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [vogler_character_masks, mythic_archetype_functions]
+requires: [archetypal_character_transformation_arcs]
+diagnostics: [narrative_audit]
+keywords: ["Christopher Vogler", "Writer's Journey", "character masks", "mentor herald trickster"]
 ---
 
 # The Mythic Character Masks & Dynamic Staging

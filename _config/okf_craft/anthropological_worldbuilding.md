@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: anthropological-worldbuilding
+id: anthropological_worldbuilding
 title: "Anthropological Worldbuilding: Culture, Taboo & Internal Logic"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/frameworks/anthropological-worldbuilding.md & Ursula K. Le Guin"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [cultural_institutions, material_culture]
+requires: [textual_actual_worlds_and_modal_narratology]
+diagnostics: [lore_density]
+keywords: ["worldbuilding", "anthropology", "institutions", "customs", "material culture"]
 ---
 
 # Anthropological Worldbuilding

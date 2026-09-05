@@ -1,9 +1,17 @@
 ---
 type: craft_primitive
-id: evolutionary-affective-story-prototypes
+id: evolutionary_affective_story_prototypes
 title: "Affective Narratology & Evolutionary Story Prototypes: The Neuro-Emotional Engine"
-source_provenance: "Adapted from Patrick Colm Hogan (Affective Narratology: The Emotional Structure of Stories) & setup/deep_research/Cognitive Narratology and Novel Craft.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: peer_reviewed
+provides: [affective_priming, survival_salience]
+requires: [primitive_theory_of_mind_and_recursive_intentionality]
+diagnostics: [dread]
+keywords: ["evolutionary psychology", "affective prototypes", "survival instinct", "primal stakes"]
 ---
 
 # Affective Narratology & Evolutionary Story Prototypes

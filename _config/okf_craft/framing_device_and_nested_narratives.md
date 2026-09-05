@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: framing-device-and-nested-narratives
+id: framing_device_and_nested_narratives
 title: "The Framing Device & Nested Narrative: The Arabian Nights & The Unreliable Relator"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/framing-device.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [frame_story, nested_diegesis]
+requires: [primitive_possible_worlds_teller_sphere]
+diagnostics: [voice_drift]
+keywords: ["framing device", "nested narrative", "story within story", "teller persona"]
 ---
 
 # Framing Devices & Nested Narratives

@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: four-corner-opposition-and-foil-matrix
+id: four_corner_opposition_and_foil_matrix
 title: "Four-Corner Opposition & The Character Foil Matrix: Dialectical Cast Architecture"
-source_provenance: "Adapted from John Truby (The Anatomy of Story) & Lajos Egri (The Art of Dramatic Writing)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [four_corner_foils, ideological_quadrant]
+requires: [truby_designing_principle_and_moral_argument]
+diagnostics: [narrative_audit]
+keywords: ["four corner opposition", "Truby foils", "character quadrant", "antagonist web"]
 ---
 
 # Four-Corner Opposition & The Foil Matrix

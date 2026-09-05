@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: adversarial-prose-auditing-and-slop-filtering
+id: adversarial_prose_auditing_and_slop_filtering
 title: "Adversarial Prose Auditing: Slop Density, POV Filter Stripping & Sensory Anchors"
-source_provenance: "Adapted from C:/Users/richa/Test/00_Story_Bible/style_guide.md (Fault Tolerance / SAGA 2.0)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: prose_style
+confidence: practitioner_method
+provides: [slop_filtering, anti_tell_mechanics]
+requires: [anti_tell_suppression]
+diagnostics: [lexical_tells, narrative_audit]
+keywords: ["slop filtering", "AI tells", "adversarial auditing", "prose polish"]
 ---
 
 # Adversarial Prose Auditing: The Anti-Slop & Anti-Filter Engine

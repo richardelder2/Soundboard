@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: tragic-flaw-investigation-chinatown
+id: tragic_flaw_investigation_chinatown
 title: "The Tragic Flaw Investigation: Chinatown's Fatal Epistemic Hubris"
 academic_basis: "Robert Towne, Roman Polanski & Classical Aristotelian Hamartia in Mystery"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime, mystery_detective]
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [fatal_investigator_flaw, hamartia_engine]
+requires: [anti_hero_moral_ambiguity]
+diagnostics: [narrative_audit]
+keywords: ["Chinatown", "tragic flaw", "hamartia", "fatal investigation", "hubris"]
 ---
 
 # The Chinatown Model: Tragic Epistemic Hubris

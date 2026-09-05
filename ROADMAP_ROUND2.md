@@ -12,7 +12,7 @@
 
 | Sprint | Focus | Tickets | Status |
 |---|---|---|---|
-| **Sprint 1** | Budget Conformance & Bundle Integrity | T-01, T-02, T-03, T-04 | ⏳ Ready for Execution |
+| **Sprint 1** | Budget Conformance & Bundle Integrity | T-01, T-02, T-03, T-04 | ✅ Completed |
 | **Sprint 2** | Make the Knowledge Teach | T-05, T-06, T-07 | 📋 Backlog |
 | **Sprint 3** | State & The Concierge | T-09, T-10, T-08 | 📋 Backlog |
 | **Sprint 4** | Reach & Polish | T-11, T-12, T-13 | 📋 Backlog |
@@ -21,7 +21,7 @@
 
 ## Sprint 1: Budget Conformance & Bundle Integrity
 
-### [ ] T-01 · Genre-Route the Stage 02 Template Block
+### [x] T-01 · Genre-Route the Stage 02 Template Block
 - **Priority:** P1 · ICM violation (Layered Context Loading)
 - **Problem:** Stage 02 packet is ~15,352 tokens (~60k chars), roughly 2× the 8,000 token ICM ceiling, because `stages/02_planning/CONTEXT.md` declares all 12 templates unconditionally, including genre-specific trackers (heat ladder ~912 tok, power escalation ~794 tok, fair play ~1,067 tok).
 - **Implementation Tasks:**
@@ -45,7 +45,7 @@
 
 ---
 
-### [ ] T-02 · Backfill Routing Frontmatter Across All 92 OKF Modules
+### [x] T-02 · Backfill Routing Frontmatter Across All 92 OKF Modules
 - **Priority:** P1 · Blocks T-03 & T-05
 - **Problem:** 86 of 92 craft modules lack machine-readable routing frontmatter (`stages`, `genres`, `scope`, `provides`, `requires`, `diagnostics`, `keywords`, `confidence`).
 - **Implementation Tasks:**
@@ -71,7 +71,7 @@
 
 ---
 
-### [ ] T-03 · `sb okf-lint` — Validate Bundle Against Its Own Spec
+### [x] T-03 · `sb okf-lint` — Validate Bundle Against Its Own Spec
 - **Priority:** P1 · Depends on T-02
 - **Problem:** Unchecked module size (>450 words), missing cross-references, and 6 newly authored modules currently unreferenced in `_config/okf_craft/CONTEXT.md`.
 - **Implementation Tasks:**
@@ -95,7 +95,7 @@
 
 ---
 
-### [ ] T-04 · Density-Normalize the Lexical Tell Threshold
+### [x] T-04 · Density-Normalize the Lexical Tell Threshold
 - **Priority:** P1
 - **Problem:** Absolute tell count flags 3 literary words as a FAIL in 4,000-word chapters identically to 140-word snippets. The report states target 0 when code threshold is 3. `tell_allowlist.md` is unlinked in onboarding.
 - **Implementation Tasks:**

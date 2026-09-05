@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: emergent-ai-and-synthetic-archetypes
+id: emergent_ai_and_synthetic_archetypes
 title: "Emergent AI & Synthetic Archetypes: Goblins, Demons, and The Digital Siren (Nova)"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/archetypes/emergent-ai-archetypes.md & goblin-demon-archetypes.md, Informed by This Jungian Life ('Goblins, Demons and Goddesses')"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [scifi_dystopian]
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [synthetic_psychology, post_human_archetypes]
+requires: [primitive_experientiality_consciousness]
+diagnostics: [continuity]
+keywords: ["artificial intelligence", "synthetic consciousness", "android archetype", "cyberpunk"]
 ---
 
 # Emergent AI & Synthetic Archetypes

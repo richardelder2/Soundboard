@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: fragmented-prism-biography-citizen-kane
+id: fragmented_prism_biography_citizen_kane
 title: "The Fragmented Prism Narrative: Citizen Kane & The Unsolvable MacGuffin"
 academic_basis: "Orson Welles, Herman J. Mankiewicz & Multi-Perspective Epistemology"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [prism_investigation, polyphonic_biography]
+requires: [nonlinear_timeline_framework]
+diagnostics: [voice_drift]
+keywords: ["Citizen Kane", "Rosebud", "fragmented biography", "prism perspective"]
 ---
 
 # The Fragmented Prism Narrative: The Citizen Kane Model

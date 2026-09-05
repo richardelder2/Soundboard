@@ -1,6 +1,6 @@
 ---
 type: craft_structure
-id: short-story-form-and-single-effect
+id: short_story_form_and_single_effect
 title: "The Short Story Engine: Single Effect, Compression, and Late Entry"
 academic_basis: "Edgar Allan Poe (Philosophy of Composition), Anton Chekhov & Flannery O'Connor"
 last_modified: 2026-09-04

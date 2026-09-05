@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: jungian-archetypes-and-shadow-integration
+id: jungian_archetypes_and_shadow_integration
 title: "Jungian Psychological Archetypes: Shadow Integration, Anima/Animus & The Individuation Drive"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/archetypes/jungian-archetype-framework.md, Carl Jung, Erich Neumann & Marie-Louise von Franz"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: peer_reviewed
+provides: [shadow_archetype, anima_animus_projection]
+requires: [archetypal_character_transformation_arcs]
+diagnostics: [narrative_audit]
+keywords: ["Jungian shadow", "archetypes", "anima", "persona", "shadow integration"]
 ---
 
 # Jungian Psychological Archetypes & Shadow Integration

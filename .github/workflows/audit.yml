@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Run OKF Linter
+        run: npm run okf-lint
+
       - name: Run Test Suite
         run: npm test
 

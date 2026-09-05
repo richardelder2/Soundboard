@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: universal-narrative-lexicon-rosetta-stone
+id: universal_narrative_lexicon_rosetta_stone
 title: "The Universal Narrative Rosetta Stone: Cross-School Craft Lexicon & Structural Mapping Ontology"
-source_provenance: "Synthesized from Story Grid (Coyne), Save the Cat! (Snyder/Brody), The Hero's Journey (Campbell/Vogler), Story Circle (Harmon), Character Arc Theory (Weiland), The Anatomy of Story (Truby), Tenacious Writing (Sanderson/King) & Cognitive Narratology"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting, 04_diagnostics_edits]
+genres: []
+scope: book
+subtype: plot_template
+confidence: peer_reviewed
+provides: [lexicon_translation, craft_taxonomy_bridge]
+requires: [story_grid_macro]
+diagnostics: [narrative_audit]
+keywords: ["Rosetta Stone", "narrative lexicon", "craft mapping", "Save the Cat vs Story Grid"]
 ---
 
 # The Universal Narrative Rosetta Stone

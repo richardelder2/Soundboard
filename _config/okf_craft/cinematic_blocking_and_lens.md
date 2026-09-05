@@ -1,9 +1,18 @@
 ---
 type: craft_rule
-id: cinematic-blocking-and-lens
+id: cinematic_blocking_and_lens
 title: "Cinematic Staging: Camera Distance, Depth of Field & Character Blocking"
 academic_basis: "Cinematography, Visual Dramaturgy & Narrative Distance"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting]
+genres: []
+scope: scene
+subtype: prose_style
+confidence: practitioner_method
+provides: [spatial_blocking, camera_framing]
+requires: [dialogue_beats_and_action_choreography]
+diagnostics: [sensory_anchor]
+keywords: ["blocking", "staging", "camera lens", "physical motion"]
 ---
 
 # Cinematic Staging: The Director's Lens in Prose

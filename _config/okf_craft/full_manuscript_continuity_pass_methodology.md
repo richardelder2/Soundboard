@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: full-manuscript-continuity-pass-methodology
+id: full_manuscript_continuity_pass_methodology
 title: "The Full Manuscript Continuity Pass: Systematic Ripple Remediation"
-source_provenance: "Adapted from C:/Users/richa/Test/rogue-station-continuity-pass.md (Rogue Station)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [04_diagnostics_edits]
+genres: []
+scope: book
+subtype: plot_template
+confidence: practitioner_method
+provides: [continuity_audit_pass, fact_reconciliation]
+requires: [chekhovs_gun_and_plant_payoff]
+diagnostics: [continuity, narrative_audit]
+keywords: ["continuity pass", "manuscript audit", "fact verification", "timeline check"]
 ---
 
 # The Full Manuscript Continuity Pass

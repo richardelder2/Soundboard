@@ -12,6 +12,7 @@ outputs:
   - stages/01_onboarding/output/bible/locations/
   - stages/01_onboarding/output/bible/factions/
   - stages/01_onboarding/output/characters/
+  - stages/01_onboarding/output/tell_allowlist.md
 templates:
   - _config/templates/world_bible.template.md
   - _config/templates/character.template.md
@@ -20,6 +21,7 @@ templates:
   - _config/templates/magic_tech_system.template.md
   - _config/templates/timeline.template.md
   - _config/templates/sensory_lexicon.template.md
+  - _config/templates/tell_allowlist.template.md
 ---
 
 # Stage 01: Onboarding Context

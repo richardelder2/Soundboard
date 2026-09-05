@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-epistemic-asymmetry
+id: primitive_epistemic_asymmetry
 title: "The Epistemic Gap: The Three Primal Narrative Drives"
 academic_basis: "Cognitive Narratology, Meir Sternberg & Narrative Epistemics"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [dramatic_irony, mystery_gap, epistemic_tension]
+requires: [primitive_theory_of_mind_and_recursive_intentionality]
+diagnostics: [lore_density, dread]
+keywords: ["information gap", "dramatic irony", "reader knowledge", "character ignorance"]
 ---
 
 # The Epistemic Gap: The Three Primal Narrative Drives

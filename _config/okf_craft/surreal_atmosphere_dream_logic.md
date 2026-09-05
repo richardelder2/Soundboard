@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: surreal-atmosphere-dream-logic
+id: surreal_atmosphere_dream_logic
 title: "Surreal Atmosphere & Dream Logic: Synesthesia & Cognitive Destabilization"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/frameworks/surreal-atmosphere-construction.md & Franz Kafka"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting]
+genres: [horror_weird]
+scope: chapter
+subtype: narrative_mode
+confidence: workshop_heuristic
+provides: [dream_logic, defamiliarization]
+requires: [cosmic_horror_existential_dread]
+diagnostics: [sensory_anchor]
+keywords: ["dream logic", "surreal atmosphere", "uncanny", "defamiliarization"]
 ---
 
 # Surreal Atmosphere & Dream Logic

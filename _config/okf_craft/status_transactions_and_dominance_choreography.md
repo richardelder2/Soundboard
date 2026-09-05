@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: status-transactions-and-dominance-choreography
+id: status_transactions_and_dominance_choreography
 title: "Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw"
-source_provenance: "Adapted from Keith Johnstone (Impro: Improvisation and the Theatre)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: character_engine
+confidence: practitioner_method
+provides: [status_transactions, dominance_shifts]
+requires: [three_registers_of_dialogue_subtext]
+diagnostics: [dialogue_ratio]
+keywords: ["status transactions", "Keith Johnstone", "dominance", "power dynamics"]
 ---
 
 # Keith Johnstone's Status Transactions

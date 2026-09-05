@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: dystopian-systemic-tension
+id: dystopian_systemic_tension
 title: "Dystopian Systemic Tension: Panopticon Mechanics & Compliance Cycles"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/frameworks/dystopian-tension-blueprint.md & Michel Foucault"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [scifi_dystopian]
+scope: book
+subtype: genre_convention
+confidence: peer_reviewed
+provides: [systemic_oppression, panoptic_surveillance]
+requires: [anthropological_worldbuilding]
+diagnostics: [narrative_audit]
+keywords: ["dystopia", "systemic tension", "panopticon", "authoritarian control"]
 ---
 
 # Dystopian Systemic Tension & Institutional Pressure

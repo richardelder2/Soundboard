@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: murch-rule-of-six-pacing
+id: murch_rule_of_six_pacing
 title: "Walter Murch's Rule of Six: Scene Cutting & Narrative Rhythm"
 academic_basis: "Film Editing Theory ('In the Blink of an Eye' by Walter Murch)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: scene
+subtype: pacing_rhythm
+confidence: practitioner_method
+provides: [rule_of_six_cuts, emotional_continuity]
+requires: [scene_level_five_commandments_coyne]
+diagnostics: [rhythm, dread]
+keywords: ["Walter Murch", "rule of six", "film editing in prose", "eye trace"]
 ---
 
 # Walter Murch's Rule of Six Applied to Prose Pacing

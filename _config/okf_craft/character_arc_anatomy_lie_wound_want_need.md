@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: character-arc-anatomy-lie-wound-want-need
+id: character_arc_anatomy_lie_wound_want_need
 title: "The Character Arc Anatomy: Lie, Wound, Want & Need"
 academic_basis: "K.M. Weiland (Creating Character Arcs), Michael Hauge & Lisa Cron (Story Genius)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [lie_wound_want_need, arc_progression]
+requires: [four_corner_opposition_and_foil_matrix]
+diagnostics: [narrative_audit]
+keywords: ["character arc", "the Lie", "ghost wound", "want vs need", "K.M. Weiland"]
 ---
 
 # The Character Arc Anatomy: Lie, Wound, Want & Need

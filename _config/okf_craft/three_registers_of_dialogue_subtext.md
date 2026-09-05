@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: three-registers-of-dialogue-subtext
+id: three_registers_of_dialogue_subtext
 title: "The Three Registers of Dramatic Dialogue: Text, Tactical Subtext & Deep-Text Pathology"
-source_provenance: "Adapted from setup/deep_research/Cinematic Dramaturgy for Prose Fiction.md (Succession, Mad Men, The Wire) & J.L. Austin Speech Act Theory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: scene
+subtype: prose_style
+confidence: practitioner_method
+provides: [dialogue_subtext, three_registers]
+requires: [primitive_theory_of_mind_and_recursive_intentionality]
+diagnostics: [dialogue_ratio, lexical_tells]
+keywords: ["dialogue subtext", "spoken text", "inner text", "unvoiced inchoate"]
 ---
 
 # The Three Registers of Dramatic Dialogue

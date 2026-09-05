@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: dialogue-beats-and-action-choreography
+id: dialogue_beats_and_action_choreography
 title: "Dialogue Choreography: Action Beats, Pause Micro-Timing & Attribution Stripping"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/narrative-devices/dialogue-beats.md, Ernest Hemingway & Elmore Leonard"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting]
+genres: []
+scope: scene
+subtype: prose_style
+confidence: practitioner_method
+provides: [dialogue_action_beats, subtextual_business]
+requires: [three_registers_of_dialogue_subtext]
+diagnostics: [dialogue_ratio, rhythm]
+keywords: ["action beats", "dialogue tag replacement", "stage business", "physical choreography"]
 ---
 
 # Dialogue Choreography & Rhythm

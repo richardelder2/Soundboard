@@ -1,9 +1,17 @@
 ---
 type: craft_primitive
-id: primitive-theory-of-mind-and-recursive-intentionality
+id: primitive_theory_of_mind_and_recursive_intentionality
 title: "Theory of Mind Recursion & Narrative Cognitive Limits: Engineering Multi-Order Social Calculation"
-source_provenance: "Adapted from Lisa Zunshine (Why We Read Fiction: Theory of Mind and the Novel) & setup/deep_research/Cognitive Narratology and Novel Craft.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: character_engine
+confidence: peer_reviewed
+provides: [recursive_mind_reading, social_calculation]
+requires: [three_registers_of_dialogue_subtext]
+diagnostics: [dialogue_ratio]
+keywords: ["theory of mind", "intentionality", "second order belief", "psychological subtext"]
 ---
 
 # Theory of Mind Recursion & Cognitive Limits

@@ -1,6 +1,6 @@
 ---
 type: craft_rule
-id: developmental-revision-and-layered-passes
+id: developmental_revision_and_layered_passes
 title: "Developmental Revision: The Layered Macro-to-Micro Pass Methodology"
 academic_basis: "Susan Bell (The Artful Edit) & Browne & King (Self-Editing for Fiction Writers)"
 last_modified: 2026-09-04

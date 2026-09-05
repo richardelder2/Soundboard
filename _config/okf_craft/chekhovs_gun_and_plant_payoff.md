@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: chekhovs-gun-and-plant-payoff
+id: chekhovs_gun_and_plant_payoff
 title: "Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/writing-techniques/chekhovs-gun.md & Anton Chekhov"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 04_diagnostics_edits]
+genres: []
+scope: book
+subtype: plot_template
+confidence: practitioner_method
+provides: [plant_payoff_matrix, evidentiary_promise]
+requires: [foreshadowing_architecture_and_subtle_plants]
+diagnostics: [continuity, narrative_audit]
+keywords: ["Chekhov's gun", "plant and payoff", "narrative promise", "setup"]
 ---
 
 # Chekhov's Arsenal: Plants, Payoffs & Subversion

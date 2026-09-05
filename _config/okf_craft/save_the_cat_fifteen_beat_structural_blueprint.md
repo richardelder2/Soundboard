@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: save-the-cat-fifteen-beat-structural-blueprint
+id: save_the_cat_fifteen_beat_structural_blueprint
 title: "Save the Cat! The 15-Beat Structural Blueprint & Pacing Percentages"
 academic_basis: "Blake Snyder (Save the Cat!), Jessica Brody (Save the Cat! Writes a Novel)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning]
+genres: []
+scope: book
+subtype: plot_template
+confidence: practitioner_method
+provides: [fifteen_beats, blake_snyder_sheet]
+requires: [story_grid_macro]
+diagnostics: [narrative_audit]
+keywords: ["Save the Cat", "Blake Snyder", "fifteen beats", "all is lost", "break into two"]
 ---
 
 # Save the Cat! The 15-Beat Structural Blueprint & Pacing Percentages

@@ -1,6 +1,6 @@
 ---
 type: craft_structure
-id: chapter-architecture-and-ending-hooks
+id: chapter_architecture_and_ending_hooks
 title: "Chapter Architecture & The Taxonomy of Narrative Hooks"
 academic_basis: "Gérard Genette (Narrative Discourse), Shawn Coyne & Sol Stein"
 last_modified: 2026-09-04

@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: dual-timeline-convergence
+id: dual_timeline_convergence
 title: "Dual Timeline Convergence: The Interlocking Mystery of Past & Present"
 academic_basis: "Kate Morton, A.S. Byatt (Possession), Cognitive Narratology of Temporal Braiding"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 04_diagnostics_edits]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: practitioner_method
+provides: [dual_timeline_sync, historical_braiding]
+requires: [nonlinear_timeline_framework]
+diagnostics: [continuity]
+keywords: ["dual timeline", "past and present", "timeline convergence", "braided narrative"]
 ---
 
 # Dual Timeline Convergence

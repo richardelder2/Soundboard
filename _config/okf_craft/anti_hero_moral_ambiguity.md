@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: anti-hero-moral-ambiguity
+id: anti_hero_moral_ambiguity
 title: "The Anti-Hero Arc: Moral Ambiguity, Justified Transgression & Downfall/Redemption"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/character-arcs/anti-hero-arc.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime, thriller_suspense]
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [moral_ambivalence, anti_hero_engine]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["anti-hero", "moral ambiguity", "flawed protagonist", "compromise"]
 ---
 
 # The Anti-Hero Arc & Moral Ambiguity

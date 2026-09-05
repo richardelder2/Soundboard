@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: satirical-escalation-blueprint
+id: satirical_escalation_blueprint
 title: "Satirical Escalation & Institutional Irony: The Straight-Man Dynamic"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/satirical-tension-blueprint.md, Kurt Vonnegut & Joseph Heller"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [comedy_satire]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [satirical_escalation, institutional_absurdity]
+requires: [comedy_farce_and_satirical_timing_engine]
+diagnostics: [narrative_audit]
+keywords: ["satire", "satirical escalation", "Swiftian", "parody", "institutional critique"]
 ---
 
 # Satirical Escalation & Institutional Irony

@@ -1,10 +1,18 @@
 ---
 type: craft_structure
-id: noir-hardboiled-fatalism
+id: noir_hardboiled_fatalism
 title: "Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall"
 academic_basis: "Raymond Chandler, Dashiell Hammett & Film Noir Dramaturgy"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/genres/crime.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [hardboiled_fatalism, corrupt_microcosm]
+requires: [anti_hero_moral_ambiguity]
+diagnostics: [narrative_audit]
+keywords: ["noir", "hardboiled", "fatalism", "cynicism", "femme fatale"]
 ---
 
 # Noir & Hardboiled Crime: The Fatalistic Engine

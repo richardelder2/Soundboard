@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: epic-fantasy-polyphonic-convergence-and-avalanche
+id: epic_fantasy_polyphonic_convergence_and_avalanche
 title: "Epic Fantasy & Space Opera: Polyphonic Voice Integrity, Cosmological Stakes & The 'Avalanche' Convergence"
-source_provenance: "Adapted from setup/deep_research/Commercial Fiction Genre Engineering.md & Brandon Sanderson / Robert Jordan Craft Mechanics"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [epic_fantasy]
+scope: book
+subtype: plot_template
+confidence: practitioner_method
+provides: [polyphonic_convergence, sanderlanche_avalanche]
+requires: [multi_pov_structure]
+diagnostics: [continuity, dread]
+keywords: ["epic fantasy", "polyphonic convergence", "Sanderlanche", "climax avalanche"]
 ---
 
 # Epic Fantasy & Space Opera Architecture: The Avalanche Convergence

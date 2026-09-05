@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: enneagram-character-fixations-and-disintegration
+id: enneagram_character_fixations_and_disintegration
 title: "The Enneagram Character Engine: Core Wounds, Psychological Fixations & Disintegration Trajectories"
-source_provenance: "Adapted from Narrative Psychology, Don Richard Riso & Russ Hudson, and K.M. Weiland's Character Arc Theory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [enneagram_fixations, disintegration_stress]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["enneagram", "personality fixations", "character disintegration", "stress arrow"]
 ---
 
 # The Enneagram Character Engine & Disintegration Trajectories

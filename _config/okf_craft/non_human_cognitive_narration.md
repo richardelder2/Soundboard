@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: non-human-cognitive-narration
+id: non_human_cognitive_narration
 title: "Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/frameworks/first-person-ai-narrative.md, Martha Wells & Ann Leckie"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 03_drafting]
+genres: [scifi_dystopian, horror_weird]
+scope: chapter
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [alien_cognition, sensory_alienation]
+requires: [primitive_experientiality_consciousness]
+diagnostics: [voice_drift, sensory_anchor]
+keywords: ["alien POV", "non-human cognition", "defamiliarized perception", "xenofiction"]
 ---
 
 # Non-Human & Synthetic Cognition

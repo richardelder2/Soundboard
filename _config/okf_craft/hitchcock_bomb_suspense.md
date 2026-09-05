@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: hitchcock-bomb-suspense
+id: hitchcock_bomb_suspense
 title: "The Hitchcock Suspense Engine: Dramatic Irony & The Ticking Clock"
 academic_basis: "Alfred Hitchcock, François Truffaut & Dramatic Irony Theory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [thriller_suspense]
+scope: scene
+subtype: pacing_rhythm
+confidence: practitioner_method
+provides: [bomb_under_table, ticking_clock_suspense]
+requires: [primitive_epistemic_asymmetry]
+diagnostics: [dread]
+keywords: ["Hitchcock bomb", "suspense vs surprise", "ticking clock", "delayed blast"]
 ---
 
 # The Hitchcock Suspense Engine

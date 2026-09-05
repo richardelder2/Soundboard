@@ -1,10 +1,18 @@
 ---
 type: craft_structure
-id: adventure-quest-survival-dynamics
+id: adventure_quest_survival_dynamics
 title: "The Adventure Quest: Environmental Hostility, Resource Attrition & Team Dynamics"
 academic_basis: "Quest Narratology, Jack London & Survival Theory"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/genres/adventure.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [adventure_survival]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [quest_progression, survival_stakes]
+requires: [cpocl_plan_threat_conflict_engine]
+diagnostics: [dread]
+keywords: ["adventure quest", "survival dynamics", "hostile environment", "journey structure", "peril"]
 ---
 
 # The Adventure Quest & Survival Mechanics

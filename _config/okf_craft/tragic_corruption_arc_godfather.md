@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: tragic-corruption-arc-godfather
+id: tragic_corruption_arc_godfather
 title: "The Tragic Corruption Arc: The Inevitable Surrender to the Shadow"
 academic_basis: "Francis Ford Coppola, Mario Puzo & Robert McKee's Moral Corruption Model"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime, thriller_suspense]
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [corruption_arc, moral_inversion]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["corruption arc", "Godfather", "Michael Corleone", "moral descent"]
 ---
 
 # The Tragic Corruption Arc: The Godfather Model

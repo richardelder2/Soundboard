@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: moral-degeneration-typology-and-rationalization-engines
+id: moral_degeneration_typology_and_rationalization_engines
 title: "The Typology of Moral Degeneration: Five Models of Psychological Descent & Rationalization Engines"
-source_provenance: "Adapted from setup/deep_research/Cinematic Dramaturgy for Prose Fiction.md (Breaking Bad, Better Call Saul, Godfather II, The Sopranos, There Will Be Blood)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [noir_crime, thriller_suspense]
+scope: book
+subtype: character_engine
+confidence: peer_reviewed
+provides: [moral_decay_steps, rationalization_engine]
+requires: [tragic_corruption_arc_godfather]
+diagnostics: [narrative_audit]
+keywords: ["moral degeneration", "corruption arc", "rationalization", "slippery slope"]
 ---
 
 # The Typology of Moral Degeneration: Five Models of Descent

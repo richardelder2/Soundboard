@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-focalization-filter-levels
+id: primitive_focalization_filter_levels
 title: "Focalization & Perspective Filters: Zero, Internal & External Perception"
 academic_basis: "Gérard Genette ('Figures III'), Mieke Bal & Narrative Point of View Theory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: chapter
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [focalization_control, perceptual_filtering]
+requires: [psychic_distance_and_narrative_zoom]
+diagnostics: [voice_drift]
+keywords: ["focalization", "internal focalization", "narrative perspective", "POV filter"]
 ---
 
 # Focalization: The Primitive Architecture of Perception

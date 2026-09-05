@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: procedural-dread-and-administrative-terror
+id: procedural_dread_and_administrative_terror
 title: "Procedural Dread: The Bureaucratic Horror Engine & Administrative Restraint"
-source_provenance: "Adapted from C:/Users/richa/SK_in_Space/00_Story_Bible/style_guide.md (This Is Not a Disciplinary Proceeding)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [horror_weird, thriller_suspense]
+scope: chapter
+subtype: genre_convention
+confidence: workshop_heuristic
+provides: [institutional_terror, bureaucratic_dread]
+requires: [cosmic_horror_existential_dread]
+diagnostics: [dread]
+keywords: ["procedural dread", "Kafkaesque terror", "bureaucratic nightmare", "administrative horror"]
 ---
 
 # Procedural Dread & Administrative Terror

@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: police-procedural-evidentiary-and-institutional-engine
+id: police_procedural_evidentiary_and_institutional_engine
 title: "The Police & Legal Procedural: Evidentiary Fair-Play, Institutional Friction & The Interrogation Crucible"
-source_provenance: "Adapted from setup/deep_research/Commercial Fiction Genre Engineering.md & setup/deep_research/Cinematic Dramaturgy for Prose Fiction.md (The Wire, Zodiac)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [mystery_detective, noir_crime]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [chain_of_custody, procedural_interview_grid]
+requires: [fair_play_whodunit_rules]
+diagnostics: [continuity]
+keywords: ["police procedural", "forensics", "chain of custody", "detective interview"]
 ---
 
 # The Police & Legal Procedural Engine

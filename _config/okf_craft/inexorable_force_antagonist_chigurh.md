@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: inexorable-force-antagonist-chigurh
+id: inexorable_force_antagonist_chigurh
 title: "The Inexorable Force Antagonist: The Unreasoning Moral Principle"
 academic_basis: "Cormac McCarthy, Joel & Ethan Coen ('No Country for Old Men'), Peter Benchley ('Jaws')"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [thriller_suspense, noir_crime]
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [inexorable_antagonist, unreasoning_nemesis]
+requires: [four_corner_opposition_and_foil_matrix]
+diagnostics: [dread]
+keywords: ["inexorable villain", "Anton Chigurh", "force of nature antagonist", "implacable foe"]
 ---
 
 # The Inexorable Force Antagonist: Anton Chigurh & The Unstoppable Wave

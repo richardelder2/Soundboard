@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: irony-typology-and-lateral-omission-paralipsis
+id: irony_typology_and_lateral_omission_paralipsis
 title: "The Irony Typology & Gérard Genette's Lateral Omission: Dramatic, Tragic, Cosmic Irony and Paralipsis"
-source_provenance: "Adapted from setup/deep_research/Advanced Fiction Stylistics and Mechanics.md, Gérard Genette (Narrative Discourse) & Wayne C. Booth (The Rhetoric of Fiction)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [comedy_satire, noir_crime]
+scope: scene
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [paralipsis_omission, ironic_disparity]
+requires: [primitive_epistemic_asymmetry]
+diagnostics: [dialogue_ratio]
+keywords: ["irony typology", "paralipsis", "lateral omission", "dramatic irony"]
 ---
 
 # The Irony Typology & Lateral Omission (Paralipsis)

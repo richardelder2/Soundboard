@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-temporal-distortion-mimesis
+id: primitive_temporal_distortion_mimesis
 title: "Chronesthesia: The Pacing Ratio & Subjective Time Distortion"
 academic_basis: "Gérard Genette ('Narrative Discourse'), Paul Ricoeur & Cognitive Chronesthesia"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: pacing_rhythm
+confidence: peer_reviewed
+provides: [psychological_time_dilation, scene_compression]
+requires: [swain_mru_and_pacing_velocity_equations]
+diagnostics: [rhythm, dread]
+keywords: ["time dilation", "subjective time", "pacing velocity", "temporal compression"]
 ---
 
 # Chronesthesia: The Narrative Time Ratio

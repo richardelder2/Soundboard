@@ -86,6 +86,8 @@ function stripFrontmatter(text) {
 
 function loadTellAllowlist() {
   const candidates = [
+    path.join('stages', '01_onboarding', 'output', 'tell_allowlist.md'),
+    path.join(process.cwd(), 'stages', '01_onboarding', 'output', 'tell_allowlist.md'),
     path.join('_config', 'tell_allowlist.md'),
     path.join(process.cwd(), '_config', 'tell_allowlist.md')
   ];
@@ -198,6 +200,7 @@ function analyze(text) {
     emDashCount: countMatches(body, /—|--/g),
     emDashPer1k: per1k(countMatches(body, /—|--/g), words),
     tells, tellTotal,
+    tellsPer1k: per1k(tellTotal, words),
     patternTriads,
     listTriadsPer1k: per1k(listTriads, words),
     maxOpenerRun: maxRun,
@@ -222,9 +225,11 @@ function buildFlags(r) {
     flag(!isShort && r.olfactoryPer1k > 1.5 && r.olfactoryCount >= 3, 'WARN', `Olfactory density ${r.olfactoryPer1k.toFixed(2)}/1k words (${r.olfactoryCount} refs) — smell is the most over-used AI sense. Keep only beats that earn their place.`),
     flag(!isShort && r.sentence.cv < 0.5, 'RED', `Sentence-length variation too low (CV ${r.sentence.cv.toFixed(2)}; target ≥ 0.5). Mix fragments with long winding sentences.`),
     flag(!isShort && r.emDashPer1k > 4 && r.emDashCount >= 4, 'RED', `Em-dash rate ${r.emDashPer1k.toFixed(1)}/1k words (${r.emDashCount} total; target ≤ 4/1k). Swap some for commas, parentheses, periods.`),
-    // Calibrated lexical tells: RED only when repeated (>=3 total or single tell >=2); single isolated tell is WARN
-    flag(r.tellTotal >= 3 || Object.values(r.tells).some(c => c >= 2), 'RED', `Repeated lexical tells found in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`),
-    flag(r.tellTotal > 0 && r.tellTotal < 3 && !Object.values(r.tells).some(c => c >= 2), 'WARN', `Isolated lexical tell in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Review context or add to _config/tell_allowlist.md if intentional.`),
+    // Density-normalized lexical tells:
+    // RED: repeated tell (count >= 2, regardless of sample size) OR high density in full sample (density > 2.0/1k && total >= 3 && words >= 800)
+    flag(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3), 'RED', Object.values(r.tells).some(c => c >= 2) ? `Repeated lexical tell found in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words, ${r.tellTotal} total): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`),
+    // WARN: non-repeated tells in short sample (< 800w) OR density > 0.8/1k OR single isolated tell
+    flag(!(Object.values(r.tells).some(c => c >= 2) || (!isShort && r.tellsPer1k > 2.0 && r.tellTotal >= 3)) && r.tellTotal > 0, 'WARN', isShort ? `Short sample (${r.words} words < 800) contains lexical tells: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Below 800 words capped at review.` : (r.tellsPer1k > 0.8 ? `Elevated lexical tell density (${r.tellsPer1k.toFixed(2)}/1k words): ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.` : `Isolated lexical tell in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Review context or add to allowlist if intentional.`)),
     flag(!isShort && r.patternTriads > 1, 'WARN', `"Not X, not Y, but Z"-style constructions: ${r.patternTriads}. One rhetorical triad per chapter max.`),
     flag(!isShort && r.listTriadsPer1k > 2 && r.words >= 800, 'WARN', `Three-item lists at ${r.listTriadsPer1k.toFixed(1)}/1k words — the rule-of-three is an AI rhythm. Break some into ones and twos.`),
     flag(!isShort && r.dialogueRatio < 0.15, 'WARN', `Dialogue is only ${(r.dialogueRatio * 100).toFixed(0)}% of text. Humans write proportionally more dialogue; convert narration to talk where possible.`),
@@ -262,7 +267,7 @@ function fmtReport(name, r, flags) {
   lines.push(`| Emotion beats: explicit / embodied | ${r.explicit} / ${r.embodied} | embodied ≤ ~40% of beats |`);
   lines.push(`| Olfactory refs per 1k words | ${r.olfactoryPer1k.toFixed(2)} | ≤ 1.5 |`);
   lines.push(`| Em-dashes per 1k words | ${r.emDashPer1k.toFixed(1)} | ≤ 4 |`);
-  lines.push(`| Lexical tells | ${r.tellTotal} | 0 |`);
+  lines.push(`| Lexical tells (per 1k) | ${r.tellsPer1k.toFixed(2)} | ≤ 2.0, none repeated |`);
   lines.push(`| Rhetorical triads / list triads per 1k | ${r.patternTriads} / ${r.listTriadsPer1k.toFixed(1)} | ≤ 1 per chapter / ≤ 2 |`);
   lines.push(`| Max same-word sentence-opener run | ${r.maxOpenerRun} | ≤ 2 |`);
   lines.push(`| Time-shift markers per 1k | ${r.anachronyPer1k.toFixed(1)} | cross-check structure_plan |`);

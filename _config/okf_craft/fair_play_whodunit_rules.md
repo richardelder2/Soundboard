@@ -1,10 +1,18 @@
 ---
 type: craft_structure
-id: fair-play-whodunit-rules
+id: fair_play_whodunit_rules
 title: "Fair-Play Mystery Architecture: The Detection Club & Clue Ledger"
 academic_basis: "Ronald Knox's 10 Commandments, Agatha Christie & The Golden Age of Detective Fiction"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/whodunit-structure.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 04_diagnostics_edits]
+genres: [mystery_detective]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [fair_play_contract, clue_puzzle_matrix]
+requires: [red_herring_misdirection_matrix]
+diagnostics: [continuity]
+keywords: ["fair play", "whodunit", "Knox commandments", "clue matrix", "detective puzzle"]
 ---
 
 # Fair-Play Mystery Architecture

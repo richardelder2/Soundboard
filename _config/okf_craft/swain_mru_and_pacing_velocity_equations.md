@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: swain-mru-and-pacing-velocity-equations
+id: swain_mru_and_pacing_velocity_equations
 title: "Dwight Swain's MRU Architecture & The Pacing Velocity Equation: Micro-Pacing & Compression Curves"
-source_provenance: "Adapted from Dwight V. Swain (Techniques of the Selling Writer) & setup/deep_research/Commercial Fiction Genre Engineering.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: scene
+subtype: pacing_rhythm
+confidence: practitioner_method
+provides: [motivation_reaction_units, velocity_equations]
+requires: [scene_level_five_commandments_coyne]
+diagnostics: [rhythm, dread]
+keywords: ["Dwight Swain", "MRU", "stimulus response", "pacing velocity"]
 ---
 
 # Dwight Swain's MRU Architecture & The Pacing Velocity Equation

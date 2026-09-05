@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: scene-level-five-commandments-coyne
+id: scene_level_five_commandments_coyne
 title: "The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine"
-source_provenance: "Adapted from Shawn Coyne (The Story Grid: What Good Editors Know)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: plot_template
+confidence: practitioner_method
+provides: [five_commandments, scene_level_crisis]
+requires: [story_grid_macro]
+diagnostics: [narrative_audit, dread]
+keywords: ["five commandments", "Story Grid", "Shawn Coyne", "inciting incident", "turning point"]
 ---
 
 # The Five Commandments of the Micro-Scene

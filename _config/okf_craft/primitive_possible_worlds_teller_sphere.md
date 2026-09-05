@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-possible-worlds-teller-sphere
+id: primitive_possible_worlds_teller_sphere
 title: "Possible Worlds Theory: Virtual vs. Actualized Narrative Reality"
 academic_basis: "Marie-Laure Ryan ('Possible Worlds, Artificial Intelligence, and Narrative Theory')"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: chapter
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [narrator_ontological_sphere, teller_reliability]
+requires: [textual_actual_worlds_and_modal_narratology]
+diagnostics: [voice_drift]
+keywords: ["teller sphere", "ontological space", "narrator distance", "narrative levels"]
 ---
 
 # Possible Worlds Theory: The Virtual Narrative Sphere

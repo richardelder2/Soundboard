@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: comedy-farce-and-satirical-timing-engine
+id: comedy_farce_and_satirical_timing_engine
 title: "The Architecture of Comedy, Farce & Satirical Timing: Steve Kaplan, John Vorhaus, Wodehouse & Pratchett"
-source_provenance: "Adapted from setup/deep_research/Advanced Fiction Stylistics and Mechanics.md, Steve Kaplan (The Hidden Tools of Comedy) & John Vorhaus (The Comic Toolbox)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [comedy_satire]
+scope: scene
+subtype: genre_convention
+confidence: practitioner_method
+provides: [farce_mechanics, comic_escalation]
+requires: [status_transactions_and_dominance_choreography]
+diagnostics: [rhythm]
+keywords: ["comedy timing", "farce", "satire", "rule of three", "status reversal"]
 ---
 
 # The Architecture of Comedy, Farce & Satirical Timing

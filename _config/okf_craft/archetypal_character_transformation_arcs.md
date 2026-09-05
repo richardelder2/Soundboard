@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: archetypal-character-transformation-arcs
+id: archetypal_character_transformation_arcs
 title: "Archetypal Character Transformation Arcs: From Persona Breakdown to Archetypal Metamorphosis"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/archetypes/archetypal-character-arcs.md & Joseph Campbell"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [archetypal_transformation, individuation_arc]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["character transformation", "Jungian individuation", "positive change arc", "K.M. Weiland"]
 ---
 
 # Archetypal Character Transformation Arcs

@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: unreliable-narrator-psychological-fracture
+id: unreliable_narrator_psychological_fracture
 title: "The Unreliable Narrator: Fractured Perception, Active Gaslighting & The Breadcrumb Trial"
 academic_basis: "Gillian Flynn ('Gone Girl'), Chuck Palahniuk ('Fight Club'), Kazuo Ishiguro ('The Remains of the Day')"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [thriller_suspense, horror_weird, mystery_detective]
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [unreliable_narration, psychological_fracture]
+requires: [primitive_focalization_filter_levels]
+diagnostics: [voice_drift]
+keywords: ["unreliable narrator", "narrative fracture", "confabulation", "gaslighting"]
 ---
 
 # The Unreliable Narrator & Fractured Epistemology

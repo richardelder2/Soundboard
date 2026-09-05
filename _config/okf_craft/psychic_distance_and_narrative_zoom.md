@@ -1,9 +1,17 @@
 ---
 type: craft_primitive
-id: psychic-distance-and-narrative-zoom
+id: psychic_distance_and_narrative_zoom
 title: "John Gardner's Five Levels of Psychic Distance: The Cinematic Zoom of Narrative Consciousness"
-source_provenance: "Adapted from John Gardner (The Art of Fiction: Notes on Craft for Young Writers) & James Wood (How Fiction Works)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [gardner_psychic_distance, camera_viscosity]
+requires: [free_indirect_discourse_and_voice_blending]
+diagnostics: [voice_drift, sensory_anchor]
+keywords: ["psychic distance", "narrative zoom", "camera viscosity", "John Gardner"]
 ---
 
 # Psychic Distance & The Narrative Zoom

@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: prose-syntax-and-acoustic-cadence
+id: prose_syntax_and_acoustic_cadence
 title: "Prose Syntax & Acoustic Cadence: The Architecture of the Sentence and Musical Phonosemantics"
-source_provenance: "Adapted from Virginia Tufte (Artful Sentences: Syntax as Style), Stanley Fish, Ursula K. Le Guin (Steering the Craft) & Gary Provost"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: prose_style
+confidence: peer_reviewed
+provides: [acoustic_cadence, syntactic_variation]
+requires: [syntactic_symbolism_and_cumulative_sentence_rhetoric]
+diagnostics: [rhythm]
+keywords: ["sentence variety", "Gary Provost", "acoustic cadence", "rhythm"]
 ---
 
 # Prose Syntax & Acoustic Cadence

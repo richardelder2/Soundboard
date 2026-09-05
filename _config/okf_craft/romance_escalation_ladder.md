@@ -1,9 +1,17 @@
 ---
 type: craft_structure
-id: romance-escalation-ladder
+id: romance_escalation_ladder
 title: "The Romance Heat & Vulnerability Ladder: Resistance to Intimacy"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/romance-arc.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning, 03_drafting]
+genres: [romance_romantasy]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [intimacy_ladder, grovel_ledger]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["romance beats", "heat ladder", "intimacy escalation", "HEA", "grovel"]
 ---
 
 # The Romance Escalation Ladder

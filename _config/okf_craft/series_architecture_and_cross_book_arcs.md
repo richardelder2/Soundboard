@@ -1,6 +1,6 @@
 ---
 type: craft_structure
-id: series-architecture-and-cross-book-arcs
+id: series_architecture_and_cross_book_arcs
 title: "Series Architecture: Macro-Arcs, Lore Debt, and Value Shifts"
 academic_basis: "Robert McKee (Story), John Truby (Anatomy of Story) & Brandon Sanderson"
 last_modified: 2026-09-04
@@ -9,7 +9,7 @@ genres: []
 scope: book
 provides: [series_arc, lore_debt, progression_ladder]
 requires: [archetypal_character_transformation_arcs]
-diagnostics: [resource_consistency]
+diagnostics: [continuity, dread]
 keywords: [series, cross-book, trilogy, middle book, lore debt, series arc, multi-volume]
 ---
 

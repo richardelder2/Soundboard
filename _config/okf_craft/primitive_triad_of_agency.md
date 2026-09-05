@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-triad-of-agency
+id: primitive_triad_of_agency
 title: "The Triad of Agency: Want, Obstacle & Irrevocable Choice"
 academic_basis: "Action Theory, Dramaturgy & Evolutionary Psychology"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: practitioner_method
+provides: [agency_triad, active_protagonist]
+requires: [character_arc_anatomy_lie_wound_want_need]
+diagnostics: [narrative_audit]
+keywords: ["protagonist agency", "competence", "desire", "opposition"]
 ---
 
 # The Triad of Agency: The Engine of Empathy

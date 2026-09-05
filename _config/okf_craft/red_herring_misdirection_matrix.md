@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: red-herring-misdirection-matrix
+id: red_herring_misdirection_matrix
 title: "The Misdirection Matrix: Red Herrings, Plausible Guilt & Double Bluffs"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/narrative-devices/red-herrings.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: [mystery_detective, thriller_suspense]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [red_herrings, cognitive_misdirection]
+requires: [fair_play_whodunit_rules]
+diagnostics: [continuity]
+keywords: ["red herring", "misdirection", "false suspect", "clue camouflage"]
 ---
 
 # The Misdirection Matrix: Engineering Plausible False Leads

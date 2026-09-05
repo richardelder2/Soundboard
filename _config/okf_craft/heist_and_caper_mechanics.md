@@ -1,10 +1,18 @@
 ---
 type: craft_structure
-id: heist-and-caper-mechanics
+id: heist_and_caper_mechanics
 title: "The Heist & Caper Engine: The Long Con, Misdirection & Plant-and-Payoff"
 academic_basis: "Steven Soderbergh, Elmore Leonard & Narrative Misdirection Theory"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/plot-structures/heist-structure.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [thriller_suspense]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [caper_phases, head_fake_reveal]
+requires: [cpocl_plan_threat_conflict_engine]
+diagnostics: [dread, continuity]
+keywords: ["heist", "caper", "Ocean's Eleven", "montage plan", "head fake reveal"]
 ---
 
 # The Heist & Caper Engine

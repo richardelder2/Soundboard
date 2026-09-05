@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-mimetic-desire-triangulation
+id: primitive_mimetic_desire_triangulation
 title: "Mimetic Desire & Scarcity: The René Girard Triangulation Primitive"
 academic_basis: "René Girard ('Deceit, Desire and the Novel'), Mimetic Theory & Social Anthropology"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: character_engine
+confidence: peer_reviewed
+provides: [mimetic_conflict, triangular_desire]
+requires: [four_corner_opposition_and_foil_matrix]
+diagnostics: [narrative_audit]
+keywords: ["mimetic desire", "Girardian triangle", "mediator of desire", "rivalry"]
 ---
 
 # Mimetic Desire: The Mechanics of Human Jealousy & Rivalry

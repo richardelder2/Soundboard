@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: courtly-intrigue-political-web
+id: courtly_intrigue_political_web
 title: "Courtly Intrigue & Political Machinations: Information Warfare & Factional Cannibalism"
 academic_basis: "Niccolò Machiavelli, Hilary Mantel ('Wolf Hall') & Game Theory"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [epic_fantasy, thriller_suspense]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [faction_levers, political_leverage]
+requires: [anthropological_worldbuilding]
+diagnostics: [continuity]
+keywords: ["courtly intrigue", "political web", "factions", "blackmail", "Machiavellian"]
 ---
 
 # Courtly Intrigue & Political Machinations

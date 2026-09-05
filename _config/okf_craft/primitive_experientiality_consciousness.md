@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-experientiality-consciousness
+id: primitive_experientiality_consciousness
 title: "Experientiality: The Embodied Human Consciousness Primitive"
 academic_basis: "Monika Fludernik ('Towards a Natural Narratology') & Cognitive Science"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting]
+genres: []
+scope: sentence
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [consciousness_representation, qualia_anchoring]
+requires: [psychic_distance_and_narrative_zoom]
+diagnostics: [sensory_anchor, voice_drift]
+keywords: ["experientiality", "qualia", "sensory perception", "subjective reality"]
 ---
 
 # Experientiality: The Embodied Human Consciousness Primitive

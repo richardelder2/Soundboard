@@ -1,9 +1,18 @@
 ---
 type: craft_structure
-id: progression-litrpg-conventions
+id: progression_litrpg_conventions
 title: "Progression Fantasy & LitRPG: Visible Competence, Power Curves & Milestone Catharsis"
 academic_basis: "Ludology, Progression Narratology & Mastery Psychology"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [epic_fantasy, adventure_survival]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [tier_advancement, metronomic_power_ups]
+requires: [sandersons_laws_of_magic_and_magic_system_engineering]
+diagnostics: [narrative_audit]
+keywords: ["progression fantasy", "LitRPG", "power leveling", "advancement ladder"]
 ---
 
 # Progression Fantasy & LitRPG: Conventions & Reader Expectations

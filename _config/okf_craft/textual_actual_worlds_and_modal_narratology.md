@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: textual-actual-worlds-and-modal-narratology
+id: textual_actual_worlds_and_modal_narratology
 title: "Textual Actual Worlds (TAW) & Modal Narratology: The Narrative Tension Matrix"
 academic_basis: "Marie-Laure Ryan (Possible Worlds, Artificial Intelligence, and Narrative Theory), Lubomír Doležel"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: []
+scope: book
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [modal_world_building, private_world_clash]
+requires: [primitive_modal_discrepancy_and_possible_worlds]
+diagnostics: [continuity]
+keywords: ["possible worlds", "modal narratology", "Marie-Laure Ryan", "worldbuilding logic"]
 ---
 
 # Textual Actual Worlds (TAW) & Modal Narratology

@@ -1,9 +1,18 @@
 ---
 type: craft_rule
-id: sandersons-laws-of-magic-and-magic-system-engineering
+id: sandersons_laws_of_magic_and_magic_system_engineering
 title: "Brandon Sanderson's Three Laws of Magic & Magic System Engineering"
 academic_basis: "Brandon Sanderson (Sanderson's Laws of Magic, Cosmere Worldbuilding Architecture)"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [01_onboarding, 02_planning]
+genres: [epic_fantasy, scifi_dystopian]
+scope: book
+subtype: genre_convention
+confidence: practitioner_method
+provides: [magic_system_limits, hard_vs_soft_magic]
+requires: [anthropological_worldbuilding]
+diagnostics: [continuity]
+keywords: ["Sanderson's laws", "magic systems", "costs and limitations", "hard magic"]
 ---
 
 # Brandon Sanderson's Three Laws of Magic & Magic System Engineering

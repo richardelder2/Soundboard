@@ -8,8 +8,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const APP_NAME = 'Soundboard';
-const BIN_NAME = 'soundboard';
+const BIN_NAME = path.basename(process.argv[1], '.js') || 'soundboard';
+const APP_NAME = BIN_NAME === 'saga' ? 'SAGA-ICM' : 'Soundboard';
 
 export function readText(p) {
   return fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
@@ -486,6 +486,36 @@ function handleRunStage(stageId) {
     }
   }
 
+  // Stage 02 Genre-Conditional Trackers (ICM Layer 3 Template Routing)
+  if (matchingStage.startsWith('02')) {
+    let genre = null;
+    const prefPath = path.join('stages', '01_onboarding', 'output', 'preferences.json');
+    if (fs.existsSync(prefPath)) {
+      try {
+        const pref = JSON.parse(readText(prefPath));
+        genre = (pref.genre || pref.primary_genre || pref.subgenre || '').toLowerCase();
+      } catch (_) {}
+    }
+    const genreArg = (process.argv.slice(2) || []).find(a => a.startsWith('--genre='));
+    if (genreArg) {
+      genre = genreArg.split('=')[1].toLowerCase();
+    }
+
+    if (genre) {
+      let tracker = null;
+      if (genre.includes('romance') || genre.includes('romantasy')) {
+        tracker = path.join('_config', 'templates', 'tracker_romance_heat_ladder.template.md');
+      } else if (genre.includes('fantasy') || genre.includes('thriller') || genre.includes('progression') || genre.includes('multi-pov')) {
+        tracker = path.join('_config', 'templates', 'tracker_power_escalation.template.md');
+      } else if (genre.includes('mystery') || genre.includes('detective') || genre.includes('cozy') || genre.includes('noir')) {
+        tracker = path.join('_config', 'templates', 'tracker_fair_play_clues.template.md');
+      }
+      if (tracker && fs.existsSync(tracker)) {
+        emitPacketEntry('GENRE TEMPLATE', tracker);
+      }
+    }
+  }
+
   const estTokens = Math.ceil(totalPacketChars / 4);
   console.log(`\n=== END PACKET: ${matchingStage} (Est: ${estTokens.toLocaleString()} tokens / target: 2,000–8,000) ===`);
   if (estTokens > 8000) {
@@ -688,48 +718,11 @@ function handleOkfIndex() {
   }
 }
 
-function handleOkfLint() {
-  printHeader('OKF Knowledge Bundle Linter');
-  const craftDir = path.join('_config', 'okf_craft');
-  if (!fs.existsSync(craftDir)) {
-    console.error('No _config/okf_craft directory found.');
+async function handleOkfLint() {
+  const { runOkfLint } = await import('./okf_lint.js');
+  const result = runOkfLint({ rootDir: process.cwd(), strict: args.includes('--strict') });
+  if (!result.ok) {
     process.exit(1);
-  }
-  const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md'));
-  let totalErrors = 0;
-  let totalBoms = 0;
-  let oversized = 0;
-
-  files.forEach(f => {
-    const fullPath = path.join(craftDir, f);
-    const buf = fs.readFileSync(fullPath);
-    if (buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) {
-      console.log(`  \x1b[31m✗ BOM detected:\x1b[0m ${f}`);
-      totalBoms++;
-    }
-    const text = buf.toString('utf8').replace(/^\uFEFF/, '');
-    if (f === 'index.md' || f === 'CONTEXT.md' || f === 'SPECIFICATION.md') return;
-
-    // Check frontmatter
-    const hasFm = /^---\r?\n[\s\S]*?\r?\n---/.test(text);
-    if (!hasFm) {
-      console.log(`  \x1b[31m✗ Missing YAML frontmatter:\x1b[0m ${f}`);
-      totalErrors++;
-    }
-
-    const words = (text.match(/[\w'’-]+/g) || []).length;
-    if (words > 750) {
-      oversized++;
-    }
-  });
-
-  console.log(`Checked ${files.length} craft modules.`);
-  console.log(`BOMs: ${totalBoms}, Format errors: ${totalErrors}, Oversized modules (>750w): ${oversized}`);
-  if (totalBoms > 0 || totalErrors > 0) {
-    console.log('\x1b[31mFAIL: OKF lint failed.\x1b[0m\n');
-    process.exit(1);
-  } else {
-    console.log('\x1b[32m✔ OKF bundle is clean and valid!\x1b[0m\n');
   }
 }
 

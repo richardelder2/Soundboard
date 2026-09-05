@@ -1,9 +1,17 @@
 ---
 type: craft_rule
-id: implied-meaning-and-negative-space
+id: implied_meaning_and_negative_space
 title: "Negative Space in Prose: Implied Meaning, Omission & Reader Co-Creation"
-source_provenance: "Adapted from C:/Users/richa/wiki/wiki/writing-techniques/implied-meaning.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [03_drafting, 04_diagnostics_edits]
+genres: []
+scope: sentence
+subtype: prose_style
+confidence: peer_reviewed
+provides: [negative_space, omission_rhetoric]
+requires: [three_registers_of_dialogue_subtext]
+diagnostics: [dialogue_ratio, lexical_tells]
+keywords: ["negative space", "Hemingway iceberg", "implied meaning", "omission"]
 ---
 
 # Negative Space in Prose: The Power of Omission

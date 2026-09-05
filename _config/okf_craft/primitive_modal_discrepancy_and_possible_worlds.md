@@ -1,9 +1,17 @@
 ---
 type: craft_primitive
-id: primitive-modal-discrepancy-and-possible-worlds
+id: primitive_modal_discrepancy_and_possible_worlds
 title: "Possible Worlds Theory & The Modal Discrepancy Matrix: Engineering Psychological Depth"
-source_provenance: "Adapted from Marie-Laure Ryan (Possible Worlds, Artificial Intelligence, and Narrative Theory) & setup/deep_research/Cognitive Narratology and Novel Craft.md"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: chapter
+subtype: narrative_mode
+confidence: peer_reviewed
+provides: [possible_worlds_gap, expectation_violation]
+requires: [textual_actual_worlds_and_modal_narratology]
+diagnostics: [narrative_audit]
+keywords: ["possible worlds", "modal discrepancy", "wish world", "narrative tension"]
 ---
 
 # Possible Worlds Theory & The Modal Discrepancy Matrix

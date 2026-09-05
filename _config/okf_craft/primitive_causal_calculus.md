@@ -1,9 +1,18 @@
 ---
 type: craft_primitive
-id: primitive-causal-calculus
+id: primitive_causal_calculus
 title: "Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay"
 academic_basis: "Aristotelian Causality, Cognitive Science & Trey Parker/Matt Stone Rule"
-last_modified: 2026-09-04
+last_modified: 2026-09-05
+stages: [02_planning, 03_drafting]
+genres: []
+scope: scene
+subtype: dialectic_pattern
+confidence: peer_reviewed
+provides: [causal_necessity, probabilistic_causality]
+requires: [primitive_dialectic_value_shift]
+diagnostics: [narrative_audit]
+keywords: ["causality", "therefore and but", "plot logic", "causal chain"]
 ---
 
 # Causal Calculus: The Fundamental Grammar of Plot

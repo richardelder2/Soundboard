@@ -1,6 +1,6 @@
 ---
 type: craft_rule
-id: voice-differentiation-across-ensemble
+id: voice_differentiation_across_ensemble
 title: "Voice Differentiation: Engineering Non-Homogeneous Cast Registers"
 academic_basis: "M.M. Bakhtin (Heteroglossia & Dialogism) & David Lodge"
 last_modified: 2026-09-04
@@ -9,7 +9,7 @@ genres: []
 scope: scene
 provides: [voice_differentiation, idiolect_filters, perceptual_bias]
 requires: [three_registers_of_dialogue_subtext]
-diagnostics: [dialogue, narrative_audit]
+diagnostics: [dialogue_ratio, voice_drift]
 keywords: [voice, dialogue, idiolect, ensemble, character voice, polyphony, heteroglossia]
 ---
 
