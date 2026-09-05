@@ -155,14 +155,14 @@
 
 ## Sprint 3: State & The Concierge
 
-### [ ] T-09 · State Model: Structured Canon, Timeline, Thread Ledger
+### [x] T-09 · State Model: Structured Canon, Timeline, Thread Ledger
 - **Priority:** P2
 - **Tasks:**
   - **9a (Structured Canon):** Migrate `canon.md` to tabular format (`entity | attribute | value | first_asserted | status`), add `soundboard canon query <entity>`, update `pack-chapter` to inline only relevant entity rows (preserving 6,000-token kit budget).
   - **9b (Timeline):** Support `story_date` and `elapsed` in frontmatter; implement `soundboard timeline` chronology checker.
   - **9c (Thread Ledger):** Create `stages/02_planning/output/trackers/threads.md`; implement `soundboard threads` command.
 
-### [ ] T-10 · Machine-Checkable Stage 04 Gate
+### [x] T-10 · Machine-Checkable Stage 04 Gate
 - **Priority:** P2 · Depends on T-09
 - **Goal:** Enforce ICM §6.2 verification via reproducible artifacts rather than trust in an unverified status string.
 - **Tasks:**
@@ -171,7 +171,7 @@
   - Implement `soundboard gate <chapter>` as sole setter of `status: passed`.
   - Enforce gate artifacts in `compile_manuscript.js`.
 
-### [ ] T-08 · Book-Level Analysis (`soundboard manuscript-report`)
+### [x] T-08 · Book-Level Analysis (`soundboard manuscript-report`)
 - **Priority:** P2
 - **Tasks:**
   - Create `scripts/manuscript_report.js` computing escalation contour, voice drift (>2σ outliers), POV budget, cross-chapter 4-gram repetition, and ledger delivery.

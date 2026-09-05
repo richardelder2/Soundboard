@@ -63,7 +63,36 @@ export function compileManuscript(args = []) {
     for (const ch of manifest.chapters) {
       const p = (ch.draft_file || '').replace(/\//g, path.sep);
       if (!p || !fs.existsSync(p)) { skipped.push(`ch ${ch.id} (no draft file)`); continue; }
-      if (!includeAll && ch.status !== 'passed') { skipped.push(`ch ${ch.id} (status: ${ch.status})`); continue; }
+      if (!includeAll) {
+        if (ch.status !== 'passed') {
+          skipped.push(`ch ${ch.id} (status: ${ch.status})`);
+          continue;
+        }
+        // Enforce T-10 machine-checkable Stage 04 gate artifacts
+        const pad = String(ch.id).padStart(2, '0');
+        const vDir = path.join('stages', '04_diagnostics_edits', 'output', 'verdicts', `ch${pad}`);
+        const requiredChecks = ['scan', 'canon_check', 'rubric', 'ledger_delivery'];
+        const gateIssues = [];
+        for (const req of requiredChecks) {
+          const vFile = path.join(vDir, `${req}.json`);
+          if (!fs.existsSync(vFile)) {
+            gateIssues.push(`missing ${req}`);
+          } else {
+            try {
+              const vData = JSON.parse(fs.readFileSync(vFile, 'utf8'));
+              if (vData.verdict !== 'PASS' && vData.verdict !== 'SKIP') {
+                gateIssues.push(`failed ${req}`);
+              }
+            } catch (e) {
+              gateIssues.push(`corrupted ${req}`);
+            }
+          }
+        }
+        if (gateIssues.length > 0) {
+          skipped.push(`ch ${ch.id} (unverified Stage 04 gate: ${gateIssues.join(', ')})`);
+          continue;
+        }
+      }
       chapters.push({ title: ch.title || `Chapter ${ch.id}`, file: p });
     }
     if (skipped.length) {

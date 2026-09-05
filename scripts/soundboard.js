@@ -426,6 +426,227 @@ async function handleContinuity(customArgs) {
   runContinuityScan(contArgs);
 }
 
+
+function handleCanon(action, extraArgs = []) {
+  const canonCandidates = [
+    path.join('stages', '02_planning', 'output', 'canon.md'),
+    path.join('_config', 'templates', 'canon.template.md')
+  ];
+  const canonFile = canonCandidates.find(c => fs.existsSync(c));
+  if (!canonFile) {
+    console.error('No canon file found (checked stages/02_planning/output/canon.md).');
+    return;
+  }
+
+  const fileContent = readText(canonFile);
+
+  if (action === 'query') {
+    const queryTerm = extraArgs.join(' ').trim();
+    printHeader(`Canon Query: "${queryTerm || 'ALL ENTITIES'}"`);
+
+    const lines = fileContent.split(/\r?\n/);
+    const results = [];
+    let currentSection = '';
+
+    lines.forEach(line => {
+      const h = line.match(/^#{1,3}\s+(.*)$/);
+      if (h) {
+        currentSection = h[1];
+        return;
+      }
+      if (line.trim().startsWith('|') && !line.includes('---') && !line.toLowerCase().includes('| entity |') && !line.toLowerCase().includes('| character |')) {
+        const cells = line.split('|').map(c => c.trim()).filter(Boolean);
+        if (cells.length >= 3) {
+          const entity = cells[0];
+          const attrOrFact = cells[1];
+          const valOrStatus = cells[2];
+          const firstAsserted = cells[3] || '';
+          const status = cells[4] || '';
+
+          if (!queryTerm || line.toLowerCase().includes(queryTerm.toLowerCase())) {
+            results.push({ section: currentSection, entity, attribute: attrOrFact, value: valOrStatus, firstAsserted, status });
+          }
+        }
+      }
+    });
+
+    if (results.length === 0) {
+      console.log(`No canon entries matching "${queryTerm}" found.\n`);
+      return;
+    }
+
+    console.log(`Found ${results.length} matching canon entry/entries:\n`);
+    console.log(`| Entity | Attribute / Fact | Value | Established | Status |`);
+    console.log(`|---|---|---|---|---|`);
+    results.forEach(r => {
+      console.log(`| **${r.entity}** | ${r.attribute} | ${r.value} | ${r.firstAsserted} | ${r.status} |`);
+    });
+    console.log('');
+  } else if (action === 'check') {
+    printHeader('Canon Integrity & Verification Check');
+    const unverified = [];
+    const lines = fileContent.split(/\r?\n/);
+    lines.forEach((line, idx) => {
+      const match = line.match(/\[unverified\s+ch(\d+)\]/i);
+      if (match) {
+        unverified.push({ lineNum: idx + 1, chapter: parseInt(match[1], 10), text: line.trim() });
+      }
+    });
+
+    if (unverified.length === 0) {
+      console.log('\x1b[32m✔ All canon entries are verified. No [unverified chN] tags remain.\x1b[0m\n');
+    } else {
+      console.log(`\x1b[33mFound ${unverified.length} unverified canon tag(s):\x1b[0m\n`);
+      unverified.forEach(u => {
+        console.log(`  • Line ${u.lineNum} (Ch ${u.chapter}): ${u.text}`);
+      });
+      console.log('\nRun "soundboard gate <chapter>" upon audit completion to promote tags to verified status.\n');
+    }
+  } else {
+    console.log(`
+Soundboard Canon State Commands:
+  node scripts/${binName}.js canon query <entity>    Query canon facts for a specific character, object, or rule
+  node scripts/${binName}.js canon check              Audit canon for [unverified chN] tags needing promotion
+    `);
+  }
+}
+
+function handleTimeline() {
+  printHeader('Manuscript Story Chronology & Timeline');
+  const chaptersDir = path.join('stages', '03_drafting', 'output', 'chapters');
+  let files = [];
+  if (fs.existsSync(chaptersDir)) {
+    files = fs.readdirSync(chaptersDir)
+      .filter(f => /\.(md|txt|markdown)$/i.test(f))
+      .sort((a, b) => {
+        const numA = parseInt(a.replace(/\D/g, '') || '0', 10);
+        const numB = parseInt(b.replace(/\D/g, '') || '0', 10);
+        return numA - numB;
+      });
+  }
+
+  if (files.length === 0) {
+    console.log('No drafted chapters found to construct timeline.\n');
+    return;
+  }
+
+  const rows = [];
+  let missingTags = 0;
+
+  files.forEach(f => {
+    const raw = readText(path.join(chaptersDir, f));
+    const numMatch = f.match(/(\d+)/);
+    const chNum = numMatch ? parseInt(numMatch[1], 10) : 1;
+
+    let storyDate = null;
+    let elapsed = null;
+    let pov = 'Default POV';
+
+    const fmMatch = raw.replace(/^\uFEFF/, '').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (fmMatch) {
+      fmMatch[1].split(/\r?\n/).forEach(line => {
+        const colon = line.indexOf(':');
+        if (colon > 0) {
+          const key = line.slice(0, colon).trim().toLowerCase();
+          let val = line.slice(colon + 1).trim().replace(/^["']|["']$/g, '');
+          if (key === 'story_date' || key === 'date') storyDate = val;
+          if (key === 'elapsed') elapsed = val;
+          if (key === 'pov' || key === 'character') pov = val;
+        }
+      });
+    }
+
+    if (!storyDate && !elapsed) missingTags++;
+
+    rows.push({
+      chapter: chNum,
+      file: f,
+      storyDate: storyDate || '\x1b[33m[Missing]\x1b[0m',
+      elapsed: elapsed || '-',
+      pov
+    });
+  });
+
+  console.log('| Chapter | POV | Story Date / Anchor | Elapsed Time | Status |');
+  console.log('|---|---|---|---|---|');
+  rows.forEach(r => {
+    const status = r.storyDate.includes('Missing') ? '\x1b[33mNeeds Anchor\x1b[0m' : '\x1b[32mAnchored\x1b[0m';
+    console.log(`| Ch ${String(r.chapter).padStart(2, '0')} | ${r.pov} | ${r.storyDate} | ${r.elapsed} | ${status} |`);
+  });
+
+  console.log(`\nTotal Chapters: ${rows.length} | Missing Chrono Anchors: ${missingTags}`);
+  if (missingTags > 0) {
+    console.log('Tip: Add "story_date: YYYY-MM-DD" or "story_date: Day 1" to chapter frontmatter.\n');
+  } else {
+    console.log('\x1b[32m✔ Chronology is fully anchored across all drafted chapters.\x1b[0m\n');
+  }
+}
+
+function handleThreads() {
+  printHeader('Narrative Thread & Subplot Ledger');
+  const threadsCandidates = [
+    path.join('stages', '02_planning', 'output', 'trackers', 'threads.md'),
+    path.join('stages', '02_planning', 'output', 'threads.md'),
+    path.join('_config', 'templates', 'threads.template.md')
+  ];
+  const threadsFile = threadsCandidates.find(f => fs.existsSync(f));
+  if (!threadsFile) {
+    console.log('No thread tracker found. Initialize one using _config/templates/threads.template.md.\n');
+    return;
+  }
+
+  const threadContent = readText(threadsFile);
+  const lines = threadContent.split(/\r?\n/);
+
+  const threads = [];
+  lines.forEach(line => {
+    if (line.trim().startsWith('|') && !line.includes('---') && !line.toLowerCase().includes('| thread id |')) {
+      const cells = line.split('|').map(c => c.trim()).filter(Boolean);
+      if (cells.length >= 6) {
+        threads.push({
+          id: cells[0],
+          description: cells[1],
+          type: cells[2],
+          introduced: cells[3],
+          latest: cells[4],
+          target: cells[5],
+          status: cells[6] || 'open'
+        });
+      }
+    }
+  });
+
+  if (threads.length === 0) {
+    console.log('No threads tracked yet in ' + threadsFile + '\n');
+    return;
+  }
+
+  const openCount = threads.filter(t => t.status.toLowerCase() === 'open').length;
+  const progressingCount = threads.filter(t => t.status.toLowerCase() === 'progressing').length;
+  const resolvedCount = threads.filter(t => t.status.toLowerCase() === 'resolved').length;
+
+  console.log(`Tracked Threads: ${threads.length} | Open: ${openCount} | Progressing: ${progressingCount} | Resolved: ${resolvedCount}\n`);
+
+  console.log('| ID | Type | Description | Introduced | Latest Dev | Target Res | Status |');
+  console.log('|---|---|---|---|---|---|---|');
+  threads.forEach(t => {
+    const isResolved = t.status.toLowerCase() === 'resolved';
+    const badge = isResolved ? `\x1b[32m${t.status}\x1b[0m` : `\x1b[36m${t.status}\x1b[0m`;
+    console.log(`| **${t.id}** | ${t.type} | ${t.description.slice(0, 35)} | ${t.introduced} | ${t.latest} | ${t.target} | ${badge} |`);
+  });
+  console.log('');
+}
+
+async function handleGateCmd(chId, extraArgs) {
+  const { handleGate } = await import('./gate.js');
+  handleGate(chId, extraArgs);
+}
+
+async function handleManuscriptReportCmd(extraArgs) {
+  const { runManuscriptReport } = await import('./manuscript_report.js');
+  runManuscriptReport(extraArgs);
+}
+
 async function handleCompile() {
   const { compileManuscript } = await import('./compile_manuscript.js');
   compileManuscript(args.slice(1));
@@ -633,10 +854,59 @@ function handlePackChapter(chId) {
     }
   }
 
-  // 2. Mandatory Canon Facts (Layer 4)
+  // 2. Mandatory Canon Facts (Layer 4) with Selective Entity Inlining
   const canonFile = path.join('stages', '02_planning', 'output', 'canon.md');
   if (fs.existsSync(canonFile)) {
-    emitKitSection('ESTABLISHED CANON (Mandatory Facts)', readText(canonFile));
+    const fullCanon = readText(canonFile);
+    const beatText = beatFile ? readText(beatFile) : '';
+
+    const canonLines = fullCanon.split(/\r?\n/);
+    const tableRows = [];
+    const universalLines = [];
+    let inTable = false;
+
+    canonLines.forEach(l => {
+      if (l.trim().startsWith('|') && !l.includes('---')) {
+        const cells = l.split('|').map(c => c.trim()).filter(Boolean);
+        if (cells.length >= 3 && !cells[0].toLowerCase().includes('entity') && !cells[0].toLowerCase().includes('character')) {
+          tableRows.push({ raw: l, entity: cells[0] });
+          inTable = true;
+          return;
+        }
+      }
+      if (!inTable) {
+        universalLines.push(l);
+      } else if (!l.trim().startsWith('|')) {
+        inTable = false;
+        universalLines.push(l);
+      }
+    });
+
+    if (tableRows.length > 15 && beatText.length > 0) {
+      const relevantRows = tableRows.filter(r => {
+        const cleanName = r.entity.replace(/[\[\]]/g, '').trim();
+        const escaped = cleanName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+        const regex = new RegExp(`\\b${escaped}\\b`, 'i');
+        return regex.test(beatText);
+      });
+
+      if (relevantRows.length > 0) {
+        const selectiveCanonText = [
+          '# Established Canon (Selective Entity Filtering)',
+          `*Selective inlining for Ch ${num}: showing ${relevantRows.length} relevant entity facts out of ${tableRows.length} total.*\n`,
+          '| Entity | Attribute | Value | First Asserted | Status |',
+          '|---|---|---|---|---|',
+          ...relevantRows.map(r => r.raw),
+          '\n## Universal World Rules & Numbers',
+          ...universalLines.filter(l => l.trim().length > 0)
+        ].join('\n');
+        emitKitSection('ESTABLISHED CANON (Filtered Relevance)', selectiveCanonText);
+      } else {
+        emitKitSection('ESTABLISHED CANON (Mandatory Facts)', fullCanon);
+      }
+    } else {
+      emitKitSection('ESTABLISHED CANON (Mandatory Facts)', fullCanon);
+    }
   }
 
   // 3. Structure Plan rows for this chapter
@@ -977,6 +1247,12 @@ Usage:
   node scripts/${BIN_NAME}.js okf-index              Rebuild index.md catalogs for OKF knowledge bundles
   node scripts/${BIN_NAME}.js audit [path ...]       Scan chapters for AI prose tells
   node scripts/${BIN_NAME}.js continuity [dir]       Scan chapters for proper-noun consistency
+  node scripts/${BIN_NAME}.js canon query <entity>   Query established canon facts for an entity
+  node scripts/${BIN_NAME}.js canon check            Check canon for unverified tags
+  node scripts/${BIN_NAME}.js timeline               Verify story chronology and temporal anchors
+  node scripts/${BIN_NAME}.js threads                Inspect narrative threads, subplots, and promises
+  node scripts/${BIN_NAME}.js gate <chapter>         Evaluate Stage 04 gate verdicts (sole setter of passed)
+  node scripts/${BIN_NAME}.js manuscript-report      Comprehensive whole-book narrative & voice report
   node scripts/${BIN_NAME}.js compile [--all]        Compile passed chapters into manuscript.html (+ .epub via pandoc)
   `);
 }
@@ -1022,6 +1298,22 @@ switch (command) {
     break;
   case 'continuity':
     handleContinuity();
+    break;
+  case 'canon':
+    handleCanon(subCommand, args.slice(2));
+    break;
+  case 'timeline':
+    handleTimeline();
+    break;
+  case 'threads':
+    handleThreads();
+    break;
+  case 'gate':
+    handleGateCmd(subCommand || args[1], args.slice(2));
+    break;
+  case 'manuscript-report':
+  case 'report':
+    handleManuscriptReportCmd(args.slice(1));
     break;
   case 'compile':
     handleCompile();

@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { execSync } from 'child_process';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -295,6 +295,131 @@ function testFormRouting() {
   }
 }
 
+
+// Test 10: State Model — Structured Canon, Timeline, Thread Ledger (T-09)
+function testStateModel() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+
+  // A. Structured Canon Query
+  try {
+    const qOut = execSync(`node ${cliScript} canon query "Rule"`, execOptions);
+    assert(qOut.includes('Magic/Tech/System Rule'), 'Canon query accurately extracts matching tabular entity rows');
+
+    const checkOut = execSync(`node ${cliScript} canon check`, execOptions);
+    assert(checkOut.includes('Canon Integrity') && checkOut.includes('verified'), 'Canon check audits for unverified fact tags');
+  } catch (e) {
+    assert(false, 'Canon query/check test failed', e.message);
+  }
+
+  // B. Timeline & Threads
+  try {
+    const timeOut = execSync(`node ${cliScript} timeline`, execOptions);
+    assert(timeOut.includes('Manuscript Story Chronology & Timeline'), 'Timeline checker executes cleanly and analyzes chapters');
+
+    const threadOut = execSync(`node ${cliScript} threads`, execOptions);
+    assert(threadOut.includes('Narrative Thread & Subplot Ledger') && threadOut.includes('Tracked Threads:'), 'Thread ledger parses active/resolved threads');
+  } catch (e) {
+    assert(false, 'Timeline/threads test failed', e.message);
+  }
+}
+
+// Test 11: Machine-Checkable Stage 04 Gate & Verification (T-10)
+async function testStage04GateAndEnforcement() {
+  const gateUrl = pathToFileURL(path.join(rootDir, 'scripts', 'gate.js')).href;
+  const compUrl = pathToFileURL(path.join(rootDir, 'scripts', 'compile_manuscript.js')).href;
+  const { saveVerdict, evaluateGate } = await import(gateUrl);
+  const { compileManuscript } = await import(compUrl);
+
+  const testCh = 99;
+  const testDir = path.join(rootDir, 'stages', '04_diagnostics_edits', 'output', 'verdicts', 'ch99');
+
+  try {
+    // A. Missing checks
+    if (fs.existsSync(testDir)) fs.rmSync(testDir, { recursive: true, force: true });
+    const evalInit = evaluateGate(testCh);
+    assert(!evalInit.passed && evalInit.missing.length === 4, 'Gate fails cleanly when verdict artifacts are missing');
+
+    // B. Rejection on failure
+    saveVerdict(testCh, 'scan', 'PASS', 'Scan clean');
+    saveVerdict(testCh, 'canon_check', 'PASS', 'Canon verified');
+    saveVerdict(testCh, 'rubric', 'PASS', 'Rubric satisfied');
+    saveVerdict(testCh, 'ledger_delivery', 'FAIL', 'Missing climax beat');
+    const evalFail = evaluateGate(testCh);
+    assert(!evalFail.passed && evalFail.failed.includes('ledger_delivery'), 'Gate rejects when any check fails');
+
+    // C. Promotion on full pass
+    saveVerdict(testCh, 'ledger_delivery', 'PASS', 'Climax beat delivered');
+    const evalPass = evaluateGate(testCh);
+    assert(evalPass.passed && evalPass.missing.length === 0 && evalPass.failed.length === 0, 'Gate passes when all 4 verdict artifacts attest PASS');
+
+    // D. Compile enforcement against unverified status
+    const manifestPath = path.join(rootDir, 'manuscript.json');
+    const origManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, 'utf8') : null;
+    const dummyDraft = path.join(rootDir, 'stages', '03_drafting', 'output', 'chapters', 'ch99.md');
+    fs.mkdirSync(path.dirname(dummyDraft), { recursive: true });
+    fs.writeFileSync(dummyDraft, '# Test Draft\nProse text.', 'utf8');
+
+    // Temporarily wipe verdicts to ensure compile rejects unverified passed status
+    fs.rmSync(testDir, { recursive: true, force: true });
+    fs.writeFileSync(manifestPath, JSON.stringify({
+      title: 'Test Book',
+      chapters: [{ id: 99, title: 'Test 99', status: 'passed', draft_file: 'stages/03_drafting/output/chapters/ch99.md' }]
+    }), 'utf8');
+
+    let logged = '';
+    const origLog = console.log;
+    console.log = (msg) => { logged += msg + '\n'; };
+    try {
+      compileManuscript([]);
+    } finally {
+      console.log = origLog;
+      process.exitCode = 0; // reset
+    }
+    assert(logged.includes('unverified Stage 04 gate'), 'compileManuscript skips chapter claiming passed when gate artifacts are absent');
+
+    // Cleanup
+    if (fs.existsSync(dummyDraft)) fs.unlinkSync(dummyDraft);
+    if (origManifest !== null) fs.writeFileSync(manifestPath, origManifest, 'utf8');
+    else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
+    if (fs.existsSync(testDir)) fs.rmSync(testDir, { recursive: true, force: true });
+  } catch (e) {
+    assert(false, 'Gate verdict & compile enforcement test failed', e.message);
+  }
+}
+
+// Test 12: Whole-Book Analysis & Manuscript Report (T-08)
+async function testManuscriptReport() {
+  const repUrl = pathToFileURL(path.join(rootDir, 'scripts', 'manuscript_report.js')).href;
+  const { analyzeManuscript, formatManuscriptReport } = await import(repUrl);
+  const fixtureDir = path.join(rootDir, 'stages', '03_drafting', 'output', 'chapters');
+  fs.mkdirSync(fixtureDir, { recursive: true });
+
+  const f1 = path.join(fixtureDir, 'test_ch81.md');
+  const f2 = path.join(fixtureDir, 'test_ch82.md');
+  const f3 = path.join(fixtureDir, 'test_ch83.md');
+
+  try {
+    const sharedPhrase = "the rusted iron gate creaked open slowly";
+    fs.writeFileSync(f1, `---\npov: "Evelyn"\nstory_date: "1895-10-01"\n---\n"Hurry," she whispered. ${sharedPhrase} under the twilight rain. The cold seeped into her boots.`, 'utf8');
+    fs.writeFileSync(f2, `---\npov: "Julian"\nstory_date: "1895-10-02"\n---\nHe heard a sound. ${sharedPhrase} in the darkness behind the manor wall. "Who goes there?" he asked quietly.`, 'utf8');
+    const longSent = Array(80).fill('word').join(' ') + '.';
+    fs.writeFileSync(f3, `---\npov: "Evelyn"\nstory_date: "1895-10-03"\n---\n${longSent} Again ${sharedPhrase} as they escaped together.`, 'utf8');
+
+    const analysis = analyzeManuscript();
+    const formatted = formatManuscriptReport(analysis);
+
+    assert(analysis.totalChapters >= 3, 'Manuscript report correctly ingests chapter files across the project');
+    assert(analysis.repeating4grams.some(g => g.phrase.includes('the rusted iron gate') || g.phrase.includes('rusted iron gate creaked')), 'Manuscript report identifies cross-chapter 4-gram repetition');
+    assert(analysis.povBudget.some(p => p.pov === 'Evelyn'), 'Manuscript report accurately tallies POV pacing distribution');
+    assert(formatted.includes('## 1. Rhythm & Escalation Contour'), 'Manuscript report formats complete telemetry report');
+  } catch (e) {
+    assert(false, 'Manuscript report test failed', e.message);
+  } finally {
+    [f1, f2, f3].forEach(f => { if (fs.existsSync(f)) fs.unlinkSync(f); });
+  }
+}
+
 // Run all test groups
 testBOM();
 testOkfLint();
@@ -305,6 +430,9 @@ testContinuityScan();
 testCraftRemediationLinks();
 testCraftSearch();
 testFormRouting();
+testStateModel();
+await testStage04GateAndEnforcement();
+await testManuscriptReport();
 
 console.log('\n----------------------------------------');
 console.log(`Results: ${passed} passed, ${failed} failed`);

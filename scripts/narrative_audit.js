@@ -399,6 +399,34 @@ export function runAudit(targets) {
     const reportPath = path.join(REPORT_DIR, `audit_${name}.md`);
     fs.writeFileSync(reportPath, fmtReport(name, r, flags), 'utf8');
 
+    // T-10: Save scan verdict artifact for machine-checkable gate
+    const chNumMatch = name.match(/(\d+)/);
+    if (chNumMatch) {
+      const chNum = parseInt(chNumMatch[1], 10);
+      try {
+        const vDir = path.join('stages', '04_diagnostics_edits', 'output', 'verdicts', `ch${String(chNum).padStart(2, '0')}`);
+        fs.mkdirSync(vDir, { recursive: true });
+        const vPayload = {
+          check: 'scan',
+          chapter: chNum,
+          verdict: flags.some(f => f.level === 'RED') ? 'FAIL' : 'PASS',
+          evidence: flags.some(f => f.level === 'RED')
+            ? `Mechanical audit failed with ${flags.filter(f => f.level === 'RED').length} RED flag(s).`
+            : `Mechanical audit passed with 0 RED flags and ${flags.filter(f => f.level === 'WARN').length} WARN flag(s).`,
+          details: {
+            words: r.words,
+            reds: flags.filter(f => f.level === 'RED').length,
+            warns: flags.filter(f => f.level === 'WARN').length,
+            flags: flags.map(f => ({ level: f.level, msg: f.msg }))
+          },
+          timestamp: new Date().toISOString()
+        };
+        fs.writeFileSync(path.join(vDir, 'scan.json'), JSON.stringify(vPayload, null, 2), 'utf8');
+      } catch (err) {
+        // Non-fatal
+      }
+    }
+
     const reds = flags.filter(f => f.level === 'RED').length;
     const warns = flags.filter(f => f.level === 'WARN').length;
     const badge = reds > 0 ? '\x1b[31mFAIL\x1b[0m' : warns > 0 ? '\x1b[33mREVIEW\x1b[0m' : '\x1b[32mCLEAN\x1b[0m';
