@@ -657,7 +657,7 @@ function handleOkfIndex() {
   const craftDir = path.join('_config', 'okf_craft');
   if (fs.existsSync(craftDir)) {
     const files = fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && f !== 'index.md' && f !== 'CONTEXT.md');
-    let indexContent = `---\ntype: okf_index\ntitle: "Static Narrative Craft OKF Catalog"\nlast_indexed: ${new Date().toISOString().split('T')[0]}\n---\n\n# ${appName} Static Craft Knowledge Catalog\n\n`;
+    let indexContent = `---\ntype: okf_index\ntitle: "Static Narrative Craft OKF Catalog"\nlast_indexed: ${new Date().toISOString().split('T')[0]}\n---\n\n# ${APP_NAME} Static Craft Knowledge Catalog\n\n`;
     
     files.forEach(f => {
       const fullPath = path.join(craftDir, f);

@@ -18,7 +18,6 @@ last_indexed: 2026-09-05
 - [Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers](chekhovs_gun_and_plant_payoff.md) — `type: craft_rule`
 - [Cinematic Staging: Camera Distance, Depth of Field & Character Blocking](cinematic_blocking_and_lens.md) — `type: craft_rule`
 - [The Architecture of Comedy, Farce & Satirical Timing: Steve Kaplan, John Vorhaus, Wodehouse & Pratchett](comedy_farce_and_satirical_timing_engine.md) — `type: craft_structure`
-- [CONTEXT.md](CONTEXT.md) — `type: uncategorized`
 - [Cosmic Horror & Existential Dread: The Epistemological Break](cosmic_horror_existential_dread.md) — `type: craft_structure`
 - [Courtly Intrigue & Political Machinations: Information Warfare & Factional Cannibalism](courtly_intrigue_political_web.md) — `type: craft_structure`
 - [The CPOCL Conflict Engine: Plan-Threat Architecture & The Seven Dimensions of Dramatic Conflict](cpocl_plan_threat_conflict_engine.md) — `type: craft_structure`
