@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-possible-worlds-teller-sphere
 title: "Possible Worlds Theory: Virtual vs. Actualized Narrative Reality"

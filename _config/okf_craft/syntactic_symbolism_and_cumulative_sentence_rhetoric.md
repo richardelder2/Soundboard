@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: syntactic-symbolism-and-cumulative-sentence-rhetoric
 title: "Syntactic Symbolism & Cumulative Sentence Rhetoric: Virginia Tufte, Francis Christensen & Rhetorical Figures"

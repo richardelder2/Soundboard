@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: procedural-dread-and-administrative-terror
 title: "Procedural Dread: The Bureaucratic Horror Engine & Administrative Restraint"

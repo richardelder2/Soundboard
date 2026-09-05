@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: psychic-distance-and-narrative-zoom
 title: "John Gardner's Five Levels of Psychic Distance: The Cinematic Zoom of Narrative Consciousness"

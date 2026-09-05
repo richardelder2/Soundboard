@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: red-herring-misdirection-matrix
 title: "The Misdirection Matrix: Red Herrings, Plausible Guilt & Double Bluffs"

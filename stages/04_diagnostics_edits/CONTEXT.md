@@ -1,4 +1,4 @@
-﻿---
+---
 type: StageContract
 stage_id: "04_diagnostics_edits"
 name: Diagnostic Audits & Copy-Editing Revisions

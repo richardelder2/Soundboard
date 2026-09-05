@@ -235,7 +235,7 @@ const dialogueDensity = ((overallStats.totalDialogueWords / overallStats.totalWo
 
 // Generate Markdown Report
 let mdReport = `# Dialogue Diagnostic Report
-
+> Reference Craft Module: `_config/okf_craft/three_registers_of_dialogue_subtext.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report analyzes dialogue attribution, density, slang, and profanity across all chapters.

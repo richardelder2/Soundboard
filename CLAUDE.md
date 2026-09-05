@@ -1,4 +1,4 @@
-﻿# Soundboard Workspace Instructions
+# Soundboard Workspace Instructions
 
 @AGENTS.md
 

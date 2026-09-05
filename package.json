@@ -10,10 +10,15 @@
   },
   "scripts": {
     "status": "node ./scripts/soundboard.js status",
+    "brief": "node ./scripts/soundboard.js brief",
     "okf-index": "node ./scripts/soundboard.js okf-index",
+    "okf-lint": "node ./scripts/soundboard.js okf-lint",
     "audit": "node ./scripts/soundboard.js audit",
     "diag": "node ./scripts/soundboard.js diag all",
-    "test": "node ./scripts/soundboard.js status && node ./scripts/soundboard.js okf-index"
+    "test": "node ./tests/run_tests.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "author": "Richard Elder",
   "license": "MIT",

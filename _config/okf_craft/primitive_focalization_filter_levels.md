@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-focalization-filter-levels
 title: "Focalization & Perspective Filters: Zero, Internal & External Perception"

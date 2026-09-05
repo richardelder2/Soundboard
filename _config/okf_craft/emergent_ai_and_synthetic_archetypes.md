@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: emergent-ai-and-synthetic-archetypes
 title: "Emergent AI & Synthetic Archetypes: Goblins, Demons, and The Digital Siren (Nova)"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: archetypal-character-transformation-arcs
 title: "Archetypal Character Transformation Arcs: From Persona Breakdown to Archetypal Metamorphosis"

@@ -16,7 +16,7 @@ const OUT_DIR = path.join('stages', '05_publishing', 'output');
 const MANIFEST = 'manuscript.json';
 
 function stripFrontmatter(text) {
-  return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+  return text.replace(/^\uFEFF/, '').replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
 }
 
 function escapeHtml(s) {
@@ -142,8 +142,17 @@ ${bodyHtml}
     const res = spawnSync(cmd, { shell: true, encoding: 'utf8' });
     if (res.status === 0) console.log(`\x1b[32m✔\x1b[0m ${epubPath}`);
     else console.error(`pandoc EPUB export failed: ${(res.stderr || '').trim()}`);
+
+    if (args.includes('--docx')) {
+      const docxPath = path.join(OUT_DIR, 'manuscript.docx');
+      let docxCmd = `pandoc ${q(htmlPath)} -o ${q(docxPath)} --metadata ${q(`title=${title}`)}`;
+      if (author) docxCmd += ` --metadata ${q(`author=${author}`)}`;
+      const docxRes = spawnSync(docxCmd, { shell: true, encoding: 'utf8' });
+      if (docxRes.status === 0) console.log(`\x1b[32m✔\x1b[0m ${docxPath}`);
+      else console.error(`pandoc DOCX export failed: ${(docxRes.stderr || '').trim()}`);
+    }
   } else {
-    console.log('pandoc not found — HTML only. Install pandoc (https://pandoc.org) for EPUB export.');
+    console.log('pandoc not found — HTML only. Install pandoc (https://pandoc.org) for EPUB and DOCX export.');
   }
 }
 

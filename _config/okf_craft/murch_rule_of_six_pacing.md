@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: murch-rule-of-six-pacing
 title: "Walter Murch's Rule of Six: Scene Cutting & Narrative Rhythm"

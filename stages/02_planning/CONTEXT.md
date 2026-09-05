@@ -8,6 +8,7 @@ inputs:
   - stages/01_onboarding/output/bible/genre_bible.md
   - stages/01_onboarding/output/characters/
   - setup/genre_bibles/INDEX.md
+  - _config/okf_craft/CONTEXT.md
   - _config/narrative_authenticity.md
 outputs:
   - stages/02_planning/output/foolscap.md

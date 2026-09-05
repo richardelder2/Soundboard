@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: implied-meaning-and-negative-space
 title: "Negative Space in Prose: Implied Meaning, Omission & Reader Co-Creation"

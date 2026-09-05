@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-causal-calculus
 title: "Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay"

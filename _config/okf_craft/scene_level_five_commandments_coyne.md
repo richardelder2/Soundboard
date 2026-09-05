@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: scene-level-five-commandments-coyne
 title: "The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine"

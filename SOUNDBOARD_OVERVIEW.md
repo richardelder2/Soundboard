@@ -1,4 +1,4 @@
-﻿# Soundboard — Novel Engineering Guide
+# Soundboard — Novel Engineering Guide
 ## Welcome to Your AI-Collaborative Writing Workspace
 
 Writing a novel is a deeply personal, messy, and creative process. Standard software engineering processes are too rigid, while standard AI text generators are too formless—often leading to repetitive plots, flat characters, and style drift.

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: irony-typology-and-lateral-omission-paralipsis
 title: "The Irony Typology & Gérard Genette's Lateral Omission: Dramatic, Tragic, Cosmic Irony and Paralipsis"

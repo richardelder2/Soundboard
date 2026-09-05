@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: police-procedural-evidentiary-and-institutional-engine
 title: "The Police & Legal Procedural: Evidentiary Fair-Play, Institutional Friction & The Interrogation Crucible"

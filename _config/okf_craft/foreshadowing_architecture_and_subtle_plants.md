@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: foreshadowing-architecture-and-subtle-plants
 title: "Foreshadowing Architecture: Subtle Cues, Inevitability & Retroactive Clarity"

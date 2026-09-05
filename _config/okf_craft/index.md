@@ -1,7 +1,7 @@
 ---
 type: okf_index
 title: "Static Narrative Craft OKF Catalog"
-last_indexed: 2026-09-04
+last_indexed: 2026-09-05
 ---
 
 # Soundboard Static Craft Knowledge Catalog
@@ -13,14 +13,17 @@ last_indexed: 2026-09-04
 - [Suppression of Narrative Theme Explanation & Dialectical Dramatization](anti_tell_suppression.md) — `type: craft_rule`
 - [Archetypal Character Transformation Arcs: From Persona Breakdown to Archetypal Metamorphosis](archetypal_character_transformation_arcs.md) — `type: craft_structure`
 - [The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration](bildungsroman_moral_awakening.md) — `type: craft_structure`
+- [Chapter Architecture & The Taxonomy of Narrative Hooks](chapter_architecture_and_ending_hooks.md) — `type: craft_structure`
 - [The Character Arc Anatomy: Lie, Wound, Want & Need](character_arc_anatomy_lie_wound_want_need.md) — `type: craft_structure`
 - [Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers](chekhovs_gun_and_plant_payoff.md) — `type: craft_rule`
 - [Cinematic Staging: Camera Distance, Depth of Field & Character Blocking](cinematic_blocking_and_lens.md) — `type: craft_rule`
 - [The Architecture of Comedy, Farce & Satirical Timing: Steve Kaplan, John Vorhaus, Wodehouse & Pratchett](comedy_farce_and_satirical_timing_engine.md) — `type: craft_structure`
+- [CONTEXT.md](CONTEXT.md) — `type: uncategorized`
 - [Cosmic Horror & Existential Dread: The Epistemological Break](cosmic_horror_existential_dread.md) — `type: craft_structure`
 - [Courtly Intrigue & Political Machinations: Information Warfare & Factional Cannibalism](courtly_intrigue_political_web.md) — `type: craft_structure`
 - [The CPOCL Conflict Engine: Plan-Threat Architecture & The Seven Dimensions of Dramatic Conflict](cpocl_plan_threat_conflict_engine.md) — `type: craft_structure`
 - [Dark Romantasy: Fated Mates, Morally Gray Leads & The 'Touch Her and Die' Engine](dark_romantasy_touch_her_and_die.md) — `type: craft_structure`
+- [Developmental Revision: The Layered Macro-to-Micro Pass Methodology](developmental_revision_and_layered_passes.md) — `type: craft_rule`
 - [Dialogue Choreography: Action Beats, Pause Micro-Timing & Attribution Stripping](dialogue_beats_and_action_choreography.md) — `type: craft_rule`
 - [Dual Timeline Convergence: The Interlocking Mystery of Past & Present](dual_timeline_convergence.md) — `type: craft_structure`
 - [The Dual-Track Counterpoint: Symmetrical Antagonism & Narrative Cross-Cutting](dual_track_counterpoint_narrative.md) — `type: craft_structure`
@@ -53,6 +56,7 @@ last_indexed: 2026-09-04
 - [Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall](noir_hardboiled_fatalism.md) — `type: craft_structure`
 - [Nonlinear Timelines: Anachrony, Chronesthesia & Retroactive Recontextualization](nonlinear_timeline_framework.md) — `type: craft_structure`
 - [Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs](non_human_cognitive_narration.md) — `type: craft_structure`
+- [The Novella Form: Physics of the 20,000–40,000 Word Corridor](novella_form_and_compressed_turn.md) — `type: craft_structure`
 - [The Police & Legal Procedural: Evidentiary Fair-Play, Institutional Friction & The Interrogation Crucible](police_procedural_evidentiary_and_institutional_engine.md) — `type: craft_structure`
 - [Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay](primitive_causal_calculus.md) — `type: craft_primitive`
 - [The Dialectic Value Shift: The Quantum of Narrative Change](primitive_dialectic_value_shift.md) — `type: craft_primitive`
@@ -75,6 +79,8 @@ last_indexed: 2026-09-04
 - [Satirical Escalation & Institutional Irony: The Straight-Man Dynamic](satirical_escalation_blueprint.md) — `type: craft_structure`
 - [Save the Cat! The 15-Beat Structural Blueprint & Pacing Percentages](save_the_cat_fifteen_beat_structural_blueprint.md) — `type: craft_structure`
 - [The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine](scene_level_five_commandments_coyne.md) — `type: craft_structure`
+- [Series Architecture: Macro-Arcs, Lore Debt, and Value Shifts](series_architecture_and_cross_book_arcs.md) — `type: craft_structure`
+- [The Short Story Engine: Single Effect, Compression, and Late Entry](short_story_form_and_single_effect.md) — `type: craft_structure`
 - [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw](status_transactions_and_dominance_choreography.md) — `type: craft_rule`
 - [Story Grid Macro Architecture: Beginning Hook, Middle Build & Ending Payoff](story_grid_macro.md) — `type: craft_structure`
@@ -93,3 +99,4 @@ last_indexed: 2026-09-04
 - [The Unreliable Narrator: Fractured Perception, Active Gaslighting & The Breadcrumb Trial](unreliable_narrator_psychological_fracture.md) — `type: craft_structure`
 - [Vertical Spatial Allegory: Architecture as Class Conflict & The Sub-Basement Reveal](vertical_spatial_allegory_parasite.md) — `type: craft_structure`
 - [The Mythic Character Masks: Archetypal Functions & Dynamic Mask-Shifting in Storytelling](vogler_mythic_character_masks.md) — `type: craft_structure`
+- [Voice Differentiation: Engineering Non-Homogeneous Cast Registers](voice_differentiation_across_ensemble.md) — `type: craft_rule`

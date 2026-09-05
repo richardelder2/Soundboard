@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: satirical-escalation-blueprint
 title: "Satirical Escalation & Institutional Irony: The Straight-Man Dynamic"

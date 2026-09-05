@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: historical-fiction-authenticity
 title: "Historical Fiction & Period Immersion: The Double Horizon & Social Presuppositions"

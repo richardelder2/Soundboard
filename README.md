@@ -1,4 +1,4 @@
-﻿# Soundboard — Novel Engineering Studio & Narrative Console
+# Soundboard — Novel Engineering Studio & Narrative Console
 
 > *"The Author's Intelligent Sounding Board & Narrative Console"*
 

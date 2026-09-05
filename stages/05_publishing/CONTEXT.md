@@ -1,4 +1,4 @@
-﻿---
+---
 type: StageContract
 stage_id: "05_publishing"
 name: Serial Manuscript Compilation & eBook Rendering

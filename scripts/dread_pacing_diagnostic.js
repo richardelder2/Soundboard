@@ -91,7 +91,7 @@ files.forEach(file => {
 
 // Generate Markdown Report
 let mdReport = `# Dread & Suspense Pacing Report
-
+> Reference Craft Module: `_config/okf_craft/hitchcock_bomb_suspense.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report maps the "Dread Index" of your novel. It flags suspense blocks where high-dread vocabulary (vacuum, danger, panic, pulse) is combined with long, sluggish sentences. High-tension moments require staccato sentence pacing to build reading excitement.
@@ -106,7 +106,7 @@ This report maps the "Dread Index" of your novel. It flags suspense blocks where
 
 chaptersData.forEach(ch => {
   const status = ch.density >= 5.0 ? '🔴 (High Suspense)' : (ch.density >= 2.0 ? '🟡 (Moderate tension)' : '🟢 (Low Dread)');
-  mdReport += `| [${ch.file}](file:///./02_Drafting/${ch.file}) | ${ch.wordCount} | ${ch.dreadCount} | **${ch.density}** | ${status} |\n`;
+  mdReport += `| [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file}) | ${ch.wordCount} | ${ch.dreadCount} | **${ch.density}** | ${status} |\n`;
 });
 
 mdReport += `
@@ -121,7 +121,7 @@ The following paragraphs feature a high density of dread terms, but use long, co
 let sluggishCount = 0;
 chaptersData.forEach(ch => {
   if (ch.sluggishSuspenseBlocks.length === 0) return;
-  mdReport += `### [${ch.file}](file:///./02_Drafting/${ch.file})\n`;
+  mdReport += `### [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file})\n`;
   ch.sluggishSuspenseBlocks.forEach(block => {
     mdReport += `- **Paragraph (Line/Segment ${block.paraNum})**: *"${block.text}"*\n  * **Size**: ${block.wordCount} words\n  * **Dread Density**: ${block.dreadDensity}%\n  * **Average Sentence Length**: **${block.avgSentence} words** -> **Sluggish pacing.**\n`;
     sluggishCount++;

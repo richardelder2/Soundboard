@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: fragmented-prism-biography-citizen-kane
 title: "The Fragmented Prism Narrative: Citizen Kane & The Unsolvable MacGuffin"

@@ -154,7 +154,7 @@ overallSentenceLengths.forEach(len => {
 
 // Generate report
 let report = `# Prose Rhythm & Cadence Report
-
+> Reference Craft Module: `_config/okf_craft/prose_syntax_and_acoustic_cadence.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report analyzes sentence length distribution and standard deviation (variability) across your draft chapters. 
@@ -187,7 +187,7 @@ This report analyzes sentence length distribution and standard deviation (variab
 
 chaptersData.forEach(ch => {
   const scoreClass = ch.stdDev >= 9.0 ? '🟢 (Good)' : (ch.stdDev >= 6.5 ? '🟡 (Moderate)' : '🔴 (Flat)');
-  report += `| [${ch.file}](file:///./02_Drafting/${ch.file}) | ${ch.wordCount} | ${ch.sentenceCount} | ${ch.average} | **${ch.stdDev}** ${scoreClass} | ${ch.shortPercent}% | ${ch.mediumPercent}% | ${ch.longPercent}% | ${ch.consecutiveMonotony} |\n`;
+  report += `| [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file}) | ${ch.wordCount} | ${ch.sentenceCount} | ${ch.average} | **${ch.stdDev}** ${scoreClass} | ${ch.shortPercent}% | ${ch.mediumPercent}% | ${ch.longPercent}% | ${ch.consecutiveMonotony} |\n`;
 });
 
 report += `

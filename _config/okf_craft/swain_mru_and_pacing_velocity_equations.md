@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: swain-mru-and-pacing-velocity-equations
 title: "Dwight Swain's MRU Architecture & The Pacing Velocity Equation: Micro-Pacing & Compression Curves"

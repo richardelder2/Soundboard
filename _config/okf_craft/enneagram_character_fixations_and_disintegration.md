@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: enneagram-character-fixations-and-disintegration
 title: "The Enneagram Character Engine: Core Wounds, Psychological Fixations & Disintegration Trajectories"

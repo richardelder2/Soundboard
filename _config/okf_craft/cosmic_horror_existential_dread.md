@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: cosmic-horror-existential-dread
 title: "Cosmic Horror & Existential Dread: The Epistemological Break"

@@ -19,11 +19,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Verify Workspace Status & Stage Integrity
-        run: node scripts/soundboard.js status
+      - name: Run Test Suite
+        run: npm test
 
-      - name: Verify OKF Craft Catalog Index
-        run: node scripts/soundboard.js okf-index
-
-      - name: Test Craft Search Engine
-        run: node scripts/soundboard.js craft search "theory of mind"
+      - name: Verify No OKF Catalog Drift
+        run: |
+          npm run okf-index
+          git diff --exit-code _config/okf_craft/index.md

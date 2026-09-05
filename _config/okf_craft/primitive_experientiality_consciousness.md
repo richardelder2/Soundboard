@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-experientiality-consciousness
 title: "Experientiality: The Embodied Human Consciousness Primitive"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: noir-hardboiled-fatalism
 title: "Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: prose-syntax-and-acoustic-cadence
 title: "Prose Syntax & Acoustic Cadence: The Architecture of the Sentence and Musical Phonosemantics"

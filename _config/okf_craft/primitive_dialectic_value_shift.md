@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-dialectic-value-shift
 title: "The Dialectic Value Shift: The Quantum of Narrative Change"

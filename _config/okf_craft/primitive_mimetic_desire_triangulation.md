@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-mimetic-desire-triangulation
 title: "Mimetic Desire & Scarcity: The René Girard Triangulation Primitive"

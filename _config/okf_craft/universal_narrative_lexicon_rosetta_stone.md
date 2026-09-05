@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: universal-narrative-lexicon-rosetta-stone
 title: "The Universal Narrative Rosetta Stone: Cross-School Craft Lexicon & Structural Mapping Ontology"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: subtext-and-implied-meaning
 title: "Dialogue Subtext: The Iceberg Theory & Surface-Depth Tension"

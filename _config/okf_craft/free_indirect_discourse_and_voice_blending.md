@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: free-indirect-discourse-and-voice-blending
 title: "Free Indirect Discourse (FID): Voice Blending, Cognitive Dissolution & Narrative Irony"

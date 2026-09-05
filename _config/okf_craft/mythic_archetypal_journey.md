@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: mythic-archetypal-journey
 title: "The Mythic Archetypal Journey: Collective Unconscious & Cyclical Trials"

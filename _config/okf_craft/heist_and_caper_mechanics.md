@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: heist-and-caper-mechanics
 title: "The Heist & Caper Engine: The Long Con, Misdirection & Plant-and-Payoff"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: evolutionary-affective-story-prototypes
 title: "Affective Narratology & Evolutionary Story Prototypes: The Neuro-Emotional Engine"

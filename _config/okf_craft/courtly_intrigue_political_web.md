@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: courtly-intrigue-political-web
 title: "Courtly Intrigue & Political Machinations: Information Warfare & Factional Cannibalism"

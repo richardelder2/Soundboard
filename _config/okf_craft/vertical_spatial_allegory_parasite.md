@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: vertical-spatial-allegory-parasite
 title: "Vertical Spatial Allegory: Architecture as Class Conflict & The Sub-Basement Reveal"

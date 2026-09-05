@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: dialogue-beats-and-action-choreography
 title: "Dialogue Choreography: Action Beats, Pause Micro-Timing & Attribution Stripping"

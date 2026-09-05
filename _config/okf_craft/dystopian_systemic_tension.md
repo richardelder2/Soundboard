@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: dystopian-systemic-tension
 title: "Dystopian Systemic Tension: Panopticon Mechanics & Compliance Cycles"

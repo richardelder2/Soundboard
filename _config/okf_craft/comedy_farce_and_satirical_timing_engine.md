@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: comedy-farce-and-satirical-timing-engine
 title: "The Architecture of Comedy, Farce & Satirical Timing: Steve Kaplan, John Vorhaus, Wodehouse & Pratchett"

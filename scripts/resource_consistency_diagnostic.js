@@ -77,7 +77,7 @@ files.forEach(file => {
 
 // Generate Markdown Report
 let mdReport = `# Resource Consistency Audit Report
-
+> Reference Craft Module: `_config/okf_craft/full_manuscript_continuity_pass_methodology.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report extracts and tracks numerical counts associated with consumable items (credits, battery %, oxygen reserves, ammo) across chapters to verify continuity.
@@ -94,7 +94,7 @@ timeline.sort((a, b) => {
   if (a.chapter !== b.chapter) return a.chapter - b.chapter;
   return a.lineNum - b.lineNum;
 }).forEach(item => {
-  mdReport += `| [${item.file}](file:///./02_Drafting/${item.file}#L${item.lineNum}) | Line ${item.lineNum} | **${item.resource}** | ${item.displayValue || item.value} | *"${item.rawText}"* |\n`;
+  mdReport += `| [${item.file}](file:///./stages/03_drafting/output/chapters/${item.file}#L${item.lineNum}) | Line ${item.lineNum} | **${item.resource}** | ${item.displayValue || item.value} | *"${item.rawText}"* |\n`;
 });
 
 mdReport += `

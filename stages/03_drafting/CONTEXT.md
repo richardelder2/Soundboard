@@ -1,4 +1,4 @@
-﻿---
+---
 type: StageContract
 stage_id: "03_drafting"
 name: Sensory Drafting

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: surreal-atmosphere-dream-logic
 title: "Surreal Atmosphere & Dream Logic: Synesthesia & Cognitive Destabilization"

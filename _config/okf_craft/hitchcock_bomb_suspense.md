@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: hitchcock-bomb-suspense
 title: "The Hitchcock Suspense Engine: Dramatic Irony & The Ticking Clock"

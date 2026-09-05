@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: cinematic-blocking-and-lens
 title: "Cinematic Staging: Camera Distance, Depth of Field & Character Blocking"

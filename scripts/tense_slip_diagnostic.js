@@ -134,7 +134,7 @@ files.forEach(file => {
 
 // Generate Markdown Report
 let mdReport = `# Tense Consistency Audit Report
-
+> Reference Craft Module: `_config/okf_craft/free_indirect_discourse_and_voice_blending.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report maps the dominant tense of each chapter and audits slips where present and past tenses are incorrectly mixed within narrative sentences.
@@ -149,7 +149,7 @@ This report maps the dominant tense of each chapter and audits slips where prese
 
 chaptersData.forEach(ch => {
   const status = ch.confidence >= 90.0 ? '🟢 (Consistent)' : (ch.confidence >= 70.0 ? '🟡 (Warning)' : '🔴 (High Slippage)');
-  mdReport += `| [${ch.file}](file:///./02_Drafting/${ch.file}) | **${ch.dominantTense.toUpperCase()}** | ${ch.pastCount} | ${ch.presentCount} | ${ch.confidence}% | ${status} |\n`;
+  mdReport += `| [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file}) | **${ch.dominantTense.toUpperCase()}** | ${ch.pastCount} | ${ch.presentCount} | ${ch.confidence}% | ${status} |\n`;
 });
 
 mdReport += `
@@ -166,7 +166,7 @@ chaptersData.forEach(ch => {
   const badSlips = ch.slips.filter(s => ch.confidence < 95.0 || s.type === 'Mixed Line');
   if (badSlips.length === 0) return;
   
-  mdReport += `### [${ch.file}](file:///./02_Drafting/${ch.file})\n`;
+  mdReport += `### [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file})\n`;
   badSlips.forEach(s => {
     mdReport += `- **Line ${s.lineNum} (${s.type})**: *"${s.text}"*\n  * ${s.reason}\n`;
     slipCount++;

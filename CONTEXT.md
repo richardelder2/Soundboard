@@ -1,4 +1,4 @@
-﻿# Soundboard Pipeline Context Routing (Layer 1)
+# Soundboard Pipeline Context Routing (Layer 1)
 
 This contract defines the execution flow of the Soundboard novel engineering pipeline. Each stage runs sequentially, consumes the outputs of the previous stage, and writes to its own output directory.
 
@@ -25,7 +25,7 @@ graph TD
      - `03_trope_assembly`: Map obligatory tropes into the project bible.
 
 2. **`stages/02_planning/`**
-   - **Inputs**: `stages/01_onboarding/output/`, `_config/okf_craft/`
+   - **Inputs**: `stages/01_onboarding/output/`, `_config/okf_craft/CONTEXT.md`
    - **Outputs**: `stages/02_planning/output/foolscap.md`, `stages/02_planning/output/outline.md`, `stages/02_planning/output/structure_plan.md`, `stages/02_planning/output/beats/`, `manuscript.json`
    - **Fractal Sub-ICM**:
      - `01_macro_arc`: Global logline, theme dialectic, 1-page Foolscap.

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-modal-discrepancy-and-possible-worlds
 title: "Possible Worlds Theory & The Modal Discrepancy Matrix: Engineering Psychological Depth"

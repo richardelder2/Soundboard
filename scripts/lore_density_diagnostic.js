@@ -126,7 +126,7 @@ files.forEach(file => {
 
 // Generate Markdown Report
 let mdReport = `# Lore Density & Info-Dump Report
-
+> Reference Craft Module: `_config/okf_craft/primitive_epistemic_asymmetry.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report measures the density of speculative terminology and proper nouns in narrative exposition. High lore density (e.g., $>12\%$) in long paragraphs indicates potential "info-dumps" that stall story pacing.
@@ -141,7 +141,7 @@ This report measures the density of speculative terminology and proper nouns in 
 
 chaptersData.forEach(ch => {
   const status = ch.density < 8.0 ? '🟢 (Balanced)' : (ch.density < 12.0 ? '🟡 (High Detail)' : '🔴 (Exposition Heavy)');
-  mdReport += `| [${ch.file}](file:///./02_Drafting/${ch.file}) | ${ch.wordCount} | ${ch.loreCount} | ${ch.density}% | ${status} |\n`;
+  mdReport += `| [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file}) | ${ch.wordCount} | ${ch.loreCount} | ${ch.density}% | ${status} |\n`;
 });
 
 mdReport += `
@@ -156,7 +156,7 @@ The following paragraphs contain $>80$ words and a speculative term density of *
 let dumpCount = 0;
 chaptersData.forEach(ch => {
   if (ch.infoDumps.length === 0) return;
-  mdReport += `### [${ch.file}](file:///./02_Drafting/${ch.file})\n`;
+  mdReport += `### [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file})\n`;
   ch.infoDumps.forEach(dump => {
     mdReport += `- **Paragraph (Line/Segment ${dump.paraNum})**: *"${dump.text}"*\n  * **Exposition size**: ${dump.wordCount} words\n  * **Lore density**: **${dump.density}%**\n  * **Matched terms**: \`${dump.matchedTerms.join(', ')}\`\n`;
     dumpCount++;

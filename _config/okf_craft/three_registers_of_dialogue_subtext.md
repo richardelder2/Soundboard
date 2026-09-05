@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: three-registers-of-dialogue-subtext
 title: "The Three Registers of Dramatic Dialogue: Text, Tactical Subtext & Deep-Text Pathology"

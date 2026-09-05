@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: inexorable-force-antagonist-chigurh
 title: "The Inexorable Force Antagonist: The Unreasoning Moral Principle"

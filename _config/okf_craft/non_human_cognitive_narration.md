@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: non-human-cognitive-narration
 title: "Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs"

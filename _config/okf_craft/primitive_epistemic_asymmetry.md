@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-epistemic-asymmetry
 title: "The Epistemic Gap: The Three Primal Narrative Drives"

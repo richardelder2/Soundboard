@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: status-transactions-and-dominance-choreography
 title: "Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw"

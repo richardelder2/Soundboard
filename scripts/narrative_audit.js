@@ -13,9 +13,10 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { getDraftingDir, getReviewDir } from './path_helper.js';
 
-const DEFAULT_INPUT = path.join('stages', '03_drafting', 'output', 'chapters');
-const REPORT_DIR = path.join('stages', '04_diagnostics_edits', 'output', 'reports');
+const DEFAULT_INPUT = getDraftingDir();
+const REPORT_DIR = getReviewDir();
 
 // ---------- pattern banks ----------
 
@@ -80,7 +81,28 @@ const ANACHRONY_MARKERS = /\b(?:years? (?:later|earlier|before|ago)|months? (?:l
 // ---------- helpers ----------
 
 function stripFrontmatter(text) {
-  return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+  return text.replace(/^\uFEFF/, '').replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
+}
+
+function loadTellAllowlist() {
+  const candidates = [
+    path.join('_config', 'tell_allowlist.md'),
+    path.join(process.cwd(), '_config', 'tell_allowlist.md')
+  ];
+  const allowlistPath = candidates.find(c => fs.existsSync(c));
+  if (!allowlistPath) return new Set();
+  try {
+    const raw = fs.readFileSync(allowlistPath, 'utf8').replace(/^\uFEFF/, '');
+    const lines = raw.split(/\r?\n/);
+    const words = new Set();
+    for (const line of lines) {
+      const m = line.match(/^[-*]\s*`?([a-zA-Z0-9\s/'-]+)`?/);
+      if (m) words.add(m[1].trim().toLowerCase());
+    }
+    return words;
+  } catch (e) {
+    return new Set();
+  }
 }
 
 function countMatches(text, regex) {
@@ -128,13 +150,20 @@ function analyze(text) {
   const emotionTotal = embodied + explicit;
   const embodiedShare = emotionTotal > 0 ? embodied / emotionTotal : 0;
 
+  // dialogue exclusion for lexical tells (spoken words don't count as narrator AI slop)
+  const narrativeOnly = body.replace(/"[^"\n]{2,}"|“[^”\n]{2,}”/g, ' ');
+  const allowlist = loadTellAllowlist();
+
   // lexical tells
   const tells = {};
   let tellTotal = 0;
   for (const [name, re] of Object.entries(LEXICAL_TELLS)) {
-    const c = countMatches(body, re);
-    if (c > 0) tells[name] = c;
-    tellTotal += c;
+    if (allowlist.has(name.toLowerCase())) continue;
+    const c = countMatches(narrativeOnly, re);
+    if (c > 0) {
+      tells[name] = c;
+      tellTotal += c;
+    }
   }
 
   // triads
@@ -185,16 +214,20 @@ function flag(cond, level, msg) {
 }
 
 function buildFlags(r) {
+  const isShort = r.words < 800;
   return [
-    flag(r.embodiedShare > 0.5 && r.embodied >= 3, 'RED', `Embodied emotion dominates (${(r.embodiedShare * 100).toFixed(0)}% of detected emotion beats; target ≤ ~40%). Rotate in explicit labels and behavioral cues.`),
-    flag(r.explicit === 0 && r.embodied >= 3, 'RED', 'No plainly named feelings detected. Humans state emotions outright far more than AI does.'),
-    flag(r.olfactoryPer1k > 1.5 && r.olfactoryCount >= 3, 'WARN', `Olfactory density ${r.olfactoryPer1k.toFixed(2)}/1k words (${r.olfactoryCount} refs) — smell is the most over-used AI sense. Keep only beats that earn their place.`),
-    flag(r.sentence.cv < 0.5, 'RED', `Sentence-length variation too low (CV ${r.sentence.cv.toFixed(2)}; target ≥ 0.5). Mix fragments with long winding sentences.`),
-    flag(r.emDashPer1k > 4 && r.emDashCount >= 4, 'RED', `Em-dash rate ${r.emDashPer1k.toFixed(1)}/1k words (${r.emDashCount} total; target ≤ 4/1k). Swap some for commas, parentheses, periods.`),
-    flag(r.tellTotal > 0, 'RED', `Lexical tells found: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`),
-    flag(r.patternTriads > 0, 'WARN', `"Not X, not Y, but Z"-style constructions: ${r.patternTriads}. One rhetorical triad per chapter max.`),
-    flag(r.listTriadsPer1k > 2, 'WARN', `Three-item lists at ${r.listTriadsPer1k.toFixed(1)}/1k words — the rule-of-three is an AI rhythm. Break some into ones and twos.`),
-    flag(r.dialogueRatio < 0.15, 'WARN', `Dialogue is only ${(r.dialogueRatio * 100).toFixed(0)}% of text. Humans write proportionally more dialogue; convert narration to talk where possible.`),
+    flag(isShort, 'INFO', `Sample is short (${r.words} words < 800) — rate-based metrics (CV, em-dash rate, olfactory density) are informational only until full chapter length.`),
+    flag(!isShort && r.embodiedShare > 0.5 && r.embodied >= 4, 'RED', `Embodied emotion dominates (${(r.embodiedShare * 100).toFixed(0)}% of detected emotion beats; target ≤ ~40%). Rotate in explicit labels and behavioral cues.`),
+    flag(!isShort && r.explicit === 0 && r.embodied >= 4, 'WARN', 'No plainly named feelings detected. Humans state emotions outright far more than AI does.'),
+    flag(!isShort && r.olfactoryPer1k > 1.5 && r.olfactoryCount >= 3, 'WARN', `Olfactory density ${r.olfactoryPer1k.toFixed(2)}/1k words (${r.olfactoryCount} refs) — smell is the most over-used AI sense. Keep only beats that earn their place.`),
+    flag(!isShort && r.sentence.cv < 0.5, 'RED', `Sentence-length variation too low (CV ${r.sentence.cv.toFixed(2)}; target ≥ 0.5). Mix fragments with long winding sentences.`),
+    flag(!isShort && r.emDashPer1k > 4 && r.emDashCount >= 4, 'RED', `Em-dash rate ${r.emDashPer1k.toFixed(1)}/1k words (${r.emDashCount} total; target ≤ 4/1k). Swap some for commas, parentheses, periods.`),
+    // Calibrated lexical tells: RED only when repeated (>=3 total or single tell >=2); single isolated tell is WARN
+    flag(r.tellTotal >= 3 || Object.values(r.tells).some(c => c >= 2), 'RED', `Repeated lexical tells found in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}.`),
+    flag(r.tellTotal > 0 && r.tellTotal < 3 && !Object.values(r.tells).some(c => c >= 2), 'WARN', `Isolated lexical tell in narration: ${Object.entries(r.tells).map(([k, v]) => `${k} ×${v}`).join(', ')}. Review context or add to _config/tell_allowlist.md if intentional.`),
+    flag(!isShort && r.patternTriads > 1, 'WARN', `"Not X, not Y, but Z"-style constructions: ${r.patternTriads}. One rhetorical triad per chapter max.`),
+    flag(!isShort && r.listTriadsPer1k > 2 && r.words >= 800, 'WARN', `Three-item lists at ${r.listTriadsPer1k.toFixed(1)}/1k words — the rule-of-three is an AI rhythm. Break some into ones and twos.`),
+    flag(!isShort && r.dialogueRatio < 0.15, 'WARN', `Dialogue is only ${(r.dialogueRatio * 100).toFixed(0)}% of text. Humans write proportionally more dialogue; convert narration to talk where possible.`),
     flag(r.maxOpenerRun >= 3, 'WARN', `${r.maxOpenerRun} consecutive sentences open with the same word.`),
     flag(r.topOpener.share > 0.25 && r.sentenceCount > 20, 'WARN', `"${r.topOpener.word}" opens ${(r.topOpener.share * 100).toFixed(0)}% of sentences.`),
     flag(r.moralizing.length > 0, 'WARN', `Possible stated-lesson language near the ending: ${r.moralizing.join(', ')}. The narrator must not explain the theme.`),
@@ -307,13 +340,15 @@ export function runAudit(targets) {
 function updateManifest(summary) {
   if (!fs.existsSync('manuscript.json')) return;
   try {
-    const manifest = JSON.parse(fs.readFileSync('manuscript.json', 'utf8'));
+    const raw = fs.readFileSync('manuscript.json', 'utf8').replace(/^\uFEFF/, '');
+    const manifest = JSON.parse(raw);
     if (!Array.isArray(manifest.chapters)) return;
     let touched = 0;
     for (const s of summary) {
       const ch = manifest.chapters.find(c => {
         const base = path.basename(c.draft_file || '').replace(/\.(md|txt|markdown)$/i, '');
-        return base && base === s.name;
+        const targetNum = parseInt(s.name.replace(/\D/g, '') || '-1', 10);
+        return base === s.name || (c.id === targetNum);
       });
       if (ch) {
         ch.last_audit = s.reds > 0 ? 'FAIL' : s.warns > 0 ? 'REVIEW' : 'CLEAN';
@@ -321,8 +356,10 @@ function updateManifest(summary) {
       }
     }
     if (touched > 0) {
-      fs.writeFileSync('manuscript.json', JSON.stringify(manifest, null, 2) + '\n', 'utf8');
-      console.log(`Updated last_audit for ${touched} chapter(s) in manuscript.json.`);
+      const tmpPath = 'manuscript.json.tmp';
+      fs.writeFileSync(tmpPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+      fs.renameSync(tmpPath, 'manuscript.json');
+      console.log(`Updated last_audit for ${touched} chapter(s) in manuscript.json (atomic).`);
     }
   } catch (e) {
     console.error(`Could not update manuscript.json: ${e.message}`);

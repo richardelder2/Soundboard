@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: romance-escalation-ladder
 title: "The Romance Heat & Vulnerability Ladder: Resistance to Intimacy"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: cpocl-plan-threat-conflict-engine
 title: "The CPOCL Conflict Engine: Plan-Threat Architecture & The Seven Dimensions of Dramatic Conflict"

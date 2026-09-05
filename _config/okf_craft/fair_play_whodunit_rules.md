@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: fair-play-whodunit-rules
 title: "Fair-Play Mystery Architecture: The Detection Club & Clue Ledger"

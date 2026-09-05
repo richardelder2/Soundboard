@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: jungian-archetypes-and-shadow-integration
 title: "Jungian Psychological Archetypes: Shadow Integration, Anima/Animus & The Individuation Drive"

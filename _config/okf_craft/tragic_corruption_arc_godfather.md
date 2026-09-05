@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: tragic-corruption-arc-godfather
 title: "The Tragic Corruption Arc: The Inevitable Surrender to the Shadow"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: tragic-flaw-investigation-chinatown
 title: "The Tragic Flaw Investigation: Chinatown's Fatal Epistemic Hubris"

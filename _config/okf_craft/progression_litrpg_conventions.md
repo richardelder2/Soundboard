@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: progression-litrpg-conventions
 title: "Progression Fantasy & LitRPG: Visible Competence, Power Curves & Milestone Catharsis"

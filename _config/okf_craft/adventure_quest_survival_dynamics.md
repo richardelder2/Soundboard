@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: adventure-quest-survival-dynamics
 title: "The Adventure Quest: Environmental Hostility, Resource Attrition & Team Dynamics"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: adversarial-prose-auditing-and-slop-filtering
 title: "Adversarial Prose Auditing: Slop Density, POV Filter Stripping & Sensory Anchors"

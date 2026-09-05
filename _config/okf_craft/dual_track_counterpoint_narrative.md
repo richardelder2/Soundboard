@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: dual-track-counterpoint-narrative
 title: "The Dual-Track Counterpoint: Symmetrical Antagonism & Narrative Cross-Cutting"

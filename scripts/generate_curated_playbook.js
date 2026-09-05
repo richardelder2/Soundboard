@@ -17,7 +17,7 @@ if (!fs.existsSync(REVISION_DIR)) {
 }
 
 const files = fs.readdirSync(DRAFTING_DIR)
-  .filter(f => /^chapter_\d+\.md$/.test(f))
+  .filter(f => /^(chapter_?\d+|ch_?\d+)\.md$/i.test(f))
   .sort((a, b) => {
     const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
     const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);

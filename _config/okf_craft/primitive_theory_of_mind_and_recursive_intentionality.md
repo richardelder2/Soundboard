@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-theory-of-mind-and-recursive-intentionality
 title: "Theory of Mind Recursion & Narrative Cognitive Limits: Engineering Multi-Order Social Calculation"

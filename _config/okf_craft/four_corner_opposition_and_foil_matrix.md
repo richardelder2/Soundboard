@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: four-corner-opposition-and-foil-matrix
 title: "Four-Corner Opposition & The Character Foil Matrix: Dialectical Cast Architecture"

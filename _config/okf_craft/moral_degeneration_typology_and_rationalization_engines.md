@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: moral-degeneration-typology-and-rationalization-engines
 title: "The Typology of Moral Degeneration: Five Models of Psychological Descent & Rationalization Engines"

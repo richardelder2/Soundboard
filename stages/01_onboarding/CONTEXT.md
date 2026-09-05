@@ -3,15 +3,7 @@ type: StageContract
 stage_id: "01_onboarding"
 name: Project Kickoff & Context Compilation
 inputs:
-  - setup/comfort_scifi_blueprint.md
-  - setup/thriller_domestic_blueprint.md
-  - setup/cozy_mystery_blueprint.md
-  - setup/romance_romantasy_blueprint.md
-  - setup/romcom_contemporary_blueprint.md
-  - setup/cozy_fantasy_cottagecore_blueprint.md
-  - setup/academy_fantasy_blueprint.md
-  - setup/progression_military_scifi_blueprint.md
-  - setup/folk_horror_blueprint.md
+  - setup/comfort_scifi_blueprint.md # (Default blueprint; substitute other setup/*_blueprint.md as chosen)
   - setup/genre_bibles/INDEX.md
 outputs:
   - stages/01_onboarding/output/preferences.json

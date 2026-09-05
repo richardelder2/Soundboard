@@ -1,4 +1,4 @@
-﻿---
+---
 type: okf_specification
 title: SAGA-ICM Open Knowledge Format (OKF) Specification
 version: 0.2.0

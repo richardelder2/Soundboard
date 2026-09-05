@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: bildungsroman-moral-awakening
 title: "The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration"

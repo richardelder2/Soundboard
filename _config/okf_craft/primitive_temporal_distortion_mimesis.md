@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-temporal-distortion-mimesis
 title: "Chronesthesia: The Pacing Ratio & Subjective Time Distortion"

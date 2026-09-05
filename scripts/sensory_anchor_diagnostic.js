@@ -154,7 +154,7 @@ files.forEach(file => {
 });
 
 let mdReport = `# Sensory Anchor Audit Report
-
+> Reference Craft Module: `_config/okf_craft/psychic_distance_and_narrative_zoom.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report audits sensory anchor density across the draft chapters, highlighting areas that lack tactile, auditory, or olfactory grounding (abstract/clinical zones).
@@ -169,7 +169,7 @@ This report audits sensory anchor density across the draft chapters, highlightin
 
 chaptersData.forEach(ch => {
   const status = ch.density >= 12.0 ? '🟢 (Visceral)' : (ch.density >= 6.0 ? '🟡 (Moderate)' : '🔴 (Flat)');
-  mdReport += `| [${ch.file}](file:///./02_Drafting/${ch.file}) | ${ch.wordCount} | ${ch.visual} | ${ch.auditory} | ${ch.tactile} | ${ch.olfactory} | **${ch.density}** | ${status} |\n`;
+  mdReport += `| [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file}) | ${ch.wordCount} | ${ch.visual} | ${ch.auditory} | ${ch.tactile} | ${ch.olfactory} | **${ch.density}** | ${status} |\n`;
 });
 
 mdReport += `
@@ -184,7 +184,7 @@ The following paragraphs contain $>60$ words but feature **zero** sensory anchor
 let abstractCount = 0;
 chaptersData.forEach(ch => {
   if (ch.abstractParagraphs.length === 0) return;
-  mdReport += `### [${ch.file}](file:///./02_Drafting/${ch.file})\n`;
+  mdReport += `### [${ch.file}](file:///./stages/03_drafting/output/chapters/${ch.file})\n`;
   ch.abstractParagraphs.forEach(p => {
     mdReport += `- **Paragraph (Line/Segment ${p.paraNum})**: *"${p.text}"*\n`;
     abstractCount++;

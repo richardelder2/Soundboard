@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: epistolary-found-document-technique
 title: "Epistolary Architecture: Found Documents, Polyphonic Truth & Narrative Redaction"

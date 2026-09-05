@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: anthropological-worldbuilding
 title: "Anthropological Worldbuilding: Culture, Taboo & Internal Logic"

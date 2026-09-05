@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: epic-fantasy-polyphonic-convergence-and-avalanche
 title: "Epic Fantasy & Space Opera: Polyphonic Voice Integrity, Cosmological Stakes & The 'Avalanche' Convergence"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: unreliable-narrator-psychological-fracture
 title: "The Unreliable Narrator: Fractured Perception, Active Gaslighting & The Breadcrumb Trial"

@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: framing-device-and-nested-narratives
 title: "The Framing Device & Nested Narrative: The Arabian Nights & The Unreliable Relator"

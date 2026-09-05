@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: chekhovs-gun-and-plant-payoff
 title: "Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers"

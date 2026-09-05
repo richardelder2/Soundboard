@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: gothic-domestic-noir-conventions
 title: "Gothic & Domestic Thriller Conventions: The Claustrophobic House & Gaslight Engines"

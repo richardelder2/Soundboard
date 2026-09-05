@@ -1,0 +1,12 @@
+# SAGA / Soundboard Project .gitignore
+node_modules/
+.env
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.gemini/
+.claude/settings.local.json
+
+# Production artifacts, stage outputs, and manuscript.json ARE tracked in git
+# per ICM §3.4 to maintain a full version history of the novel's development.

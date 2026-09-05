@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: kishotenketsu-four-act-non-conflict-structure
 title: "Kishōtenketsu: East Asian Four-Act Structure & The Non-Binary Disjunctive Twist"

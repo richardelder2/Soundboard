@@ -146,7 +146,7 @@ files.forEach(file => {
 
 // Generate Markdown Report
 let mdReport = `# Character Presence & Interaction Heatmap
-
+> Reference Craft Module: `_config/okf_craft/archetypal_character_transformation_arcs.md`\n\n
 *Generated on: ${new Date().toISOString().split('T')[0]}*
 
 This report analyzes character frequency, active chapter presence, and co-occurrences (shared paragraphs) to map narrative relationships and check for pacing gaps.

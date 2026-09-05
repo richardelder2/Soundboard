@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: dark-romantasy-touch-her-and-die
 title: "Dark Romantasy: Fated Mates, Morally Gray Leads & The 'Touch Her and Die' Engine"

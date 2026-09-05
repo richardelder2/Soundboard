@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: full-manuscript-continuity-pass-methodology
 title: "The Full Manuscript Continuity Pass: Systematic Ripple Remediation"

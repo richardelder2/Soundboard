@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_rule
 id: tenacious-writing-and-sanderson-le-guin-habits
 title: "The Tenacious Engine: Prolific Architecture, Closed Doors & Relentless Execution"

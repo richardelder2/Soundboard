@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: anti-hero-moral-ambiguity
 title: "The Anti-Hero Arc: Moral Ambiguity, Justified Transgression & Downfall/Redemption"

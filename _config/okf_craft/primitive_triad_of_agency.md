@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_primitive
 id: primitive-triad-of-agency
 title: "The Triad of Agency: Want, Obstacle & Irrevocable Choice"

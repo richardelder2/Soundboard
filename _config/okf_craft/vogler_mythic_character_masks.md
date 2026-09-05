@@ -1,4 +1,4 @@
-﻿---
+---
 type: craft_structure
 id: vogler-mythic-character-masks
 title: "The Mythic Character Masks: Archetypal Functions & Dynamic Mask-Shifting in Storytelling"
