@@ -53,6 +53,56 @@ Before any chapter is marked as complete, Soundboard's zero-dependency diagnosti
 
 ---
 
+## The Human-in-the-Loop (HITL) Revision Playbook: Why Autonomous AI Editing Destroys Novels
+
+A central failure of modern AI writing tools is their reliance on **autonomous rewriting**. When an author prompts a standard LLM to *"make this chapter tighter"* or *"fix the pacing,"* the model performs a destructive, wholesale rewrite. In doing so, it almost invariably:
+1. **Flattens Idiosyncratic Voice:** Unique cadences, quirky metaphors, and regional sentence structures are sanded down into neutral, homogenous corporate prose.
+2. **Sanitizes Intentional Subtext:** Nuanced, ambiguous emotional tensions that the author deliberately left unsaid are clumsily stated out loud by characters.
+3. **Eats Authorial Agency:** The author becomes a passive consumer of the AI's output rather than the active director of their art, destroying psychological ownership of the work.
+
+Soundboard takes the opposite philosophical stance: **The human author always holds the red pen. The AI is an editorial diagnostician, never a unilateral rewriter.**
+
+### The Anatomy of the 4-Phase HITL Revision Cycle
+
+When a chapter fails a quality gate in Stage 04, the system does not silently modify your text. Instead, it instantiates a **Human-in-the-Loop Revision Playbook** (`_config/templates/revision_playbook.template.md`) in `stages/04_diagnostics_edits/output/playbooks/revision_playbook_ch[X].md`. 
+
+The playbook executes a disciplined 4-phase collaborative cycle:
+
+```
+┌─────────────────────────┐       ┌─────────────────────────┐
+│  Phase 1: Diagnostics   │ ───>  │  Phase 2: 3-Option Fork │
+│  (Cadence, Tells, Canon)│       │  (Cut, Dramatize, Subtext│
+└─────────────────────────┘       └───────────┬─────────────┘
+                                              │
+                                              ▼
+┌─────────────────────────┐       ┌─────────────────────────┐
+│   Phase 4: Execution    │ <───  │  Phase 3: Author Choice │
+│   (Surgical Gate Verify)│       │  (Human Sign-Off / Plan)│
+└─────────────────────────┘       └─────────────────────────┘
+```
+
+#### Phase 1: Objective Diagnosis (No Text Modifications)
+The engine runs mechanical scans (`soundboard audit` and `soundboard continuity`) to identify concrete symptoms: sentence length variance, tell frequency exceeding the 0.50 per 1,000-word ceiling, or proper-noun contradictions against `canon.md`. The manuscript prose remains completely untouched.
+
+#### Phase 2: The 3-Option Creative Divergence
+For every single issue identified, the AI agent is contractually forbidden from saying *"I fixed this."* Instead, it must diagnose the underlying dramaturgical friction and offer **2 to 3 distinct creative pathways**:
+- **Option A (The Cut):** Eliminating the explanatory passage entirely, trusting the reader and allowing dramatic silence to carry the scene.
+- **Option B (The Physical Dramatization):** Replacing an abstract emotional summary or internal monologue with a concrete behavioral action or sensory cue.
+- **Option C (The Subtext Shift):** Shifting the psychological realization into conversational conflict or subtextual resistance in an adjacent dialogue beat.
+- **Option D (The Author's Custom Direction):** The author writes in their own solution, rejecting or modifying the suggestions.
+
+#### Phase 3: Consensus & Plan Approval
+The author reviews the options in chat, selects their preferred approach for each finding, or dictates custom notes. The agent consolidates these selections into a final, mutually agreed-upon **Approved Revision Checklist**. No code or prose changes occur until the author says "Proceed."
+
+#### Phase 4: Surgical Execution & Re-Audit Verification
+Working strictly from the approved checklist, the agent makes targeted, minimal edits to the draft file. Once revisions are applied, the diagnostic engine re-audits the chapter. Only when all four gates verify clean is the chapter status elevated to `passed` in `manuscript.json`.
+
+### Preserving Psychological Ownership
+
+A novel is not merely a collection of grammatically correct sentences; it is an intimate externalization of an author's mind, obsessions, and emotional truth. By enforcing the HITL Revision Playbook, Soundboard ensures that every word on every page remains the conscious, deliberate artistic choice of the human writer.
+
+---
+
 ## The Philosophy of Zero Runtime Dependencies
 
 Soundboard is deliberately constructed with **zero third-party npm dependencies** (`dependencies: {}`). 

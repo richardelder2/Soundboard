@@ -86,10 +86,12 @@ The immutable ground truth of narrative facts:
 2. **Drafting (Stage 03):**
    - Author-First (Solo) or Co-Writing (Agent-Drafted) pathway.
    - Appends newly coined facts tagged `[unverified chN]` to `canon.md`.
-3. **Editorial Audit (Stage 04):**
-   - Runs `soundboard audit` and `soundboard continuity`.
-   - If issues arise, instantiates `revision_playbook.template.md`, offering the author 2–3 creative choices per finding.
-   - Once all 4 gates pass, status is set to `passed` in `manuscript.json`.
+3. **Editorial Audit & HITL Revision Playbook (Stage 04):**
+   - Runs `soundboard audit` (prose tells, cadence variance) and `soundboard continuity` (proper-noun consistency).
+   - **Playbook Generation:** If mechanical or craft diagnostics flag issues, the agent creates `stages/04_diagnostics_edits/output/playbooks/revision_playbook_ch[X].md` based on `_config/templates/revision_playbook.template.md`.
+   - **State Transition:** `manuscript.json` marks the chapter as `audited` (or `playbook_active`).
+   - **Author Decision Gate:** The agent presents 2–3 creative strategies per finding (e.g., Cut vs. Dramatize vs. Subtext) with author write-in support. Under no circumstances may an agent perform an autonomous rewrite.
+   - **Targeted Revision & Re-Audit:** The agent executes edits solely per the author's approved playbook choices, then re-runs diagnostics. Once all gates clear, status advances to `passed` and unverified canon tags are confirmed.
 4. **Publishing Compilation (Stage 05):**
    - `soundboard compile` scans `manuscript.json` and verification artifacts. If any chapter lacks verified clearance, the compilation halts.
 

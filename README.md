@@ -75,7 +75,16 @@ A thorough, automated first-pass editorial sweep before you share your drafts wi
 * **Continuity Check:** Scans proper nouns and cross-references established facts to catch contradictory eyes, timeline hiccups, or orphaned names.
 * **Cadence & Rhythm Review:** Analyzes sentence length variation and paragraph rhythm to identify monotonous patches.
 * **AI Tell Scanner:** Flags common synthetic phrasing patterns and overused tropes so you can replace them with authentic human voice.
-* **Collaborative Revision:** When issues are found, your agent suggests 2–3 creative options for resolving them rather than rewriting your work.
+* **The Human-in-the-Loop Revision Playbook:** When issues are flagged, your agent never performs silent, unilateral rewrites. Instead, it generates a structured decision fork giving you distinct creative strategies for every finding:
+
+> **Example Revision Playbook Fork (Chapter 3):**
+> * **Finding:** *AI Tell / Explained Theme at scene conclusion ("She realized hope was a fragile bird...").*
+> * **Option A (The Cut):** Delete the summary sentence entirely; end cleanly on the character's silence.
+> * **Option B (Dramatize):** Replace the internal thought with physical action (she turns the brass key in the drawer).
+> * **Option C (Subtext Dialogue):** Push the realization into subtext through a sharp, defensive remark in the following exchange.
+> * **Option D (Custom Write-In):** Provide your own direction or keep the original phrasing as an intentional stylistic choice.
+>
+> *You choose the direction; your agent executes the revision strictly according to your decision.*
 
 ### 5. 🖨️ The Printing Press (Stage 05 · Publishing)
 Once your chapters have passed their editorial checks, a single command compiles your manuscript into clean, reader-ready **HTML** and standard **EPUB** formats—ready for e-readers, formatting tools, or submission.
