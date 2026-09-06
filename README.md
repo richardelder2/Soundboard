@@ -9,7 +9,7 @@
   <a href="https://github.com/richardelder2/saga-icm/actions"><img src="https://img.shields.io/github/actions/workflow/status/richardelder2/saga-icm/audit.yml?branch=main&amp;label=CI%20Audit&amp;logo=github" alt="CI Status" /></a>
   <a href="package.json"><img src="https://img.shields.io/badge/dependencies-0%20runtime-brightgreen.svg" alt="Zero Runtime Dependencies" /></a>
   <a href="package.json"><img src="https://img.shields.io/badge/node-%3E%3D18-blue.svg" alt="Node Version" /></a>
-  <a href="_config/okf_craft/"><img src="https://img.shields.io/badge/OKF%20Craft-92%20modules-blueviolet.svg" alt="Craft Bundle" /></a>
+  <a href="_config/okf_craft/"><img src="https://img.shields.io/badge/OKF%20Craft-114%20modules-blueviolet.svg" alt="Craft Bundle" /></a>
   <a href="docs/methodology.md"><img src="https://img.shields.io/badge/methodology-ICM%20(arXiv%3A2603.16021)-orange.svg" alt="Methodology" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
 </p>
@@ -46,7 +46,7 @@ Soundboard acts as the structural spine for your project:
 Behind the scenes, Soundboard manages:
 1. **A Single-Source Canon Ledger:** An auditable, plain-text record of established world rules, character traits, and active story threads so facts stay straight across 80,000 words.
 2. **Anti-Drift Voice Anchoring:** Calibrates active chapter drafting against your chosen voice samples and the trailing prose of previous chapters to help prevent stylistic decay.
-3. **92 Modular Craft Guides:** Focused reference modules in `_config/okf_craft/` synthesizing practical techniques from Shawn Coyne (*Story Grid*), John Truby (*Anatomy of Story*), Brandon Sanderson, K.M. Weiland, and Dwight Swain.
+3. **114 Modular Craft Guides:** Focused reference modules in `_config/okf_craft/` synthesizing practical techniques from Shawn Coyne (*Story Grid*), John Truby (*Anatomy of Story*), Brandon Sanderson, K.M. Weiland, and Dwight Swain.
 
 ---
 
@@ -123,7 +123,7 @@ Before marking any chapter as ready, your agent runs a diagnostic sweep to catch
 
 ---
 
-## The 92-Module Craft Reference Library
+## The 114-Module Craft Reference Library
 
 Soundboard provides your agent with explicit, codified reference cards in `_config/okf_craft/` covering time-tested storytelling principles:
 * **The Story Grid (Shawn Coyne):** The 5 Commandments of the Micro-Scene and macro value shifts.
@@ -141,7 +141,7 @@ For developers, technical authors, or curious creators who want to peek into the
 
 * 📖 **[The Science of Narrative Authenticity](docs/methodology.md):** The *StoryScope* research, why plain folders beat vector databases, and the Interpretable Context Methodology (ICM).
 * ⚙️ **[Technical Architecture & CLI Reference](docs/architecture.md):** The 5-stage state machine, data schemas (`manuscript.json`, `canon.md`), and zero-dependency mechanical CLI.
-* 📚 **[Narrative Craft Encyclopedia & Rosetta Stone](docs/craft_encyclopedia.md):** Complete catalog of the 92 OKF craft cards, theory lineages, and symptom-based craft search.
+* 📚 **[Narrative Craft Encyclopedia & Rosetta Stone](docs/craft_encyclopedia.md):** Complete catalog of the 114 OKF craft cards, theory lineages, and symptom-based craft search.
 * 🤝 **[Contributing Guide](CONTRIBUTING.md):** Architectural invariants, zero-dependency requirements, and PR checklists.
 
 ---

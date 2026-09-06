@@ -9,30 +9,40 @@ last_indexed: 2026-09-05
 - [SAGA-ICM Open Knowledge Format (OKF) Specification](SPECIFICATION.md) — `type: okf_specification`
 - [The Adventure Quest: Environmental Hostility, Resource Attrition & Team Dynamics](adventure_quest_survival_dynamics.md) — `type: craft_structure`
 - [Adversarial Prose Auditing: Slop Density, POV Filter Stripping & Sensory Anchors](adversarial_prose_auditing_and_slop_filtering.md) — `type: craft_rule`
+- [Agent-Safe Editorial Conduct: Minimal Intervention & Canon Invariance](agent_safe_editorial_conduct.md) — `type: craft_rule`
 - [Anthropological Worldbuilding: Culture, Taboo & Internal Logic](anthropological_worldbuilding.md) — `type: craft_structure`
 - [The Anti-Hero Arc: Moral Ambiguity, Justified Transgression & Downfall/Redemption](anti_hero_moral_ambiguity.md) — `type: craft_structure`
 - [Suppression of Narrative Theme Explanation](anti_tell_suppression.md) — `type: craft_rule`
 - [Archetypal Character Transformation Arcs](archetypal_character_transformation_arcs.md) — `type: craft_structure`
+- [Audience Calibration: Middle Grade, Young Adult, Adult & Crossover Horizons](audience_calibration_mg_ya_adult_crossover.md) — `type: craft_rule`
 - [The Bildungsroman: Innocence, Disillusionment & Moral Self-Integration](bildungsroman_moral_awakening.md) — `type: craft_structure`
 - [Chapter Architecture & The Taxonomy of Narrative Hooks](chapter_architecture_and_ending_hooks.md) — `type: craft_structure`
+- [Chapter Endings & Momentum Continuity: Nine Energies Beyond the Cliffhanger](chapter_endings_and_momentum_continuity.md) — `type: craft_structure`
+- [Chapter Openings & Entry Vectors: The Seven Modes of Narrative Launch](chapter_openings_and_entry_vectors.md) — `type: craft_rule`
 - [Character Arc Anatomy: Lie, Wound, Want & Need](character_arc_anatomy_lie_wound_want_need.md) — `type: craft_structure`
 - [Chekhov's Arsenal: Structural Necessity, Inverted Guns & False Triggers](chekhovs_gun_and_plant_payoff.md) — `type: craft_rule`
 - [Cinematic Staging: Camera Distance, Depth of Field & Character Blocking](cinematic_blocking_and_lens.md) — `type: craft_rule`
 - [The Architecture of Comedy, Farce & Satirical Timing](comedy_farce_and_satirical_timing_engine.md) — `type: craft_structure`
+- [Constraint-Aware Drafting & The Assumption Register: Pre-Flight Production Disciplines](constraint_aware_drafting_and_assumptions.md) — `type: craft_rule`
 - [Cosmic Horror & Existential Dread: The Epistemological Break](cosmic_horror_existential_dread.md) — `type: craft_structure`
 - [Courtly Intrigue & Political Machinations: Information Warfare & Factional Cannibalism](courtly_intrigue_political_web.md) — `type: craft_structure`
 - [The CPOCL Conflict Engine: Plan-Threat Architecture & The Seven Dimensions of Dramatic Conflict](cpocl_plan_threat_conflict_engine.md) — `type: craft_structure`
 - [Dark Romantasy: Fated Mates, Morally Gray Leads & The 'Touch Her and Die' Engine](dark_romantasy_touch_her_and_die.md) — `type: craft_structure`
 - [Developmental Revision: The Layered Macro-to-Micro Pass Methodology](developmental_revision_and_layered_passes.md) — `type: craft_rule`
+- [Dialogue as Action: Transactional Turning Points & State Shifts](dialogue_as_action_and_transactional_turns.md) — `type: craft_structure`
 - [Dialogue Choreography: Action Beats, Pause Micro-Timing & Attribution Stripping](dialogue_beats_and_action_choreography.md) — `type: craft_rule`
+- [Dialogue Diagnostic Triage: Cadence, Tags & Multi-Track Revision](dialogue_triage_and_multitrack_revision.md) — `type: craft_rule`
 - [Dual Timeline Convergence: The Interlocking Mystery of Past & Present](dual_timeline_convergence.md) — `type: craft_structure`
 - [The Dual-Track Counterpoint: Symmetrical Antagonism & Narrative Cross-Cutting](dual_track_counterpoint_narrative.md) — `type: craft_structure`
+- [Dyadic Relationship Dynamics & Relational Ledgers: Tracking Interpersonal Systems](dyadic_relationship_dynamics_and_ledgers.md) — `type: craft_structure`
 - [Dystopian Systemic Tension: Panopticon Mechanics & Compliance Cycles](dystopian_systemic_tension.md) — `type: craft_structure`
+- [Editorial Finding Format & Confidence Scoring: Human-in-the-Loop Diagnostic Protocol](editorial_finding_format_and_confidence_scoring.md) — `type: craft_rule`
 - [Emergent AI & Synthetic Archetypes: Goblins, Demons, Nova](emergent_ai_and_synthetic_archetypes.md) — `type: craft_structure`
 - [The Enneagram Character Engine & Disintegration Trajectories](enneagram_character_fixations_and_disintegration.md) — `type: craft_structure`
 - [Epic Fantasy & Space Opera: Polyphonic Voice Integrity & Avalanche Convergence](epic_fantasy_polyphonic_convergence_and_avalanche.md) — `type: craft_structure`
 - [Epistolary Architecture: Found Documents, Polyphonic Truth & Narrative Redaction](epistolary_found_document_technique.md) — `type: craft_structure`
 - [Affective Narratology & Evolutionary Story Prototypes: The Neuro-Emotional Engine](evolutionary_affective_story_prototypes.md) — `type: craft_primitive`
+- [Exposition Control: Suppressing 'As You Know, Bob' & Conversational Masking](exposition_control_and_conversational_masking.md) — `type: craft_rule`
 - [Fair-Play Mystery Architecture: The Detection Club & Clue Ledger](fair_play_whodunit_rules.md) — `type: craft_structure`
 - [Foreshadowing Architecture: Subtle Cues, Inevitability & Retroactive Clarity](foreshadowing_architecture_and_subtle_plants.md) — `type: craft_rule`
 - [Four-Corner Opposition & Character Foil Matrix](four_corner_opposition_and_foil_matrix.md) — `type: craft_rule`
@@ -41,6 +51,7 @@ last_indexed: 2026-09-05
 - [Free Indirect Discourse (FID): Voice Blending, Cognitive Dissolution & Narrative Irony](free_indirect_discourse_and_voice_blending.md) — `type: craft_primitive`
 - [The Full Manuscript Continuity Pass: Systematic Ripple Remediation](full_manuscript_continuity_pass_methodology.md) — `type: craft_structure`
 - [Gothic & Domestic Thriller Conventions: The Claustrophobic House & Gaslight Engines](gothic_domestic_noir_conventions.md) — `type: craft_structure`
+- [Head-Hopping Diagnostics & Voice Safeguards: Distinguishing Error from Craft](head_hopping_diagnostics_and_voice_safeguards.md) — `type: craft_rule`
 - [The Heist & Caper Engine: The Long Con, Misdirection & Plant-and-Payoff](heist_and_caper_mechanics.md) — `type: craft_structure`
 - [Historical Fiction & Period Immersion: The Double Horizon & Social Presuppositions](historical_fiction_authenticity.md) — `type: craft_structure`
 - [The Hitchcock Suspense Engine: Dramatic Irony & The Ticking Clock](hitchcock_bomb_suspense.md) — `type: craft_structure`
@@ -49,15 +60,19 @@ last_indexed: 2026-09-05
 - [The Irony Typology & Gérard Genette's Lateral Omission](irony_typology_and_lateral_omission_paralipsis.md) — `type: craft_structure`
 - [Jungian Psychological Archetypes & Shadow Integration](jungian_archetypes_and_shadow_integration.md) — `type: craft_structure`
 - [Kishōtenketsu: East Asian Four-Act Structure](kishotenketsu_four_act_non_conflict_structure.md) — `type: craft_structure`
+- [The Eight Strata of Revision: Layered Diagnostic Triage from Premise to Polish](layered_revision_eight_strata_framework.md) — `type: craft_rule`
+- [Literary & Upmarket Fiction Conventions: Interiority, Ambiguity & Textured Resolution](literary_and_upmarket_fiction_conventions.md) — `type: craft_structure`
 - [The Typology of Moral Degeneration](moral_degeneration_typology_and_rationalization_engines.md) — `type: craft_structure`
 - [Multi-POV Orchestration & Perspective Alternation](multi_pov_structure.md) — `type: craft_structure`
 - [Walter Murch's Rule of Six: Scene Cutting & Narrative Rhythm](murch_rule_of_six_pacing.md) — `type: craft_structure`
 - [The Mythic Archetypal Journey: Collective Unconscious & Cyclical Trials](mythic_archetypal_journey.md) — `type: craft_structure`
+- [Narrative Transitions: Clean Compression across Time, Space & Viewpoint](narrative_transitions_temporal_spatial_pov.md) — `type: craft_rule`
 - [Noir & Hardboiled Crime: Moral Corrosion, The Cynical Lens & Inevitable Fall](noir_hardboiled_fatalism.md) — `type: craft_structure`
 - [Non-Human & Synthetic Cognition: Sensory Architecture of AI & Alien POVs](non_human_cognitive_narration.md) — `type: craft_structure`
 - [Nonlinear Timelines, Anachrony & Information Delay](nonlinear_timeline_framework.md) — `type: craft_structure`
 - [The Novella Form: Physics of the 20,000–40,000 Word Corridor](novella_form_and_compressed_turn.md) — `type: craft_structure`
 - [The Police & Legal Procedural: Evidentiary Fair-Play & Institutional Friction](police_procedural_evidentiary_and_institutional_engine.md) — `type: craft_structure`
+- [POV Modes & Epistemic Boundaries: Knowledge, Inference & Withholding](pov_modes_and_epistemic_boundaries.md) — `type: craft_primitive`
 - [Causal Calculus: The 'Therefore / But' Engine vs. 'And Then' Decay](primitive_causal_calculus.md) — `type: craft_primitive`
 - [The Dialectic Value Shift: The Quantum of Narrative Change](primitive_dialectic_value_shift.md) — `type: craft_primitive`
 - [The Epistemic Gap: The Three Primal Narrative Drives](primitive_epistemic_asymmetry.md) — `type: craft_primitive`
@@ -73,13 +88,18 @@ last_indexed: 2026-09-05
 - [Progression Fantasy & LitRPG: Visible Competence, Power Curves & Milestone Catharsis](progression_litrpg_conventions.md) — `type: craft_structure`
 - [Prose Syntax & Acoustic Cadence](prose_syntax_and_acoustic_cadence.md) — `type: craft_rule`
 - [John Gardner's Five Levels of Psychic Distance](psychic_distance_and_narrative_zoom.md) — `type: craft_primitive`
+- [Quiet-Scene Tension & Atmospheric Stillness: Dramatic Pressure without Violence](quiet_tension_and_atmospheric_stillness.md) — `type: craft_rule`
 - [The Misdirection Matrix: Red Herrings, Plausible Guilt & Double Bluffs](red_herring_misdirection_matrix.md) — `type: craft_rule`
+- [Research, Fact & Uncertainty Management: The Six-Tier Epistemic Fact Ledger](research_epistemic_status_and_uncertainty_management.md) — `type: craft_rule`
 - [The Romance Heat & Vulnerability Ladder: Resistance to Intimacy](romance_escalation_ladder.md) — `type: craft_structure`
+- [Romance Architecture: Mutual Agency, Intimacy Barriers & Authentic Conflict](romance_mutual_agency_and_authentic_conflict.md) — `type: craft_structure`
 - [Brandon Sanderson's Laws of Magic System Engineering](sandersons_laws_of_magic_and_magic_system_engineering.md) — `type: craft_rule`
 - [Satirical Escalation & Institutional Irony: The Straight-Man Dynamic](satirical_escalation_blueprint.md) — `type: craft_structure`
 - [Save the Cat! The 15-Beat Structural Blueprint](save_the_cat_fifteen_beat_structural_blueprint.md) — `type: craft_structure`
 - [The Five Commandments of the Micro-Scene: Shawn Coyne's Atomic Story Engine](scene_level_five_commandments_coyne.md) — `type: craft_structure`
+- [The Scene-Sequel Aftermath Engine: Reaction, Dilemma, Decision & Changed Intent](scene_sequel_aftermath_engine.md) — `type: craft_structure`
 - [Series Architecture: Macro-Arcs, Lore Debt, and Value Shifts](series_architecture_and_cross_book_arcs.md) — `type: craft_structure`
+- [Setting as Dramatic Agent: Environmental Friction, Systems & Embodied Stakes](setting_as_dramatic_agent_and_constraint.md) — `type: craft_structure`
 - [The Short Story Engine: Single Effect, Compression, and Late Entry](short_story_form_and_single_effect.md) — `type: craft_structure`
 - [Keith Johnstone's Status Transactions: Dominance Choreography, Physical Space & Social Seesaw](status_transactions_and_dominance_choreography.md) — `type: craft_rule`
 - [Story Grid 5 Core Primal Shifts](story_grid_macro.md) — `type: craft_structure`
@@ -88,6 +108,7 @@ last_indexed: 2026-09-05
 - [Dwight Swain's MRU Architecture & The Pacing Velocity Equation: Micro-Pacing & Compression Curves](swain_mru_and_pacing_velocity_equations.md) — `type: craft_rule`
 - [synonyms.md](synonyms.md) — `type: uncategorized`
 - [Syntactic Symbolism & Cumulative Sentence Rhetoric](syntactic_symbolism_and_cumulative_sentence_rhetoric.md) — `type: craft_rule`
+- [Systemic Opposition & Antagonist Logic: Beyond the Monolithic Villain](systemic_opposition_and_antagonist_logic.md) — `type: craft_rule`
 - [The Tenacious Engine: Prolific Architecture, Closed Doors & Relentless Execution](tenacious_writing_and_sanderson_le_guin_habits.md) — `type: craft_rule`
 - [Textual Actual Worlds (TAW) & Modal Narratology](textual_actual_worlds_and_modal_narratology.md) — `type: craft_primitive`
 - [The Three Registers of Dramatic Dialogue](three_registers_of_dialogue_subtext.md) — `type: craft_rule`
@@ -98,5 +119,6 @@ last_indexed: 2026-09-05
 - [The Universal Narrative Rosetta Stone: Cross-School Craft Lexicon & Structural Mapping Ontology](universal_narrative_lexicon_rosetta_stone.md) — `type: craft_structure`
 - [The Unreliable Narrator: Fractured Perception, Active Gaslighting & The Breadcrumb Trial](unreliable_narrator_psychological_fracture.md) — `type: craft_structure`
 - [Vertical Spatial Allegory: Architecture as Class Conflict & The Sub-Basement Reveal](vertical_spatial_allegory_parasite.md) — `type: craft_structure`
+- [Viewpoint-Filtered Sensory Selection: Perceptual Bias over Inventory](viewpoint_filtered_sensory_selection.md) — `type: craft_primitive`
 - [The Mythic Character Masks: Archetypal Functions & Mask-Shifting](vogler_mythic_character_masks.md) — `type: craft_structure`
 - [Voice Differentiation: Engineering Non-Homogeneous Cast Registers](voice_differentiation_across_ensemble.md) — `type: craft_rule`
