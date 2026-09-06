@@ -133,6 +133,16 @@ For developers, technical authors, or curious creators who want to peek into the
 
 ---
 
+## Inspiration & Dedication
+
+Soundboard stands on the shoulders of brilliant researchers, open-source pioneers, and a real-life creative partnership:
+
+* **For Axie:** Dedicated with love to my partner, **Axie**, an author for whom I have served as a personal sounding board across years of late-night brainstorming, worldbuilding, and plot puzzles. Soundboard was built from that exact creative rhythm—engineered so that AI can finally keep up with her boundless imagination the way a devoted human partner can.
+* **Jake Van Clief & William McDermott (ICM):** Boundless credit for the foundational breakthrough of the *Interpretable Context Methodology* ([ICM, arXiv:2603.16021](https://arxiv.org/abs/2603.16021)). Their philosophy—that transparent, plain-text folder architectures and token-disciplined contracts beat black-box vector databases—provides the structural spine of this studio.
+* **Nous Research (`autonovel`):** Gratitude to the team at Nous Research, whose early *autonovel* experiments proved that AI could tackle long-form fiction and inspired the quest to give writers a true, disciplined creative sounding board.
+
+---
+
 ## License
 
 MIT License. Designed with care for novelists, storytellers, and creative partners.
