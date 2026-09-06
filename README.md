@@ -1,79 +1,162 @@
-# Soundboard — Novel Engineering Studio & Narrative Console
+<p align="center">
+  <img src="assets/soundboard_logo.png" alt="Soundboard — Narrative Production Studio" width="480" />
+</p>
 
-> *"The Author's Intelligent Sounding Board & Narrative Console"*
+<h3 align="center">The Author's Intelligent Sounding Board &amp; Novel Engineering Studio</h3>
+<p align="center"><em>Powered by the SAGA Pipeline &amp; Interpretable Context Methodology (ICM)</em></p>
 
-**Soundboard** is a portable, token-disciplined novel engineering system built on the Interpretable Context Methodology (ICM). Designed specifically for creative authors working inside modern **Agentic Development Environments (ADEs)**—such as Antigravity, Claude Code, and Gemini CLI—Soundboard acts as an elite executive novel assistant, creative sounding board, and narrative mixing console.
+<p align="center">
+  <a href="https://github.com/richardelder2/saga-icm/actions"><img src="https://img.shields.io/github/actions/workflow/status/richardelder2/saga-icm/audit.yml?branch=main&amp;label=CI%20Audit&amp;logo=github" alt="CI Status" /></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/dependencies-0%20runtime-brightgreen.svg" alt="Zero Runtime Dependencies" /></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/node-%3E%3D18-blue.svg" alt="Node Version" /></a>
+  <a href="https://arxiv.org/abs/2603.16021"><img src="https://img.shields.io/badge/methodology-ICM%20(arXiv%3A2603.16021)-orange.svg" alt="Methodology" /></a>
+  <a href="_config/okf_craft/"><img src="https://img.shields.io/badge/OKF%20Craft-92%20modules-blueviolet.svg" alt="Craft Bundle" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+</p>
 
 ---
 
-## 🎻 Why "Soundboard"?
+## What is Soundboard?
 
-In music and lutherie, a vibrating string in thin air makes almost no sound—it is tinny, weak, and barely audible. The **soundboard** (in a piano, harp, cello, or guitar) is the resonant wooden body that catches those quiet vibrations, enriches them with complex harmonics, and amplifies them into a room-filling acoustic symphony.
+Most AI writing tools act like chaotic autocomplete engines: they generate generic, formulaic chapters, hallucinate previously established eye colors, and collapse into melodramatic exposition by Chapter 5.
 
-In creative collaboration, a **sounding board** is the trusted, intelligent confidant you test your ideas against—someone who listens, reflects back with nuance, catches false notes, and helps you discover the story's true resonance.
+**Soundboard** turns high-level agent harnesses (**Claude Code, Google Antigravity, Cursor, Gemini CLI**) into an **Executive Novel Writing Concierge**. Built on the **Interpretable Context Methodology (ICM)** and plain-text markdown contracts, Soundboard organizes novel production across 5 disciplined stages—enforcing strict token limits, canonical continuity, voice consistency, and machine-checkable quality gates.
 
-The author provides the melody, the character, and the human spark. **Soundboard** provides the resonance, the structural architecture, and the precision mixing console.
+> **Zero framework lock-in.** Plain markdown files, cwd-relative project isolation, zero vector databases, and zero runtime dependencies (`dependencies: {}`).
+
+<p align="center">
+  <img src="assets/soundboard_hero_banner.jpg" alt="Soundboard Studio Workstation" width="100%" />
+</p>
 
 ---
 
-## 🎛️ The 5-Stage Narrative Pipeline
+## The 5-Stage Production Pipeline
 
-Soundboard moves manuscripts through five disciplined stages, governed by plain Markdown contracts (`CONTEXT.md`):
+<p align="center">
+  <img src="assets/pipeline_workflow.svg" alt="Soundboard 5-Stage Production Pipeline Flowchart" width="100%" />
+</p>
 
-| Stage | Workspace Folder | Produces |
+| Stage | What It Produces | Non-Negotiable Contract |
 |---|---|---|
-| **1. Onboarding** | `stages/01_onboarding/` | Author preferences, world bible, characters, **filled genre bible + trope stack** |
-| **2. Planning** | `stages/02_planning/` | **Foolscap page**, macro outline, **structure plan**, canon + voice exemplars, **production ledger (`manuscript.json`)**, scene beats |
-| **3. Drafting** | `stages/03_drafting/` | Chapter prose (canon-consistent, voice-calibrated, token-disciplined) |
-| **4. Diagnostics & Edits** | `stages/04_diagnostics_edits/` | Full-spectrum audits, continuity scans, HITL revision playbooks, gate pass |
-| **5. Publishing** | `stages/05_publishing/` | Typeset serif HTML, print layout, and EPUB compilation |
+| **01 · Onboarding** | Story Bible, Character Cast, Filled Genre Bible & Trope Stack | Creative discovery interview; seeds the in-world tell allowlist. |
+| **02 · Planning** | Foolscap Page, Outline, Structure Plan, Scene Beats, `manuscript.json` | Schedules obligatory trope scenes and sets structural authenticity dials. |
+| **03 · Drafting** | Canon-consistent, voice-calibrated chapter prose | Packs chapter kits with trailing voice anchors to prevent drift. |
+| **04 · Diagnostics** | Mechanical scans, continuity audits, 4-gate verification | Density-normalized AI tell checks, 4-gram repetition detection, and revision playbooks. |
+| **05 · Publishing** | Clean HTML / EPUB compilation | Refuses to compile any chapter that has not passed all 4 gate checks. |
 
 ---
 
-## 🧠 The Static Craft Knowledge Bundle (81 Modules)
+## Why Soundboard Novels Read Better (The Science)
 
-Soundboard comes equipped with an extensive Open Knowledge Format (`OKF`) library resident in `_config/okf_craft/`:
-*   **14 Neurocognitive Primitives:** Possible Worlds Theory (Ryan), Theory of Mind recursion (Zunshine), Chronesthesia pacing ratios, Mimetic Desire (Girard), Triad of Agency, and Focalization Filters.
-*   **45 Macro Structures & Archetypes:** Tragic corruption arcs (*The Godfather*, *Chinatown*), Spatial allegories (*Parasite*), Fair-Play Whodunits, Heist capers, Jungian Shadow Integration, Vogler Mythic Masks, Truby 4-Corner Opposition, and Enneagram character fixations.
-*   **21 Micro-Syntactic & Acoustic Rules:** Virginia Tufte syntactic symbolism, Francis Christensen cumulative sentences, Gary Provost sentence cadence, Phonosemantics (plosives vs. sibilants), Dwight Swain MRUs and velocity equations, Keith Johnstone status transactions, and Steve Kaplan comedy/farce pressure cookers.
-*   **The Universal Narrative Rosetta Stone:** Instant cross-translation between Story Grid, Save the Cat!, The Hero's Journey, Dan Harmon's Story Circle, K.M. Weiland, and Brandon Sanderson.
+Research on synthetic narrative detection (*StoryScope*, arXiv:2604.03136) demonstrates that AI-generated stories remain detectable at **~94% accuracy from narrative structure alone**—not just cliché vocabulary.
+
+AI stories fail because of structural tells:
+* Unearned character transformations without psychological resistance.
+* Uniform scene resolutions where every conflict ends cleanly.
+* Single-track plots lacking parallel subplots or thematic foils.
+* Narrators who state the theme out loud instead of dramatizing it.
+
+Soundboard defends against both levels:
+1. **At Planning Time (Stage 02):** Forces human-typical narrative architecture—nonlinear disclosure, moral ambiguity, 4-corner opposition, and Swain MRU pacing equations.
+2. **At Drafting Time (Stage 03):** Calibrates every scene against 92 peer-reviewed craft modules from Shawn Coyne (*Story Grid*), John Truby (*Anatomy of Story*), K.M. Weiland, Virginia Tufte, and Brandon Sanderson.
+3. **At Diagnostic Time (Stage 04):** Mechanical regex scanners score lexical tells while checking cross-chapter continuity and N-gram repetition.
 
 ---
 
-## ⚙️ The Soundboard CLI (`soundboard` or `sb`)
+## Live Console Telemetry
 
-Fast, mechanical, zero-token tools running locally:
+Soundboard includes zero-dependency mechanical CLI tools that report transparent project status, track chapter gates, and surface real-time telemetry:
+
+<p align="center">
+  <img src="assets/terminal_status.svg" alt="Soundboard Status Console Telemetry" width="100%" />
+</p>
+
+### Automated 4-Gate Quality Verification
+
+Before any chapter can compile into the finished manuscript, it must clear 4 machine-audited gates checking prose cadence, AI tell density, canon consistency, and structural POV adherence:
+
+<p align="center">
+  <img src="assets/terminal_audit.svg" alt="Soundboard Narrative Audit Console" width="100%" />
+</p>
+
+---
+
+## Quickstart: Choose Your Pathway
+
+### Track A: The Creative Author (Recommended)
+You do not need to run terminal commands. Soundboard is designed to be operated by your AI coding assistant:
+
+1. Clone or download this repository.
+2. Open the folder in **Claude Code**, **Antigravity**, **Cursor**, or **Gemini CLI**.
+3. Say in chat:
+   > *"Read AGENTS.md and onboard me for a new novel."*
+4. Your agent will act as your Executive Writing Concierge—interviewing your premise, assembling your world bible, and guiding you stage by stage.
+
+---
+
+### Track B: The Command-Line Developer
+If you prefer direct CLI control or automated scripting:
 
 ```bash
-# Workspace status and production ledger
+# 1. Clone and install (zero runtime dependencies)
+git clone https://github.com/richardelder2/saga-icm.git soundboard
+cd soundboard
+npm test
+
+# 2. Scaffold a clean project in an empty novel folder
+node scripts/soundboard.js init ../my-novel
+cd ../my-novel
+
+# 3. Check status, query canon, or run diagnostics
 node scripts/soundboard.js status
-# (or with npm link: soundboard status / sb status)
-
-# Instant semantic craft search across the 81-module library
-node scripts/soundboard.js craft search "dark night of the soul"
-node scripts/soundboard.js craft search "status transaction"
-node scripts/soundboard.js craft search "pacing compression" --json
-
-# Token-disciplined chapter context packager (<6,000 tokens)
-node scripts/soundboard.js pack-chapter 1
-
-# Full-spectrum diagnostic suite
-node scripts/soundboard.js audit stages/03_drafting/output/chapter_01.md
-node scripts/soundboard.js continuity
-node scripts/prose_rhythm_diagnostic.js
-node scripts/dialogue_diagnostic.js
-
-# Gate-verified publishing
+node scripts/soundboard.js canon query "Mara"
+node scripts/soundboard.js audit stages/03_drafting/output/chapters/ch01.md
 node scripts/soundboard.js compile
 ```
 
 ---
 
-## 🚀 Getting Started in the ADE
+## The 92-Module OKF Craft Bundle
 
-Soundboard requires no web UI. The ADE *is* your studio.
+Soundboard ships with a self-validating, token-disciplined library of **92 narrative craft modules** in `_config/okf_craft/`. Every module adheres to the Open Knowledge Format (OKF):
+- Under 900 tokens / 750 words for minimal context consumption.
+- Tagged with `stages:`, `subtype:`, and `confidence:` frontmatter.
+- Concrete worked examples, formulas, and rubrics preserved intact.
+- Features the universal **Narrative Lexicon Rosetta Stone** mapping *Story Grid*, *Save the Cat!*, *Hero's Journey*, *Truby*, and *Dan Harmon* terminology into unified structural mechanics.
 
-1. Open this workspace in **Antigravity** or **Claude Code**.
-2. Say to the agent:
-   > *"Read AGENTS.md and let's onboard a new novel."*
-3. The agent will run the conversational interview, map your genre trope stack, and guide you stage by stage through drafting, auditing, and publishing.
+---
+
+## Repository Architecture
+
+```
+soundboard/
+├── AGENTS.md               # Canonical instruction contract for all AI agents
+├── _config/                # Layer 3 Context: rules, templates, and 92 craft modules
+│   ├── okf_craft/          # Modular craft engines (Coyne, Truby, Weiland, Genette, Tufte)
+│   ├── templates/          # Machine-validated artifact skeletons
+│   └── narrative_authenticity.md # Structural & prose authenticity rules
+├── stages/                 # The 5-stage pipeline with CONTEXT.md contracts
+│   ├── 01_onboarding/      # World, characters, trope stacks
+│   ├── 02_planning/        # Foolscap, structure plan, scene beats
+│   ├── 03_drafting/        # Chapter prose & voice exemplars
+│   ├── 04_diagnostics_edits/# Audits, continuity scans, revision playbooks
+│   └── 05_publishing/      # Compiled manuscript (HTML/EPUB)
+├── scripts/                # Mechanical zero-dependency CLI (Node.js >= 18)
+│   ├── soundboard.js       # Core console engine (status, pack-chapter, brief, compile)
+│   ├── narrative_audit.js  # Mechanical prose tell scanner
+│   ├── okf_lint.js         # Token budget and metadata validator
+│   └── saga.js             # Canonical forward CLI shim
+└── tests/                  # Cross-platform automated test suite (54+ tests)
+```
+
+---
+
+## Contributing & Community
+
+Contributions are welcome! Please ensure:
+1. All changes maintain zero runtime dependencies (`dependencies: {}`).
+2. New or modified OKF modules pass strict linting: `npm run okf-lint -- --strict`.
+3. The full multi-OS test suite passes: `npm test`.
+
+## License
+MIT License. Created by Richard Elder & Antigravity. Methodology based on *Interpretable Context Methodology* (Van Clief & McDermott, arXiv:2603.16021).

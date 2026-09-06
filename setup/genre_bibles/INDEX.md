@@ -11,14 +11,13 @@ Each bible is a fill-in series template for a commercial genre cluster: a flagsh
 
 ## The registry
 
-| Bible | Flagship stack | Questionnaire Blueprint | Structure | Length |
-|---|---|---|---|---|
-| [romance_romantasy_dark.md](romance_romantasy_dark.md) | Enemies to Lovers + Forced Proximity + He Falls First (dark variant: Fated Mates + Morally Gray + Touch Her and Die) | [romance_romantasy_blueprint.md](../romance_romantasy_blueprint.md) | 3–5 book series, same couple | ~100k / 38 ch |
-| [romcom_summer_reads.md](romcom_summer_reads.md) | Small Town Return + Grumpy/Sunshine + Save-the-Shop (variant: Vacation Fling + Boss Reveal) | [romcom_contemporary_blueprint.md](../romcom_contemporary_blueprint.md) | Interconnected standalones, town = brand | ~80k / 32 ch |
-| [cozy_cottagecore_folksy.md](cozy_cottagecore_folksy.md) | Inherited Shop + Hedge Witch + Shop Cat (variant: Burnt-Out Professional cozy fantasy) | [cozy_fantasy_cottagecore_blueprint.md](../cozy_fantasy_cottagecore_blueprint.md) | Rotating-protagonist village series | ~70k / 28 ch |
-| [thriller_cozy_mystery.md](thriller_cozy_mystery.md) | A: Perfect-Life Lie + Gaslight Engine + Techno-Paranoia (standalone) · B: Hook Occupation + Festival Murder + Gossip Network + Pet Deputy (15-book cozy) | A: [thriller_domestic_blueprint.md](../thriller_domestic_blueprint.md)<br>B: [cozy_mystery_blueprint.md](../cozy_mystery_blueprint.md) | A: standalone pen-name · B: long series | A: ~85k / 45 ch · B: ~62k / 26 ch |
-| [fantasy_scifi_horror.md](fantasy_scifi_horror.md) | A: Magic Academy + Bonded Beast + Enemies-to-Lovers · B: Progression + Military SF + Underdog Awakening · C: Folk Horror + Missing-Person Spine + Dual Timeline | A: [academy_fantasy_blueprint.md](../academy_fantasy_blueprint.md)<br>B: [progression_military_scifi_blueprint.md](../progression_military_scifi_blueprint.md)<br>C: [folk_horror_blueprint.md](../folk_horror_blueprint.md) | A: trilogy+ · B: open series · C: standalone | 80–140k |
-| *Comfort Hard Sci-Fi (Standalone)* | Apollo 13 Competence + Closed System + Deep-Space Comfort | [comfort_scifi_blueprint.md](../comfort_scifi_blueprint.md) | Standalone / Duology | ~90k / 35 ch |
+| Bible | Flagship stack | Structure | Length |
+|---|---|---|---|
+| [romance_romantasy_dark.md](romance_romantasy_dark.md) | Enemies to Lovers + Forced Proximity + He Falls First (dark variant: Fated Mates + Morally Gray + Touch Her and Die) | 3–5 book series, same couple | ~100k / 38 ch |
+| [romcom_summer_reads.md](romcom_summer_reads.md) | Small Town Return + Grumpy/Sunshine + Save-the-Shop (variant: Vacation Fling + Boss Reveal) | Interconnected standalones, town = brand | ~80k / 32 ch |
+| [cozy_cottagecore_folksy.md](cozy_cottagecore_folksy.md) | Inherited Shop + Hedge Witch + Shop Cat (variant: Burnt-Out Professional cozy fantasy) | Rotating-protagonist village series | ~70k / 28 ch |
+| [thriller_cozy_mystery.md](thriller_cozy_mystery.md) | A: Perfect-Life Lie + Gaslight Engine + Techno-Paranoia (standalone) · B: Hook Occupation + Festival Murder + Gossip Network + Pet Deputy (15-book cozy) | A: standalone pen-name · B: long series | A: ~85k / 45 ch · B: ~62k / 26 ch |
+| [fantasy_scifi_horror.md](fantasy_scifi_horror.md) | A: Magic Academy + Bonded Beast + Enemies-to-Lovers · B: Progression + Military SF + Underdog Awakening · C: Folk Horror + Missing-Person Spine + Dual Timeline | A: trilogy+ · B: open series · C: standalone | 80–140k |
 
 No exact match for the project's genre? Pick the *nearest chassis* and adapt (e.g., comfort hard sci-fi runs well on the cozy-fantasy variant's comfort contract plus Template B's technical-competence beats). The stack format is portable: **[dynamic] + [situation] + [flavor]**.
 

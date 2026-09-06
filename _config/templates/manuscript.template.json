@@ -8,21 +8,14 @@
   "genre_bible": "setup/genre_bibles/[bible].md",
   "trope_stack": "[dynamic] + [situation] + [flavor]",
   "chapters": [
-    {
-      "id": 1,
-      "title": "[chapter working title]",
-      "pov": "[POV character]",
-      "escalation": 3,
-      "beat_file": "stages/02_planning/output/beats/ch01.md",
-      "draft_file": "stages/03_drafting/output/chapters/ch01.md",
-      "status": "planned",
-      "target_words": 2500,
-      "last_audit": null
-    }
+    { "id": 1, "title": "[Ch 1]", "pov": "[POV 1]", "escalation": 2, "entities": ["[Lead]"], "beat_file": "stages/02_planning/output/beats/ch01.md", "draft_file": "stages/03_drafting/output/chapters/ch01.md", "status": "planned", "target_words": 2500, "last_audit": null },
+    { "id": 2, "title": "[Ch 2]", "pov": "[POV 1]", "escalation": 3, "entities": ["[Lead]", "[Foil]"], "beat_file": "stages/02_planning/output/beats/ch02.md", "draft_file": "stages/03_drafting/output/chapters/ch02.md", "status": "planned", "target_words": 2500, "last_audit": null },
+    { "id": 3, "title": "[Ch 3]", "pov": "[POV 2]", "escalation": 3, "entities": ["[Lead]", "[Ally]"], "beat_file": "stages/02_planning/output/beats/ch03.md", "draft_file": "stages/03_drafting/output/chapters/ch03.md", "status": "planned", "target_words": 2500, "last_audit": null }
   ],
   "_conventions": {
-    "status": "planned → drafted → audited → passed (set by stages 02/03/04; 'audited' means scanned+rubric-scored with open findings, 'passed' means the Stage 04 gate cleared)",
-    "last_audit": "CLEAN | REVIEW | FAIL — written automatically by scripts/narrative_audit.js when it can match the draft file",
-    "escalation": "1–5, copied from structure_plan.md's escalation contour"
+    "status": "planned → drafted → audited → passed",
+    "last_audit": "CLEAN | REVIEW | FAIL",
+    "escalation": "1–5 from structure_plan.md",
+    "entities": "Active character/location/item names for Layer 4 canon filtering"
   }
 }

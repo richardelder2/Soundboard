@@ -1,6 +1,6 @@
 ---
 name: narrative-authenticity
-description: Apply human-authenticity rules (from StoryScope AI-fiction research) while planning, drafting, or reviewing chapters in a Soundboard workspace. Use whenever the user asks to plan an outline, draft a chapter, make prose less AI, humanize writing, check for AI tells, or audit a manuscript. Covers both structural tells (linear plots, explained themes, no subplots) and prose tells (embodied-emotion overload, smell overuse, triads, lexical slop).
+description: Apply human-authenticity rules (from StoryScope AI-fiction research) while planning, drafting, or reviewing chapters in a SAGA-ICM workspace. Use whenever the user asks to plan an outline, draft a chapter, make prose less AI, humanize writing, check for AI tells, or audit a manuscript. Covers both structural tells (linear plots, explained themes, no subplots) and prose tells (embodied-emotion overload, smell overuse, triads, lexical slop).
 ---
 
 # Narrative Authenticity

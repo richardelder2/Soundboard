@@ -3,34 +3,20 @@ type: StageContract
 stage_id: "01_onboarding"
 name: Project Kickoff & Context Compilation
 inputs:
-  - setup/comfort_scifi_blueprint.md # (Default blueprint; substitute other setup/*_blueprint.md as chosen)
+  - setup/comfort_scifi_blueprint.md
   - setup/genre_bibles/INDEX.md
 outputs:
   - stages/01_onboarding/output/preferences.json
   - stages/01_onboarding/output/bible/world_bible.md
   - stages/01_onboarding/output/bible/genre_bible.md
-  - stages/01_onboarding/output/bible/locations/
-  - stages/01_onboarding/output/bible/factions/
   - stages/01_onboarding/output/characters/
   - stages/01_onboarding/output/tell_allowlist.md
 templates:
-  - _config/templates/world_bible.template.md
   - _config/templates/character.template.md
-  - _config/templates/location.template.md
-  - _config/templates/faction.template.md
-  - _config/templates/magic_tech_system.template.md
-  - _config/templates/timeline.template.md
-  - _config/templates/sensory_lexicon.template.md
   - _config/templates/tell_allowlist.template.md
 ---
 
 # Stage 01: Onboarding Context
-
-## 📁 Workspace Isolation Rule: One Book = One Dedicated Folder
-**Every novel project MUST exist in its own dedicated workspace folder.** Never write novel artifacts or draft chapters directly inside the Soundboard engine/template repository.
-- **Check Workspace Context:** Before launching the onboarding interview, verify if the agent is operating inside the root Soundboard tool repository or a dedicated book folder.
-- **Scaffold Dedicated Folder:** If starting a new novel from the root tool repository, determine the project title or directory name with the author and scaffold the book vault: `node scripts/soundboard.js init <folder_path>`.
-- **Target Outputs to Project Vault:** All onboarding artifacts (`preferences.json`, `world_bible.md`, `genre_bible.md`, `characters/`) and downstream stages belong strictly inside that novel's dedicated folder.
 
 Three execution paths produce **identical artifacts**. Path A is preferred whenever an agent harness (Claude Code, Codex, Antigravity, …) is present; Path B is the fallback for terminal-only or headless use; Path C applies whenever the author arrives with existing material — which is often.
 
@@ -41,7 +27,7 @@ Three execution paths produce **identical artifacts**. Path A is preferred whene
 4. Continue to Trope Discovery (below), then write the Output Artifacts exactly as specified.
 
 ## Path B — Terminal wizard (needs a model backend in `.env`)
-1. Run `node scripts/soundboard.js wizard onboard [--blueprint=<name>]`.
+1. Run `node scripts/saga.js wizard onboard [--blueprint=<name>]`.
 2. The wizard asks the same questions via readline, coaches via the configured model, and writes the same artifacts (steps 3–4 of Path A still apply if run inside an agent session afterward).
 
 ## Path C — Intake of existing material (agent-led)
@@ -72,4 +58,3 @@ Authors rarely arrive empty-handed: a synopsis, a foolscap, character sheets, a 
 2. **`output/bible/world_bible.md`** — frontmatter `type: WorldBible`, `genre`, `focus`, `last_modified`; body = the approved synthesis grouped into: Core Tech & World Rules · Setting & Aesthetic · Character Dynamics · Central Emergency & Stakes.
 3. **`output/bible/genre_bible.md`** — the chosen genre bible template with every `[FIELD]` filled.
 4. **`output/characters/<name>.md`** (one per significant character) — from `_config/templates/character.template.md`: role, **arc_type** (positive change / flat / disillusionment / corruption / static), the arc engine (want / need / wound / lie / truth), introduction mode, voice register + sample lines. During the interview, listen for arc raw material — the wound and the lie usually surface in answers about flaws and blindspots; capture them in the character's own fields, and let Stage 02's Character Arc Pass make the arc-type call with the author.
-

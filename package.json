@@ -1,12 +1,12 @@
 {
-  "name": "soundboard",
-  "version": "1.0.0",
-  "description": "Soundboard: The Author's Intelligent Sounding Board & Narrative Console (Token-disciplined novel engineering system)",
+  "name": "saga-icm",
+  "version": "3.0.0",
+  "description": "Portable, token-efficient novel engineering system using Interpretable Context Methodology and Open Knowledge Format",
   "type": "module",
   "bin": {
     "soundboard": "./scripts/soundboard.js",
     "sb": "./scripts/soundboard.js",
-    "saga": "./scripts/soundboard.js"
+    "saga": "./scripts/saga.js"
   },
   "scripts": {
     "status": "node ./scripts/soundboard.js status",
@@ -14,33 +14,26 @@
     "okf-index": "node ./scripts/soundboard.js okf-index",
     "okf-lint": "node ./scripts/soundboard.js okf-lint",
     "audit": "node ./scripts/soundboard.js audit",
-    "diag": "node ./scripts/soundboard.js diag all",
     "test": "node ./tests/run_tests.js"
   },
   "engines": {
     "node": ">=18"
   },
-  "author": "Richard Elder",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/richardelder2/Soundboard.git"
+    "url": "https://github.com/richardelder2/saga-icm.git"
   },
-  "bugs": {
-    "url": "https://github.com/richardelder2/Soundboard/issues"
-  },
-  "homepage": "https://github.com/richardelder2/Soundboard#readme",
   "keywords": [
-    "novel-writing",
+    "ai-writing",
+    "novel-generator",
     "creative-writing",
-    "narrative-architecture",
-    "storytelling",
-    "story-grid",
-    "icm",
-    "ade",
-    "antigravity",
     "claude-code",
-    "agents"
+    "antigravity",
+    "interpretable-context-methodology",
+    "open-knowledge-format",
+    "narrative-craft"
   ],
+  "author": "Richard Elder & Antigravity",
+  "license": "MIT",
   "dependencies": {}
 }

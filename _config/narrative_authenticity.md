@@ -19,7 +19,7 @@ These are **dials, not switches**. Every rule below is a statistical tendency in
 
 1. During **planning (Stage 02)**, make deliberate choices on each structural dial and record them in `structure_plan.md`.
 2. During **drafting (Stage 03)**, obey the structure plan and the prose rules.
-3. During **diagnostics (Stage 04)**, audit against both (see `_config/narrative_audit_rubric.md` and `node scripts/soundboard.js audit`).
+3. During **diagnostics (Stage 04)**, audit against both (see `_config/narrative_audit_rubric.md` and `node scripts/saga.js audit`).
 4. **Vary the dials between chapters.** Uniformity is itself the strongest tell.
 
 ---
@@ -114,6 +114,6 @@ When Claude (or a Claude-based agent) drafts, it exhibits specific measured habi
 
 ## Verification
 
-- Mechanical scan: `node scripts/soundboard.js audit` (counts what is countable — emotion modes, smell density, dialogue ratio, tells, rhythm variance).
+- Mechanical scan: `node scripts/saga.js audit` (counts what is countable — emotion modes, smell density, dialogue ratio, tells, rhythm variance).
 - Judgment audit: score chapters against `_config/narrative_audit_rubric.md` (the un-countable structural features).
 - Both run in Stage 04; structural failures route back to Stage 02, prose failures to Stage 03.

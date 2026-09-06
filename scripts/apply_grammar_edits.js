@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { getDraftingDir, getReviewDir } from './path_helper.js';
 
 const cwd = process.cwd();
-const REVISION_DIR = getReviewDir(cwd);
+const REVISION_DIR = path.join(cwd, '03_Revision');
 const DRAFTING_DIR = getDraftingDir(cwd);
 const PLAYBOOK_PATH = path.join(REVISION_DIR, 'curated_grammar_playbook.md');
 

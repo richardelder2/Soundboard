@@ -10,44 +10,47 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-
-import { getReviewDir, getChapterFiles } from './path_helper.js';
+import { getDraftingDir, getReviewDir, getChapterFiles } from './path_helper.js';
 
 const cwd = process.cwd();
-const customTarget = process.argv[2];
-const files = getChapterFiles(customTarget);
-const REVIEW_DIR = getReviewDir();
+const DRAFTING_DIR = getDraftingDir(cwd);
+const STORY_BIBLE_SETTINGS_DIR = path.join(cwd, '00_Story_Bible', 'settings');
+const REVIEW_DIR = getReviewDir(cwd);
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'lore_density_report.md');
 
-const BIBLE_DIR = path.join(cwd, 'stages', '01_onboarding', 'output', 'bible');
-const LEGACY_SETTINGS_DIR = path.join(cwd, '00_Story_Bible', 'settings');
+if (!fs.existsSync(DRAFTING_DIR)) {
+  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
+  process.exit(1);
+}
 
-// 1. Compile Settings and Lore Terms
+if (!fs.existsSync(REVIEW_DIR)) {
+  fs.mkdirSync(REVIEW_DIR, { recursive: true });
+}
+
+// 1. Compile Settings and Lore Terms from Story Bible
 const LORE_TERMS = new Set(['conglomerate', 'hephaestus', 'aegis', 'saganet', 'high deck', 'sector zero', 'hab-ring', 'promenade', 'cradle']);
 
-[BIBLE_DIR, LEGACY_SETTINGS_DIR].forEach(dir => {
-  if (fs.existsSync(dir)) {
-    const termFiles = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
-    termFiles.forEach(file => {
-      const filePath = path.join(dir, file);
-      const content = fs.readFileSync(filePath, 'utf8');
-      const baseName = path.basename(file, '.md').toLowerCase();
-      LORE_TERMS.add(baseName);
+if (fs.existsSync(STORY_BIBLE_SETTINGS_DIR)) {
+  const settingsFiles = fs.readdirSync(STORY_BIBLE_SETTINGS_DIR).filter(f => f.endsWith('.md'));
+  settingsFiles.forEach(file => {
+    const filePath = path.join(STORY_BIBLE_SETTINGS_DIR, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const baseName = path.basename(file, '.md').toLowerCase();
+    LORE_TERMS.add(baseName);
     
-      // Add words from headers as potential lore terms
-      const lines = content.split(/\r?\n/);
-      lines.forEach(line => {
-        const headerMatch = line.match(/^#+\s+(.+)/);
-        if (headerMatch) {
-          headerMatch[1].split(' ').forEach(w => {
-            const clean = w.replace(/[^\w]/g, '').toLowerCase();
-            if (clean.length > 3) LORE_TERMS.add(clean);
-          });
-        }
-      });
+    // Add words from headers as potential lore terms
+    const lines = content.split(/\r?\n/);
+    lines.forEach(line => {
+      const headerMatch = line.match(/^#+\s+(.+)/);
+      if (headerMatch) {
+        headerMatch[1].split(' ').forEach(w => {
+          const clean = w.replace(/[^\w]/g, '').toLowerCase();
+          if (clean.length > 3) LORE_TERMS.add(clean);
+        });
+      }
     });
-  }
-});
+  });
+}
 
 // Pre-compile term regexes for multi-word and hyphenated support
 const termRegexes = Array.from(LORE_TERMS).map(term => {
@@ -60,18 +63,18 @@ const termRegexes = Array.from(LORE_TERMS).map(term => {
   };
 });
 
-if (files.length === 0) {
-  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
-  process.exit(0);
-}
-
-console.log(`Analyzing lore density across ${files.length} chapter(s)...`);
+const files = fs.readdirSync(DRAFTING_DIR)
+  .filter(f => /^(chapter_?\d+|ch_?\d+)\.md$/i.test(f))
+  .sort((a, b) => {
+    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
+    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
+    return numA - numB;
+  });
 
 const chaptersData = [];
 
 files.forEach(file => {
-  const filePath = file;
-  const fileName = path.basename(file);
+  const filePath = path.join(DRAFTING_DIR, file);
   const content = fs.readFileSync(filePath, 'utf8');
   const cleanContent = content.replace(/^---[\s\S]*?---/, '');
   const paragraphs = cleanContent.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
@@ -116,7 +119,7 @@ files.forEach(file => {
   const overallDensity = (totalLoreMentions / totalWords) * 100 || 0;
 
   chaptersData.push({
-    file: fileName,
+    file,
     wordCount: totalWords,
     loreCount: totalLoreMentions,
     density: parseFloat(overallDensity.toFixed(2)),
@@ -170,6 +173,5 @@ if (dumpCount === 0) {
 
 fs.writeFileSync(OUTPUT_REPORT, mdReport, 'utf8');
 
-const relReport = path.relative(cwd, OUTPUT_REPORT).replace(/\\/g, '/');
 console.log(`Lore density analysis complete:`);
-console.log(`- Markdown report written to: ${relReport}`);
+console.log(`- Markdown report written to: 04_Review/lore_density_report.md`);

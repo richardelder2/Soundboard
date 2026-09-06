@@ -7,6 +7,8 @@ last_modified: 2026-09-04
 stages: [03_drafting, 04_diagnostics_edits]
 genres: []
 scope: scene
+subtype: character_engine
+confidence: practitioner_method
 provides: [voice_differentiation, idiolect_filters, perceptual_bias]
 requires: [three_registers_of_dialogue_subtext]
 diagnostics: [dialogue_ratio, voice_drift]

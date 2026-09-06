@@ -18,9 +18,9 @@ inputs:
 # Stage 04: Diagnostics & Copy-Edits
 
 ## Process
-1. **Mechanical scan**: run `node scripts/soundboard.js audit` (wraps `scripts/narrative_audit.js`). It writes per-chapter reports to `stages/04_diagnostics_edits/output/reports/` covering emotion-mode balance, olfactory density, dialogue ratio, sentence/paragraph rhythm variance, lexical tells, triad stacking, em-dash rate, and end-of-chapter moralizing — and records each chapter's verdict as `last_audit` in `manuscript.json`.
+1. **Mechanical scan**: run `node scripts/saga.js audit` (wraps `scripts/narrative_audit.js`). It writes per-chapter reports to `stages/04_diagnostics_edits/output/reports/` covering emotion-mode balance, olfactory density, dialogue ratio, sentence/paragraph rhythm variance, lexical tells, triad stacking, em-dash rate, and end-of-chapter moralizing — and records each chapter's verdict as `last_audit` in `manuscript.json`.
 2. **Continuity check**:
-   - Run `node scripts/soundboard.js continuity` (near-duplicate and orphaned proper nouns → `reports/continuity_names.md`).
+   - Run `node scripts/saga.js continuity` (near-duplicate and orphaned proper nouns → `reports/continuity_names.md`).
    - Verify the chapter against `canon.md`: every `[unverified chN]` tag is checked against prior canon — on conflict the DRAFT loses unless the change is a deliberate amendment logged in canon's Amendments table. Untag verified facts and bump `last_verified_chapter`.
 3. **Judgment audit**: score the manuscript against `_config/narrative_audit_rubric.md` (the structural features no scanner can count). Cross-check intentional loose ends against the `structure_plan.md` ledger so they are not "fixed."
 4. **Trope delivery audit**: walk the obligatory-scene ledger in `structure_plan.md` — every promised beat delivered on page, at roughly the genre bible's percentage position, at full strength. Run the bible's own audits from `stages/02_planning/output/trackers/` (fair-play accounting, comfort-contract check, heat-ladder progression, lore-debt due dates). A missing or weakened obligatory scene is a **structural failure** — route to Stage 02/03, and never accept "we subverted it" as a fix for a reader-contract beat.
@@ -38,4 +38,3 @@ inputs:
 
 ## Gate
 A chapter passes to Stage 05 only when: mechanical scan shows no red flags, canon check is clean (no remaining `[unverified]` tags for it), the rubric verdict is `PASS`, and its obligatory-scene ledger entries AND scheduled arc beats are delivered. Then and only then set `status: passed`.
-

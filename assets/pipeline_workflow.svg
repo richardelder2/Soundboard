@@ -1,0 +1,119 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 320' width='100%' height='100%'>
+  <defs>
+    <linearGradient id='cardGrad' x1='0%' y1='0%' x2='0%' y2='100%'>
+      <stop offset='0%' stop-color='#161d2f'/>
+      <stop offset='100%' stop-color='#0f1422'/>
+    </linearGradient>
+    <linearGradient id='strokeGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#38bdf8'/>
+      <stop offset='50%' stop-color='#818cf8'/>
+      <stop offset='100%' stop-color='#c084fc'/>
+    </linearGradient>
+    <filter id='dropShadow' x='-10%' y='-10%' width='120%' height='120%'>
+      <feDropShadow dx='0' dy='8' stdDeviation='10' flood-color='#000000' flood-opacity='0.4'/>
+    </filter>
+  </defs>
+
+  <style>
+    .stage-card { fill: url(#cardGrad); stroke: #2a3449; stroke-width: 1.5px; rx: 10px; }
+    .stage-card-active { fill: url(#cardGrad); stroke: #38bdf8; stroke-width: 2px; rx: 10px; }
+    .badge { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+    .stage-num { fill: #38bdf8; }
+    .stage-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; font-weight: 700; fill: #f1f5f9; }
+    .item { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11.5px; fill: #94a3b8; line-height: 16px; }
+    .arrow { stroke: #475569; stroke-width: 2.5px; fill: none; stroke-linecap: round; }
+    .arrow-head { fill: #475569; }
+    .loop-line { stroke: #c084fc; stroke-width: 2px; stroke-dasharray: 4 4; fill: none; }
+    .loop-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; font-weight: 600; fill: #c084fc; text-anchor: middle; }
+  </style>
+
+  <!-- Connectors (Horizontal Arrows) -->
+  <g>
+    <!-- 01 -> 02 -->
+    <path d='M 180 130 L 210 130' class='arrow'/>
+    <polygon points='210,126 218,130 210,134' class='arrow-head'/>
+
+    <!-- 02 -> 03 -->
+    <path d='M 380 130 L 410 130' class='arrow'/>
+    <polygon points='410,126 418,130 410,134' class='arrow-head'/>
+
+    <!-- 03 -> 04 -->
+    <path d='M 580 130 L 610 130' class='arrow'/>
+    <polygon points='610,126 618,130 610,134' class='arrow-head'/>
+
+    <!-- 04 -> 05 -->
+    <path d='M 780 130 L 810 130' class='arrow'/>
+    <polygon points='810,126 818,130 810,134' class='arrow-head'/>
+
+    <!-- Iteration loop between 04 and 03 -->
+    <path d='M 700 232 C 700 270, 500 270, 500 232' class='loop-line'/>
+    <polygon points='496,238 500,230 504,238' fill='#c084fc'/>
+    <rect x='540' y='256' width='120' height='20' rx='4' fill='#1e1b4b' stroke='#4338ca' stroke-width='1'/>
+    <text x='600' y='270' class='loop-text'>REVISION LOOP</text>
+  </g>
+
+  <!-- STAGE 01 -->
+  <g filter='url(#dropShadow)'>
+    <rect x='20' y='30' width='160' height='200' class='stage-card'/>
+    <rect x='34' y='46' width='66' height='18' rx='4' fill='#0c4a6e'/>
+    <text x='40' y='59' class='badge stage-num'>STAGE 01</text>
+    <text x='34' y='86' class='stage-title'>Onboarding</text>
+    <text x='34' y='114' class='item'>• Story World Bible</text>
+    <text x='34' y='136' class='item'>• Character Cast</text>
+    <text x='34' y='158' class='item'>• Filled Trope Stack</text>
+    <text x='34' y='180' class='item'>• Tell Allowlist</text>
+    <text x='34' y='202' class='item'>• Author Preferences</text>
+  </g>
+
+  <!-- STAGE 02 -->
+  <g filter='url(#dropShadow)'>
+    <rect x='220' y='30' width='160' height='200' class='stage-card'/>
+    <rect x='234' y='46' width='66' height='18' rx='4' fill='#0c4a6e'/>
+    <text x='240' y='59' class='badge stage-num'>STAGE 02</text>
+    <text x='234' y='86' class='stage-title'>Planning</text>
+    <text x='234' y='114' class='item'>• Foolscap Page</text>
+    <text x='234' y='136' class='item'>• Structure Plan</text>
+    <text x='234' y='158' class='item'>• Obligatory Ledger</text>
+    <text x='234' y='180' class='item'>• Granular Beats</text>
+    <text x='234' y='202' class='item'>• manuscript.json</text>
+  </g>
+
+  <!-- STAGE 03 -->
+  <g filter='url(#dropShadow)'>
+    <rect x='420' y='30' width='160' height='200' class='stage-card'/>
+    <rect x='434' y='46' width='66' height='18' rx='4' fill='#1e1b4b'/>
+    <text x='440' y='59' class='badge' fill='#a855f7'>STAGE 03</text>
+    <text x='434' y='86' class='stage-title'>Drafting</text>
+    <text x='434' y='114' class='item'>• Chapter Kit Packing</text>
+    <text x='434' y='136' class='item'>• Canon Fact Grounding</text>
+    <text x='434' y='158' class='item'>• Trailing Voice Anchor</text>
+    <text x='434' y='180' class='item'>• Co-Write / Solo Path</text>
+    <text x='434' y='202' class='item'>• Anti-Drift Prose</text>
+  </g>
+
+  <!-- STAGE 04 -->
+  <g filter='url(#dropShadow)'>
+    <rect x='620' y='30' width='160' height='200' class='stage-card'/>
+    <rect x='634' y='46' width='66' height='18' rx='4' fill='#064e3b'/>
+    <text x='640' y='59' class='badge' fill='#34d399'>STAGE 04</text>
+    <text x='634' y='86' class='stage-title'>Diagnostics</text>
+    <text x='634' y='114' class='item'>• Cadence &amp; Rhythm</text>
+    <text x='634' y='136' class='item'>• AI Prose Tell Density</text>
+    <text x='634' y='158' class='item'>• Canon &amp; Continuity</text>
+    <text x='634' y='180' class='item'>• Repetition &amp; POV</text>
+    <text x='634' y='202' class='item'>• Revision Playbooks</text>
+  </g>
+
+  <!-- STAGE 05 -->
+  <g filter='url(#dropShadow)'>
+    <rect x='820' y='30' width='160' height='200' class='stage-card'/>
+    <rect x='834' y='46' width='66' height='18' rx='4' fill='#78350f'/>
+    <text x='840' y='59' class='badge' fill='#fbbf24'>STAGE 05</text>
+    <text x='834' y='86' class='stage-title'>Publishing</text>
+    <text x='834' y='114' class='item'>• 4-Gate Clearance</text>
+    <text x='834' y='136' class='item'>• Tamper-Proof Audit</text>
+    <text x='834' y='158' class='item'>• Clean HTML Compile</text>
+    <text x='834' y='180' class='item'>• Standard EPUB Build</text>
+    <text x='834' y='202' class='item'>• Release Packaging</text>
+  </g>
+</svg>

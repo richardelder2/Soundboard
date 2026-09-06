@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const BIN_NAME = path.basename(process.argv[1], '.js') || 'soundboard';
-const APP_NAME = BIN_NAME === 'saga' ? 'SAGA-ICM' : 'Soundboard';
+const APP_NAME = 'Soundboard';
 
 export function readText(p) {
   return fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
@@ -915,7 +915,7 @@ function handleRunStage(stageId) {
 
 function handlePackChapter(chId) {
   if (!chId) {
-    console.error(`Error: Please specify a chapter number (e.g. node scripts/${binName}.js pack-chapter 1)`);
+    console.error(`Error: Please specify a chapter number (e.g. node scripts/${BIN_NAME}.js pack-chapter 1)`);
     process.exit(1);
   }
 
@@ -924,11 +924,14 @@ function handlePackChapter(chId) {
   printHeader(`Chapter ${num} Context Kit Packaging`);
 
   let totalKitChars = 0;
+  const kitSections = [];
   function emitKitSection(title, content) {
     console.log(`--- ${title} ---`);
     console.log(content.trim());
     console.log('-------------------------------------------------------\n');
-    totalKitChars += content.length;
+    const sectionChars = content.length;
+    totalKitChars += sectionChars;
+    kitSections.push({ title, chars: sectionChars, tokens: Math.ceil(sectionChars / 4) });
   }
 
   let manifest = null;
@@ -942,6 +945,16 @@ function handlePackChapter(chId) {
     } catch (e) {
       console.warn(`Could not read manuscript.json: ${e.message}`);
     }
+  }
+
+  // Extract explicit entities from manuscript.json
+  const explicitEntities = new Set();
+  if (chEntry && chEntry.entities) {
+    const list = Array.isArray(chEntry.entities) ? chEntry.entities : String(chEntry.entities).split(',');
+    list.forEach(e => {
+      const clean = e.replace(/[\[\]]/g, '').trim().toLowerCase();
+      if (clean) explicitEntities.add(clean);
+    });
   }
 
   // 1. Resolve Beat file from manuscript.json or conventions
@@ -958,17 +971,42 @@ function handlePackChapter(chId) {
     beatFile = candidates.find(c => fs.existsSync(c));
   }
 
+  let beatText = '';
   if (!beatFile) {
     console.log(`\x1b[33mWarning: Beat file for Chapter ${num} not found.\x1b[0m`);
   } else {
     console.log(`\x1b[32m✔ Loaded Beats: ${beatFile}\x1b[0m\n`);
-    const beatContent = readText(beatFile);
-    emitKitSection('CHAPTER BEATS', beatContent);
+    beatText = readText(beatFile);
+    emitKitSection('CHAPTER BEATS', beatText);
 
-    const linkMatches = [...beatContent.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)];
+    // Extract entities from beat frontmatter and markdown links
+    const fmMatch = beatText.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    if (fmMatch) {
+      const inline = fmMatch[1].match(/^entities:\s*\[(.*?)\]/m);
+      if (inline) {
+        inline[1].split(',').map(s => s.trim().replace(/^["']|["']$/g, '').replace(/[\[\]]/g, '')).forEach(e => {
+          if (e) explicitEntities.add(e.toLowerCase());
+        });
+      } else {
+        const lines = fmMatch[1].split(/\r?\n/);
+        let inEnt = false;
+        for (const l of lines) {
+          if (/^entities:\s*$/.test(l)) { inEnt = true; continue; }
+          if (inEnt) {
+            const m = l.match(/^\s+-\s+["']?([^"'\r\n#]+)["']?/);
+            if (m) explicitEntities.add(m[1].replace(/[\[\]]/g, '').trim().toLowerCase());
+            else if (/^\S/.test(l)) inEnt = false;
+          }
+        }
+      }
+    }
+
+    const linkMatches = [...beatText.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)];
     if (linkMatches.length > 0) {
       let entitySection = '';
       linkMatches.forEach(match => {
+        const rawName = match[1].replace(/[\[\]]/g, '').trim();
+        if (rawName) explicitEntities.add(rawName.toLowerCase());
         const linkPath = match[2].replace(/\//g, path.sep);
         const resolved = path.resolve(path.dirname(beatFile), linkPath);
         if (fs.existsSync(resolved)) {
@@ -981,58 +1019,134 @@ function handlePackChapter(chId) {
     }
   }
 
-  // 2. Mandatory Canon Facts (Layer 4) with Selective Entity Inlining
+  // 2. Mandatory Canon Facts (Layer 4) with Selective Entity Inlining & Graceful Fallback
   const canonFile = path.join('stages', '02_planning', 'output', 'canon.md');
   if (fs.existsSync(canonFile)) {
     const fullCanon = readText(canonFile);
-    const beatText = beatFile ? readText(beatFile) : '';
-
     const canonLines = fullCanon.split(/\r?\n/);
-    const tableRows = [];
-    const universalLines = [];
-    let inTable = false;
 
-    canonLines.forEach(l => {
+    let currentSection = '';
+    const globalRows = [];
+    const entityRows = [];
+    let tableHeader = '| Entity | Attribute | Value | First Asserted | Status |';
+
+    canonLines.forEach((l, idx) => {
+      const hMatch = l.match(/^#{1,3}\s+(.*)$/);
+      if (hMatch) {
+        currentSection = hMatch[1].trim();
+        return;
+      }
       if (l.trim().startsWith('|') && !l.includes('---')) {
         const cells = l.split('|').map(c => c.trim()).filter(Boolean);
-        if (cells.length >= 3 && !cells[0].toLowerCase().includes('entity') && !cells[0].toLowerCase().includes('character')) {
-          tableRows.push({ raw: l, entity: cells[0] });
-          inTable = true;
-          return;
+        if (cells.length >= 3) {
+          const firstCell = cells[0].toLowerCase();
+          if (firstCell === 'entity' || firstCell === 'character' || firstCell === '[entity]' || firstCell === '[character]') {
+            tableHeader = l;
+            return;
+          }
+          const rawEntity = cells[0];
+          const cleanEntity = rawEntity.replace(/[\[\]]/g, '').trim();
+          const cleanEntityLower = cleanEntity.toLowerCase();
+
+          // Check for global scope:
+          // 1. Any cell contains "global" or "[global]" or "scope: global"
+          // 2. Section header indicates world rules, mechanics, numbers, quantities, magic, system, laws, setting
+          // 3. Entity is named "world", "rule", "rules", "magic", "setting", "system", "laws", "cosmology"
+          const isGlobalSection = /world|rule|mechanic|number|quantit|system|magic|setting|cosmolog|law/i.test(currentSection);
+          const hasGlobalCell = cells.some(c => /\b(scope:\s*global|\[global\]|^global$)\b/i.test(c));
+          const isGlobalEntity = /^(world|magic|rule|rules|system|mechanics|setting|laws|cosmology)$/i.test(cleanEntityLower);
+
+          const isGlobal = hasGlobalCell || isGlobalSection || isGlobalEntity;
+          const rowObj = {
+            raw: l,
+            entity: cleanEntity,
+            entityLower: cleanEntityLower,
+            section: currentSection,
+            firstAsserted: cells[3] || '',
+            index: idx,
+            isGlobal
+          };
+
+          if (isGlobal) {
+            globalRows.push(rowObj);
+          } else {
+            entityRows.push(rowObj);
+          }
         }
-      }
-      if (!inTable) {
-        universalLines.push(l);
-      } else if (!l.trim().startsWith('|')) {
-        inTable = false;
-        universalLines.push(l);
       }
     });
 
-    if (tableRows.length > 15 && beatText.length > 0) {
-      const relevantRows = tableRows.filter(r => {
-        const cleanName = r.entity.replace(/[\[\]]/g, '').trim();
-        const escaped = cleanName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-        const regex = new RegExp(`\\b${escaped}\\b`, 'i');
-        return regex.test(beatText);
-      });
+    const totalRows = globalRows.length + entityRows.length;
 
-      if (relevantRows.length > 0) {
-        const selectiveCanonText = [
-          '# Established Canon (Selective Entity Filtering)',
-          `*Selective inlining for Ch ${num}: showing ${relevantRows.length} relevant entity facts out of ${tableRows.length} total.*\n`,
-          '| Entity | Attribute | Value | First Asserted | Status |',
-          '|---|---|---|---|---|',
-          ...relevantRows.map(r => r.raw),
-          '\n## Universal World Rules & Numbers',
-          ...universalLines.filter(l => l.trim().length > 0)
-        ].join('\n');
-        emitKitSection('ESTABLISHED CANON (Filtered Relevance)', selectiveCanonText);
-      } else {
-        emitKitSection('ESTABLISHED CANON (Mandatory Facts)', fullCanon);
-      }
-    } else {
+    if (totalRows <= 15) {
+      // Small canon: Safe to inline completely
       emitKitSection('ESTABLISHED CANON (Mandatory Facts)', fullCanon);
+    } else {
+      // Large canon: Filter deterministically or degrade gracefully
+      let matchedRows = [];
+      if (explicitEntities.size > 0) {
+        matchedRows = entityRows.filter(r => {
+          for (const ent of explicitEntities) {
+            if (r.entityLower === ent || r.entityLower.includes(ent) || ent.includes(r.entityLower)) {
+              return true;
+            }
+          }
+          return false;
+        });
+      } else if (beatText.length > 0) {
+        matchedRows = entityRows.filter(r => {
+          const escaped = r.entityLower.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+          return new RegExp(`\\b${escaped}\\b`, 'i').test(beatText);
+        });
+      }
+
+      if (matchedRows.length > 0) {
+        // Filtered relevance path
+        const MAX_ENTITY_ROWS = 25;
+        const includedEntityRows = matchedRows.slice(0, MAX_ENTITY_ROWS);
+        const withheldCount = entityRows.length - includedEntityRows.length;
+
+        let content = '# Established Canon (Selective Entity Filtering)\n\n';
+        content += `*Selective inlining for Ch ${num}: showing ${includedEntityRows.length} relevant entity facts out of ${entityRows.length} tracked entity facts.*\n\n`;
+        content += tableHeader + '\n|---|---|---|---|---|\n';
+        content += includedEntityRows.map(r => r.raw).join('\n') + '\n\n';
+
+        if (globalRows.length > 0) {
+          content += '## Universal World Rules & Numbers (Always Active)\n';
+          content += tableHeader + '\n|---|---|---|---|---|\n';
+          content += globalRows.map(r => r.raw).join('\n') + '\n\n';
+        }
+
+        if (withheldCount > 0) {
+          content += `*Note: ${withheldCount} entity facts withheld to maintain ICM drafting kit budget (<6,000 tokens). Query specific facts on demand with: node scripts/${BIN_NAME}.js canon query <entity>*\n`;
+        }
+
+        emitKitSection('ESTABLISHED CANON (Filtered Relevance)', content);
+      } else {
+        // Degraded relevance fallback path
+        const MAX_RECENT_ENTITY_ROWS = 15;
+        const recentRows = entityRows.slice(-MAX_RECENT_ENTITY_ROWS);
+        const withheldCount = entityRows.length - recentRows.length;
+
+        let content = '# Established Canon (Degraded Relevance — Unlinked Chapter)\n\n';
+        content += `*Chapter ${num} has no explicit entity linkage. Showing all global world rules plus the ${recentRows.length} most recent canon facts.*\n\n`;
+
+        if (globalRows.length > 0) {
+          content += '## Universal World Rules & Numbers (Always Active)\n';
+          content += tableHeader + '\n|---|---|---|---|---|\n';
+          content += globalRows.map(r => r.raw).join('\n') + '\n\n';
+        }
+
+        if (recentRows.length > 0) {
+          content += '## Most Recent Established Facts\n';
+          content += tableHeader + '\n|---|---|---|---|---|\n';
+          content += recentRows.map(r => r.raw).join('\n') + '\n\n';
+        }
+
+        content += `*Note: Chapter ${num} has no explicit entity linkage. Showing all global world rules plus the ${recentRows.length} most recent canon facts. ${withheldCount} entity facts withheld to maintain ICM drafting kit budget (<6,000 tokens). Query specific facts on demand with: node scripts/${BIN_NAME}.js canon query <entity>*\n`;
+
+        emitKitSection('ESTABLISHED CANON (Degraded Relevance)', content);
+      }
     }
   }
 
@@ -1112,7 +1226,13 @@ function handlePackChapter(chId) {
   console.log(`\x1b[32m✔ Context kit compiled successfully. Ready for Stage 03 drafting.\x1b[0m`);
   console.log(`\x1b[1m[ICM Kit Budget: ~${estTokens.toLocaleString()} tokens / 6,000 target]\x1b[0m\n`);
   if (estTokens > 6000) {
-    console.log(`\x1b[33mWarning: Chapter kit exceeds target 6,000 tokens (${estTokens.toLocaleString()} tokens). Consider trimming referenced entity descriptions.\x1b[0m\n`);
+    kitSections.sort((a, b) => b.tokens - a.tokens);
+    const top = kitSections[0] || { title: 'Unknown', tokens: 0 };
+    console.log(`\x1b[33mWarning: Chapter kit exceeds target 6,000 tokens (${estTokens.toLocaleString()} tokens). Overrun caused primarily by: "${top.title}" (~${top.tokens.toLocaleString()} tokens).\x1b[0m\n`);
+    if (process.argv.includes('--strict')) {
+      console.error(`\x1b[31mError: Chapter kit exceeds maximum allowed budget under --strict mode (${estTokens.toLocaleString()} > 6,000 tokens).\x1b[0m\n`);
+      process.exit(1);
+    }
   }
 }
 

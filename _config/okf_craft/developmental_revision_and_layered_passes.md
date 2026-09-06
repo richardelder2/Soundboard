@@ -7,6 +7,8 @@ last_modified: 2026-09-04
 stages: [04_diagnostics_edits]
 genres: []
 scope: book
+subtype: prose_style
+confidence: practitioner_method
 provides: [revision_methodology, edit_triage, the_cut_pass]
 requires: [full_manuscript_continuity_pass_methodology]
 diagnostics: [narrative_audit, continuity]

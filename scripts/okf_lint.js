@@ -199,19 +199,29 @@ export function runOkfLint(options = {}) {
     }
 
     // Check word count & token budget
-    const words = (raw.match(/[\w'’-]+/g) || []).length;
-    const estTokens = Math.ceil(raw.length / 4);
-    if (words > 750 || estTokens > 900) {
-      if (strict) {
+    const budgetExempt = parseYamlScalar(fm, 'budget_exempt') === 'true';
+    const exemptReason = parseYamlScalar(fm, 'exempt_reason');
+
+    if (budgetExempt) {
+      if (!exemptReason || !exemptReason.trim()) {
         totalErrors++;
-        errorLogs.push(`${f}: Exceeds maximum token budget (${words} words, ~${estTokens} tokens > 900 limit).`);
-      } else {
-        totalWarnings++;
-        warnLogs.push(`${f}: Exceeds recommended target (${words} words, ~${estTokens} tokens). Consider trimming.`);
+        errorLogs.push(`${f}: Declares "budget_exempt: true" but lacks a valid "exempt_reason:".`);
       }
-    } else if (words > 450 || estTokens > 600) {
-      totalWarnings++;
-      warnLogs.push(`${f}: Approaching budget limit (${words} words, ~${estTokens} tokens; recommended < 600 tok).`);
+    } else {
+      const words = (raw.match(/[\w'’-]+/g) || []).length;
+      const estTokens = Math.ceil(raw.length / 4);
+      if (words > 750 || estTokens > 900) {
+        if (strict) {
+          totalErrors++;
+          errorLogs.push(`${f}: Exceeds maximum token budget (${words} words, ~${estTokens} tokens > 900 limit).`);
+        } else {
+          totalWarnings++;
+          warnLogs.push(`${f}: Exceeds recommended target (${words} words, ~${estTokens} tokens). Consider trimming.`);
+        }
+      } else if (words > 450 || estTokens > 600) {
+        totalWarnings++;
+        warnLogs.push(`${f}: Approaching budget limit (${words} words, ~${estTokens} tokens; recommended < 600 tok).`);
+      }
     }
 
     // Check markdown links

@@ -2,10 +2,13 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { getDraftingDir, getReviewDir, getChapterFiles } from './path_helper.js';
 import * as readline from 'readline';
 import { callGemini } from './gemini_helper.js';
 
-import { getDraftingDir, getPlanningDir, getChapterFiles } from './path_helper.js';
+const cwd = process.cwd();
+const DRAFTING_DIR = getDraftingDir(cwd);
+const PLANNING_DIR = path.join(cwd, '01_Planning');
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -19,19 +22,22 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== Soundboard Writer\'s Block Wizard (/unstuck) ===\x1b[0m\n');
+  console.log('\x1b[36m=== SAGA Writer\'s Block Wizard (/unstuck) ===\x1b[0m\n');
 
-  const files = getChapterFiles();
-  const DRAFTING_DIR = getDraftingDir();
-  const PLANNING_DIR = getPlanningDir();
-
-  if (files.length === 0) {
-    console.log('No drafting chapters found in stages/03_drafting/output/. Please initialize a chapter first.');
-    process.exit(0);
+  if (!fs.existsSync(DRAFTING_DIR)) {
+    console.error(`Error: Directory ${DRAFTING_DIR} does not exist. Please initialize project first.`);
+    process.exit(1);
   }
 
-  const chapters = files.map(f => path.basename(f));
+  // Find active chapters
+  const chapters = fs.readdirSync(DRAFTING_DIR)
+    .filter(f => f.endsWith('.md'))
+    .sort();
 
+  if (chapters.length === 0) {
+    console.log('No drafting chapters found in 02_Drafting/. Please initialize a chapter first.');
+    process.exit(1);
+  }
 
   console.log('Available drafting files:');
   chapters.forEach((ch, idx) => console.log(`  [${idx + 1}] ${ch}`));
@@ -39,22 +45,20 @@ async function main() {
   const chChoice = await askQuestion('\nSelect active chapter (default: last): ');
   const chIdx = chChoice ? parseInt(chChoice, 10) - 1 : chapters.length - 1;
   const activeChapterFile = chapters[chIdx] || chapters[chapters.length - 1];
-  const activeChapterPath = path.isAbsolute(activeChapterFile) ? activeChapterFile : path.join(DRAFTING_DIR, path.basename(activeChapterFile));
-  const relDraftPath = path.relative(process.cwd(), activeChapterPath).replace(/\\/g, '/');
+  const activeChapterPath = path.join(DRAFTING_DIR, activeChapterFile);
   
-  console.log(`\nReading context from \x1b[33m${relDraftPath}\x1b[0m...`);
+  console.log(`\nReading context from \x1b[33m02_Drafting/${activeChapterFile}\x1b[0m...`);
   const content = fs.readFileSync(activeChapterPath, 'utf8');
   const lastLines = content.split('\n').slice(-40).join('\n');
 
   // Read beatsheet if available
   let beatsheetContent = '';
-  const beatsDir = getBeatsDir();
-  const baseNum = path.basename(activeChapterPath).match(/\d+/)?.[0] || '01';
+  const beatsDir = path.join(PLANNING_DIR, 'beats');
+  const baseNum = activeChapterFile.match(/\d+/)?.[0] || '01';
   const beatsFile = `chapter_${baseNum}_beats.md`;
   const beatsPath = path.join(beatsDir, beatsFile);
   if (fs.existsSync(beatsPath)) {
-    const relBeatsPath = path.relative(process.cwd(), beatsPath).replace(/\\/g, '/');
-    console.log(`Found beatsheet: \x1b[32m${relBeatsPath}\x1b[0m`);
+    console.log(`Found beatsheet: \x1b[32m01_Planning/beats/${beatsFile}\x1b[0m`);
     beatsheetContent = fs.readFileSync(beatsPath, 'utf8');
   }
 
@@ -75,9 +79,9 @@ async function main() {
 
   const extraDetails = await askQuestion('\nAny extra details/context you want to guide the suggestions? (optional): ');
 
-  console.log('\n\x1b[36mCalling model to generate narrative forks...\x1b[0m');
+  console.log('\n\x1b[36mCalling Gemini to generate narrative forks...\x1b[0m');
   
-  const systemInstruction = 'You are the Soundboard Developmental Editor. Your goal is to help a stuck co-author find a creative way forward. Avoid generic advice; give 3 concrete narrative options specifically tailored to the characters, setting, and roadblock. No fluff, no introductory chatter, only the options.';
+  const systemInstruction = 'You are the SAGA Developmental Editor. Your goal is to help a stuck co-author find a creative way forward. Avoid generic advice; give 3 concrete narrative options specifically tailored to the characters, setting, and roadblock. No fluff, no introductory chatter, only the options.';
   
   const prompt = `ROADBLOCK TYPE: ${selectedType}
 ${extraDetails ? `EXTRA WRITER CONTEXT: ${extraDetails}\n` : ''}
@@ -89,14 +93,14 @@ ${beatsheetContent ? `BEATSHEET CONTEXT:\n${beatsheetContent}\n---` : ''}
 Generate 3 distinct, highly specific creative directions (Option A, Option B, Option C) to get the author unstuck. For each option, write a short title, a description of what happens, and 2-3 opening lines showing how to draft it. Make sure it adheres to high-viscosity, active, sensory-rich prose and avoids AI slop words.`;
 
   const suggestions = await callGemini(prompt, systemInstruction);
-  console.log('\n\x1b[32m--- Suggestions from Soundboard Editor ---\x1b[0m\n');
+  console.log('\n\x1b[32m--- Suggestions from SAGA Editor ---\x1b[0m\n');
   console.log(suggestions);
-  console.log('\n\x1b[32m-----------------------------------------\x1b[0m');
+  console.log('\n\x1b[32m------------------------------------\x1b[0m');
 
   const appendChoice = await askQuestion('\nWould you like to append these suggestions to the draft as a comment/scratchpad? (y/n): ');
   if (appendChoice.toLowerCase() === 'y') {
-    fs.appendFileSync(activeChapterPath, `\n\n<!--\n=== SOUNDBOARD UNSTUCK SUGGESTIONS ===\nRoadblock: ${selectedType}\n\n${suggestions}\n-->\n`);
-    console.log(`\n\x1b[32mSuggestions appended to ${relDraftPath} inside a HTML comment block!\x1b[0m`);
+    fs.appendFileSync(activeChapterPath, `\n\n<!--\n=== SAGA UNSTUCK SUGGESTIONS ===\nRoadblock: ${selectedType}\n\n${suggestions}\n-->\n`);
+    console.log(`\n\x1b[32mSuggestions appended to 02_Drafting/${activeChapterFile} inside a HTML comment block!\x1b[0m`);
   }
 }
 

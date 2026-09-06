@@ -8,16 +8,16 @@ Per ICM §3.2, agents consult this index to instantiate schema skeletons per sta
 
 | Template | Output Path | Purpose |
 |---|---|---|
-| `foolscap.template.md` | `stages/02_planning/output/foolscap.md` | One-page narrative architecture (commandments, theme). |
-| `outline.template.md` | `stages/02_planning/output/outline.md` | Beat-sheet outline expanding foolscap. |
+| `foolscap.template.md` | `stages/02_planning/output/foolscap.md` | One-page narrative architecture. |
+| `outline.template.md` | `stages/02_planning/output/outline.md` | Beat-sheet outline. |
 | `structure_plan.template.md` | `stages/02_planning/output/structure_plan.md` | Scene ledger, subplots, escalation, dials. |
-| `character_arcs.template.md` | `stages/02_planning/output/character_arcs.md` | Cast arcs, lie/truth schedules, resolution. |
-| `scene_beat.template.md` | `stages/02_planning/output/beats/chNN.md` | Granular 5-commandments, addiction loop. |
-| `manuscript.template.json` | `manuscript.json` | Central per-chapter production ledger. |
-| `canon.template.md` | `stages/02_planning/output/canon.md` | Living verified and unverified fact registry. |
-| `voice_exemplars.template.md` | `stages/02_planning/output/voice_exemplars.md` | POV registers and anti-drift prose targets. |
-| `tracker_lore_debt.template.md` | `stages/02_planning/output/trackers/lore_debt.md` | Narrative questions and payoff ledger. |
-| `threads.template.md` | `stages/02_planning/output/trackers/threads.md` | Narrative threads and subplot tracker. |
+| `character_arcs.template.md` | `stages/02_planning/output/character_arcs.md` | Cast arcs and lie/truth schedules. |
+| `scene_beat.template.md` | `stages/02_planning/output/beats/chNN.md` | Granular 5-commandments and scene dials. |
+| `manuscript.template.json` | `manuscript.json` | Central production ledger. |
+| `canon.template.md` | `stages/02_planning/output/canon.md` | Living fact registry. |
+| `voice_exemplars.template.md` | `stages/02_planning/output/voice_exemplars.md` | Anti-drift voice exemplars. |
+| `tracker_lore_debt.template.md` | `stages/02_planning/output/trackers/lore_debt.md` | Narrative questions and payoffs. |
+| `threads.template.md` | `stages/02_planning/output/trackers/threads.md` | Subplot and thread ledger. |
 
 ---
 

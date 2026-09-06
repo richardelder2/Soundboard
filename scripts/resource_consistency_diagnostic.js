@@ -10,20 +10,31 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { getDraftingDir, getReviewDir, getChapterFiles } from './path_helper.js';
 
-import { getReviewDir, getChapterFiles } from './path_helper.js';
-
-const customTarget = process.argv[2];
-const files = getChapterFiles(customTarget);
-const REVIEW_DIR = getReviewDir();
+const cwd = process.cwd();
+const DRAFTING_DIR = getDraftingDir(cwd);
+const REVIEW_DIR = getReviewDir(cwd);
 const OUTPUT_REPORT = path.join(REVIEW_DIR, 'resource_report.md');
 
-if (files.length === 0) {
-  console.log('No drafting chapters found. Provide a chapter path or run from a novel workspace.');
-  process.exit(0);
+if (!fs.existsSync(DRAFTING_DIR)) {
+  console.error(`Error: Directory ${DRAFTING_DIR} does not exist.`);
+  process.exit(1);
 }
 
-console.log(`Analyzing resource consistency across ${files.length} chapter(s)...`);
+if (!fs.existsSync(REVIEW_DIR)) {
+  fs.mkdirSync(REVIEW_DIR, { recursive: true });
+}
+
+const files = fs.readdirSync(DRAFTING_DIR)
+  .filter(f => /^(chapter_?\d+|ch_?\d+)\.md$/i.test(f))
+  .sort((a, b) => {
+    const numA = parseInt(a.match(/\d+/)?.[0] || '0', 10);
+    const numB = parseInt(b.match(/\d+/)?.[0] || '0', 10);
+    return numA - numB;
+  });
+
+console.log(`Analyzing resource consistency in ${files.length} chapters...`);
 
 const RESOURCE_PATTERNS = [
   { name: 'Battery', regex: /(\d+)\s*%\s*(?:battery|charge|power|capacitors)/i },
@@ -35,12 +46,11 @@ const RESOURCE_PATTERNS = [
 const timeline = [];
 
 files.forEach(file => {
-  const filePath = file;
-  const fileName = path.basename(file);
+  const filePath = path.join(DRAFTING_DIR, file);
   const content = fs.readFileSync(filePath, 'utf8');
   const cleanContent = content.replace(/^---[\s\S]*?---/, '');
   const lines = cleanContent.split('\n');
-  const chNum = parseInt(fileName.match(/\d+/)?.[0] || '0', 10);
+  const chNum = parseInt(file.match(/\d+/)?.[0] || '0', 10);
 
   lines.forEach((line, idx) => {
     const cleanLine = line.trim();

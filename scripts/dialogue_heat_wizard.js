@@ -15,7 +15,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== Soundboard Dialogue Tension Wizard (/dialogue-heat) ===\x1b[0m\n');
+  console.log('\x1b[36m=== SAGA Dialogue Tension Wizard (/dialogue-heat) ===\x1b[0m\n');
 
   console.log('Paste the flat dialogue exchange you want to heat up (press Enter when done):');
   const dialogueInput = await askQuestion('> ');
@@ -37,9 +37,9 @@ async function main() {
   };
   const selectedConflict = conflictMap[conflictChoice] || conflictMap['1'];
 
-  console.log('\n\x1b[36mCalling model to heat up dialogue...\x1b[0m');
+  console.log('\n\x1b[36mCalling SAGA Editor to heat up dialogue...\x1b[0m');
 
-  const systemInstruction = 'You are the Soundboard Developmental Editor. Your goal is to rewrite dialogue to add narrative friction, subtext, status changes, and dramatic tension. Output only the rewritten dialogue blocks and a brief explanation of how the tension is achieved. Do not add introductory conversational text.';
+  const systemInstruction = 'You are the SAGA Developmental Editor. Your goal is to rewrite dialogue to add narrative friction, subtext, status changes, and dramatic tension. Output only the rewritten dialogue blocks and a brief explanation of how the tension is achieved. Do not add introductory conversational text.';
   
   const prompt = `DIALOGUE SNIPPET:
 "${dialogueInput}"

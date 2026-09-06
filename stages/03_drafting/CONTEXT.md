@@ -39,5 +39,4 @@ outputs:
 3. **Fact Harvesting & Bookkeeping** (required before the chapter counts as drafted):
    - **Fact Harvesting:** Read the final draft (from either Path A or Path B). Identify any new hard facts established (names, numbers, physical attributes, timeline dates, object states). Append these to `canon.md` tagged `[unverified chN]`.
    - **Ledger Update:** Count the chapter's words, update the word counts and metadata, and change the chapter's `status` to `drafted` in `manuscript.json`.
-4. **Self-check**: Run `node scripts/soundboard.js audit` on the new chapter. If Path A, resolve red flags automatically. If Path B, compile the audit findings and present them gently to the author as editorial feedback.
-
+4. **Self-check**: Run `node scripts/saga.js audit` on the new chapter. If Path A, resolve red flags automatically. If Path B, compile the audit findings and present them gently to the author as editorial feedback.

@@ -16,48 +16,46 @@ keywords: ["status transactions", "Keith Johnstone", "dominance", "power dynamic
 
 # Keith Johnstone's Status Transactions
 
-In human social interaction, people almost never speak as absolute equals. Under Keith Johnstone’s dramaturgical theory of **Status Transactions**, every interaction—every line of dialogue, pause, posture shift, and glance—is an active maneuver on a **dynamic social seesaw**.
-
-When dialogue feels wooden, flat, or polite (the classic AI tell), it is almost always because the characters are interacting at an identical, static status level. Masterful scene choreography treats status as a **continuous, fluid transaction of territory, time, and attention**.
+Under Keith Johnstone’s dramaturgical theory of **Status Transactions**, social interactions operate on a **dynamic seesaw** of territory, time, and attention. Dialogue feels flat when characters speak at identical, static status levels.
 
 ---
 
-## 1. High Status vs. Low Status Behavioral Signals
+## 1. High-Status vs. Low-Status Behavioral Signals
 
-Status is not about socioeconomic class; it is about **real-time behavioral dominance within an immediate physical space**. A king can play low status to his executioner; a beggar can play high status to an emperor.
+Status reflects **real-time behavioral dominance in an immediate space**, not socioeconomic class:
 
-### High-Status Choreography (The Economy of Movement):
-*   **Stillness:** The head remains remarkably still when speaking. No unnecessary fidgeting, nodding, or twitching.
-*   **Temporal Control:** Speaks slowly, unhurriedly; pauses before answering without fear of being cut off; tolerates long, heavy silences.
-*   **Territorial Claim:** Spreads limbs; leans back; places elbows on tables; sits comfortably without asking permission; enters personal space without hesitation.
-*   **Gaze Mechanics:** Sustained, relaxed eye contact; looks away only when dismissive, never out of nervous reflex.
-*   **Verbal Syntax:** Declarative sentences; no qualifiers (*"perhaps"*, *"maybe"*, *"if you don't mind"*); gives commands or asks brief, direct questions.
+### High-Status Choreography (Economy of Movement):
+* **Stillness:** Head remains steady while speaking. No nervous fidgeting or nodding.
+* **Temporal Control:** Speaks unhurriedly; tolerates long, heavy silences without anxiety.
+* **Territorial Claim:** Spreads limbs, leans back, enters others' personal space without hesitation.
+* **Gaze Mechanics:** Sustained, relaxed eye contact; breaks gaze only when dismissive.
+* **Verbal Syntax:** Declarative sentences; commands or direct questions; zero qualifiers (*"perhaps"*, *"maybe"*).
 
-### Low-Status Choreography (The Burden of Accommodation):
-*   **Physical Restlessness:** Frequent nodding; touching own face, neck, or sleeves; shifting weight between feet; folding inward to occupy minimal space.
-*   **Temporal Anxiety:** Rushes speech; fills every conversational silence with nervous chatter, throat clearing, or self-deprecating laughs.
-*   **Territorial Subservience:** Backs away when approached; asks permission before touching objects or sitting; keeps hands clasped or hidden.
-*   **Gaze Mechanics:** Darting eye contact; looks down or breaks gaze instantly when eye contact is returned.
-*   **Verbal Syntax:** Heavy reliance on qualifiers, self-interruptions, profuse apologies, and interrogative inflections (*"Does that make sense?"*, *"I was just wondering..."*).
+### Low-Status Choreography (Burden of Accommodation):
+* **Physical Restlessness:** Frequent nodding, touching own neck/sleeves, folding inward to minimize space.
+* **Temporal Anxiety:** Rushes speech; fills conversational silences with nervous chatter.
+* **Territorial Subservience:** Yields physical space; seeks permission before sitting or touching objects.
+* **Gaze Mechanics:** Darting gaze; drops eyes immediately when contact is returned.
+* **Verbal Syntax:** Qualifiers, profuse apologies, self-interruptions (*"Does that make sense?"*, *"I was just wondering..."*).
 
 ---
 
 ## 2. The Seesaw Principle & Status Reversals
 
-*   **The Seesaw Law:** One character cannot raise their status without pushing the other character down, unless both are locked in an escalating **Status Duel**.
-*   **The Status Reversal (The Dramatic Climax of Dialogue):** The most electrifying scenes occur when a character who entered the room playing Low Status deliberately maneuvers their opponent into a trap and **seizes High Status**, forcing the formerly dominant character to collapse into frantic, Low-Status panic.
+* **Seesaw Law:** One character cannot raise status without depressing the other's, unless locked in a mutual **Status Duel**.
+* **Status Reversal:** The dramatic peak of a scene occurs when a character entering at Low Status springs a trap and **seizes High Status**, collapsing the formerly dominant character into panic.
 
 ```
-[Character A: High Status (Dominant)]  <==== Dialogue Friction ====>  [Character B: Low Status (Submissive)]
-                  │                                                                 │
-                  ▼                                                                 ▼
-[A loses control / blusters / panics]  <=== STATUS REVERSAL ===>  [B assumes calm, lethal dominance]
+[Character A: Dominant High Status]  <--->  [Character B: Submissive Low Status]
+                 │                                              │
+                 ▼                                              ▼
+[A blusters / panics / collapses]    <--->  [B assumes calm, lethal dominance]
 ```
 
 ---
 
-## 3. The Novelist's Dominance Choreography Rules
+## 3. Dominance Choreography Rules
 
-1.  **Block Status Physically:** When writing dialogue, anchor status in physical actions. Have the high-status character pour themselves a drink without offering one, or cut an apple with deliberate, rhythmic slowness while the other character talks.
-2.  **Use Silence as a Weapon:** The character who speaks least in a tense standoff is almost always the character holding the highest status.
-3.  **Audit the Qualifiers:** Strip nervous qualifiers (*"just"*, *"kind of"*, *"honestly"*, *"sort of"*) from high-status characters. Load them heavily onto characters under interrogation or social duress.
+1. **Block Status Physically:** Anchor status in objects—the dominant character pours a drink without offering one, or cuts an apple with deliberate slowness while the other speaks.
+2. **Silence as Weapon:** The agent who speaks least in a standoff usually holds higher status.
+3. **Audit Qualifiers:** Strip nervous qualifiers (*"just"*, *"sort of"*, *"honestly"*) from dominant voices; load them onto characters under duress.

@@ -10,7 +10,7 @@ last_modified: [YYYY-MM-DD]
 
 # Structure Plan
 
-*Produced by Stage 02 (Trope Delivery Pass + Structural Authenticity Pass). Stage 03 drafts against it; Stage 04 audits against it. Every section below is REQUIRED — an empty section means the pass isn't done.*
+*Stage 02 plan. Stage 03 drafts against it; Stage 04 audits against it. All sections required.*
 
 ## 1. Obligatory-scene ledger (reader contract — beats here are untouchable)
 | # | Promised beat (from genre bible / trope stack) | Bible position | Scheduled chapter | Delivered |
@@ -24,7 +24,7 @@ last_modified: [YYYY-MM-DD]
 ## 3. Nonlinearity plan
 | Device (flashback / time skip / achronological order) | Located at | Key fact it delays | Revealed at |
 |---|---|---|---|
-- **The recontextualizing revelation** (forces re-reading of earlier scenes): [what] at [chapter], recolors [which earlier scenes]
+- **Recontextualizing revelation:** [what] at [chapter], recolors [which earlier scenes]
 
 ## 4. Resolution variety table (not all protagonist-choice; internal-acceptance closes ≤ 1 major arc)
 | Arc | Resolution mode (protagonist choice / external fate / other characters / unresolved) | Where |
@@ -41,10 +41,9 @@ last_modified: [YYYY-MM-DD]
 ## 7. Escalation contour (1–5 per chapter; deliberately uneven — no flat or monotonic line)
 | Ch | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | … |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Intensity | | | | | | | | | | | |
-- Quiet chapters: [___] · False peak: [___] · Avalanche point (if any): [___] · Epilogue: [only if ledgered]
+- Quiet chapters: [___] · False peak: [___] · Avalanche: [___] · Epilogue: [___]
 
-## 8. Loose-end ledger (intentionally unresolved — Stage 04 must NOT "fix" these)
+## 8. Loose-end ledger (intentionally unresolved)
 | Thread | Introduced | Why it stays open |
 |---|---|---|
 

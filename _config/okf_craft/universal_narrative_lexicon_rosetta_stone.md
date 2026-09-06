@@ -12,6 +12,8 @@ provides: [lexicon_translation, craft_taxonomy_bridge]
 requires: [story_grid_macro]
 diagnostics: [narrative_audit]
 keywords: ["Rosetta Stone", "narrative lexicon", "craft mapping", "Save the Cat vs Story Grid"]
+budget_exempt: true
+exempt_reason: "Universal vocabulary cross-framework mapping table (Story Grid, Save the Cat, Hero's Journey, Truby, Harmon, Weiland). Splitting by axis breaks cross-framework lookup integrity."
 ---
 
 # The Universal Narrative Rosetta Stone

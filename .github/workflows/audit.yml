@@ -8,7 +8,10 @@ on:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout Code
@@ -20,7 +23,7 @@ jobs:
           node-version: 20
 
       - name: Run OKF Linter
-        run: npm run okf-lint
+        run: npm run okf-lint -- --strict
 
       - name: Run Test Suite
         run: npm test

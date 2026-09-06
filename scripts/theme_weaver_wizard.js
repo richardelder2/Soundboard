@@ -15,7 +15,7 @@ function askQuestion(query) {
 }
 
 async function main() {
-  console.log('\x1b[36m=== Soundboard Thematic Resonance Wizard (/theme-weaver) ===\x1b[0m\n');
+  console.log('\x1b[36m=== SAGA Thematic Resonance Wizard (/theme-weaver) ===\x1b[0m\n');
 
   const theme = await askQuestion('What core theme do you want to highlight in this scene? (e.g. Isolation, System Decay, Trust, Hubris):\n> ');
   if (!theme) {
@@ -25,9 +25,9 @@ async function main() {
 
   const setting = await askQuestion('\nDescribe the setting or room where the scene takes place:\n> ');
 
-  console.log('\n\x1b[36mCalling model to weave theme...\x1b[0m');
+  console.log('\n\x1b[36mCalling SAGA Developmental Editor to weave theme...\x1b[0m');
 
-  const systemInstruction = 'You are the Soundboard Developmental Editor. Your goal is to guide the writer in weaving thematic symbolism, physical motifs, and environmental metaphors into their story without being preachy or using exposition. Output only the suggestions and examples in clean markdown. Do not add introductory conversational text.';
+  const systemInstruction = 'You are the SAGA Developmental Editor. Your goal is to guide the writer in weaving thematic symbolism, physical motifs, and environmental metaphors into their story without being preachy or using exposition. Output only the suggestions and examples in clean markdown. Do not add introductory conversational text.';
   
   const prompt = `THEME: ${theme}
 SETTING: ${setting}

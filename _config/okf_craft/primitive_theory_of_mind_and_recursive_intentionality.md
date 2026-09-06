@@ -16,9 +16,7 @@ keywords: ["theory of mind", "intentionality", "second order belief", "psycholog
 
 # Theory of Mind Recursion & Cognitive Limits
 
-Human social intelligence evolved to track unseen psychological states—beliefs, desires, deceptions, and alliances—based on observable cues. In cognitive narratology, reading literature is recognized as an active exercise of **Theory of Mind (ToM)**.
-
-Readers do not merely follow plot actions; they run complex mental simulations tracking **recursive, nested intentionality** (who believes that who knows what about whom).
+In cognitive narratology, reading literature exercises **Theory of Mind (ToM)**. Readers track **recursive intentionality**—nested mental simulations of who believes what about whom.
 
 ---
 
@@ -26,45 +24,33 @@ Readers do not merely follow plot actions; they run complex mental simulations t
 
 Cognitive narratology measures social complexity through orders of embedded intentionality:
 
-*   **First-Order Intentionality (Zero Recursion):**
-    *   *Structure:* Agent has an autonomous mental state.
-    *   *Example:* "Marcus wants the encrypted keycard."
-*   **Second-Order Intentionality (Basic Social Modeling):**
-    *   *Structure:* Agent A holds a belief about Agent B’s mental state.
-    *   *Example:* "Marcus believes Elena knows where the keycard is hidden."
-*   **Third-Order Intentionality (Tactical Social Maneuvering):**
-    *   *Structure:* Agent A manipulates Agent B’s perception of Agent C.
-    *   *Example:* "Marcus hopes Elena suspects that Julian is planning to steal the keycard."
-*   **Fourth-Order Intentionality (High Dramatic Fiction / Dramatic Irony):**
-    *   *Structure:* The reader understands that Agent A is feigning ignorance to make Agent B believe that Agent C wants to deceive them.
-    *   *Example:* "The reader sees that Marcus pretends to trust Julian, knowing that Elena will warn Julian, forcing Julian to reveal his hidden confederates."
-*   **Fifth-Order Intentionality (The Cognitive Crash Threshold):**
-    *   *Structure:* Tracking five or more nested, ungrounded mental states simultaneously.
-    *   *Cognitive Limit:* Working memory breaks down rapidly beyond fourth-order recursion. Readers experience disorientation, cognitive fatigue, and affective detachment.
+* **First-Order (Zero Recursion):** Autonomous mental state (*"Marcus wants the encrypted keycard."*).
+* **Second-Order (Social Modeling):** Agent holds a belief about another's state (*"Marcus believes Elena knows where the keycard is."*).
+* **Third-Order (Tactical Maneuvering):** Agent manipulates another's perception (*"Marcus hopes Elena suspects Julian is planning theft."*).
+* **Fourth-Order (Dramatic Irony):** Reader tracks multi-party deception (*"The reader sees Marcus feign trust in Julian, knowing Elena will warn Julian, forcing his confederates into the open."*).
+* **Fifth-Order (Cognitive Crash Threshold):** Five or more nested states. Human working memory breaks down beyond fourth-order recursion; readers suffer cognitive fatigue and emotional detachment.
 
 ---
 
 ## 2. The Physical Narrative Token Solution
 
-When high-stakes genres (espionage, courtly intrigue, legal thrillers, psychological mysteries) demand fifth-order or higher multi-party deceptions, the writer must prevent cognitive crash by deploying **Physical Narrative Tokens**.
-
-A Narrative Token is an embodied, material object that acts as a cognitive externalization of an unvoiced mental state or secret contract:
+When espionage, intrigue, or mysteries demand deep multi-party deception, deploy **Physical Narrative Tokens** to externalize mental calculations into concrete objects:
 
 ```
 [Nested Mental Calculation: A knows B lied about C's loyalty to D]
                              │
-                             ▼ (Anchored to Material Reality)
-       [Physical Token: A Stained Hotel Receipt / A Wax Seal]
+                             ▼ (Anchored to Reality)
+       [Physical Token: Stained Hotel Receipt / Broken Wax Seal]
 ```
 
-### Examples of Token Offloading:
-*   **The Marked Document:** Rather than forcing the reader to mentally juggle who knows whose cover is blown, an investigator casually slides a surveillance photograph across the mahogany desk. The photograph physically embodies the fourth-order threat without consuming working memory.
-*   **The Inconspicuous Prop:** A lighter, a cassette tape, an opened letter, or a missing chess piece serves as a physical beacon representing an unspoken alliance or an impending betrayal.
+### Token Offloading:
+* **The Marked Document:** Rather than making readers juggle complex deceptions, slide a surveillance photo across the desk. The photo physically embodies the fourth-order threat.
+* **The Inconspicuous Prop:** A lighter, missing chess piece, or broken signet ring acts as a tangible beacon representing an unspoken alliance or betrayal.
 
 ---
 
-## 3. Concrete Craft Rules for Authors
+## 3. Craft Rules
 
-1.  **Peak at Third- and Fourth-Order:** Anchor your sharpest dialogue and psychological standoffs in 3rd- and 4th-order recursion. This is the sweet spot of maximal intellectual stimulation and visceral subtext.
-2.  **Strip Explanatory Narrator Commentary:** Never explain the recursion mechanically (e.g., *"He knew that she knew that he was pretending"*). Ground the recursion in physical blocking, micro-expressions, and conversational evasion.
-3.  **Deploy Tokens Before Escalation:** Introduce the physical token 2–3 chapters before the climactic deception so that when the token is touched, shifted, or revealed, the entire multi-layered mental trap snaps shut instantly in the reader’s mind.
+1. **Peak at Third- and Fourth-Order:** Maximize dramatic subtext at 3rd- and 4th-order recursion—the sweet spot of intellectual stimulation without disorientation.
+2. **Strip Explanatory Commentary:** Never explain recursion mechanically (*"He knew that she knew he was pretending"*). Ground it in physical blocking, micro-expressions, and subtext.
+3. **Plant Tokens Early:** Introduce the physical token 2–3 chapters before the climax so the trap snaps shut instantly when the token is revealed.

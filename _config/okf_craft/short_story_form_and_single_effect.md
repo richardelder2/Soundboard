@@ -7,6 +7,8 @@ last_modified: 2026-09-05
 stages: [01_onboarding, 02_planning, 03_drafting]
 genres: []
 scope: book
+subtype: plot_template
+confidence: practitioner_method
 provides: [short_story_mechanics, unity_of_effect, narrative_compression]
 requires: [primitive_dialectic_value_shift]
 diagnostics: [rhythm]

@@ -9,7 +9,7 @@ This playbook facilitates a Human-in-the-Loop (HITL) review and revision process
 ## 1. Critique & Diagnostics
 *The agent compiles the results of mechanical and qualitative audits.*
 
-### A. Mechanical Audit Summary (`node scripts/soundboard.js audit`)
+### A. Mechanical Audit Summary (`node scripts/saga.js audit`)
 - **Dialogue-to-Narration Ratio:** [Score] (Target: ≥ 30%)
 - **Rhythm Variance (Coefficient of Variation):** [Score] (Target: ≥ 0.5)
 - **Smell (Olfactory) density:** [Count] per 1,000 words (Target: Used only when earned)
@@ -67,7 +67,7 @@ This playbook facilitates a Human-in-the-Loop (HITL) review and revision process
 ```
 
 ### B. Final Re-Audit Metrics
-- **Soundboard Audit Verdict:** [PASS / FAIL]
+- **Saga Audit Verdict:** [PASS / FAIL]
 - **Updated Dialogue Ratio:** [Score]
 - **Updated Rhythm Variance:** [Score]
 - **Lexical Tells remaining:** [Count]

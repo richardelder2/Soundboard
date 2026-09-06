@@ -7,6 +7,8 @@ last_modified: 2026-09-04
 stages: [01_onboarding, 02_planning]
 genres: []
 scope: book
+subtype: plot_template
+confidence: practitioner_method
 provides: [series_arc, lore_debt, progression_ladder]
 requires: [archetypal_character_transformation_arcs]
 diagnostics: [continuity, dread]

@@ -299,7 +299,7 @@ function testFormRouting() {
 // Test 10: State Model — Structured Canon, Timeline, Thread Ledger (T-09)
 function testStateModel() {
   const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
-  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env };
 
   // A. Structured Canon Query
   try {
@@ -448,7 +448,7 @@ async function testTolerantJsonAndVersioning() {
 // Test 14: Status Stage Filter (T-13)
 function testStatusStageFilter() {
   const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
-  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env };
 
   try {
     const statusOut = execSync(`node ${cliScript} status --stage=02`, execOptions);
@@ -461,7 +461,7 @@ function testStatusStageFilter() {
 // Test 15: Brief Cold-Start State Dump (T-11)
 function testBriefStateDump() {
   const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
-  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env };
 
   const manifestPath = path.join(rootDir, 'manuscript.json');
   const origManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, 'utf8') : null;
@@ -492,7 +492,7 @@ function testBriefStateDump() {
 // Test 16: Manuscript Ingestion & Importer (T-12)
 function testManuscriptImport() {
   const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
-  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env };
 
   const fixturePath = path.join(rootDir, 'tests', 'fixtures', 'import_sample.md');
   fs.mkdirSync(path.dirname(fixturePath), { recursive: true });
@@ -504,7 +504,7 @@ function testManuscriptImport() {
   fs.mkdirSync(chDir, { recursive: true });
 
   try {
-    const importOut = execSync(`node ${cliScript} import "tests/fixtures/import_sample.md"`, execOptions);
+    const importOut = execSync(`node ${cliScript} import "${fixturePath}"`, execOptions);
     assert(importOut.includes('Successfully imported 2 chapter(s)'), 'Importer CLI ingests and splits multi-chapter markdown');
 
     const ch1Path = path.join(chDir, 'ch01.md');
@@ -521,6 +521,97 @@ function testManuscriptImport() {
     if (fs.existsSync(ch1Path)) fs.unlinkSync(ch1Path);
     if (fs.existsSync(ch2Path)) fs.unlinkSync(ch2Path);
     if (fs.existsSync(fixturePath)) fs.unlinkSync(fixturePath);
+    if (origManifest !== null) fs.writeFileSync(manifestPath, origManifest, 'utf8');
+    else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
+  }
+}
+
+// Test 17: Chapter Kit Budget Management & Degradation at Scale (D-01)
+function testChapterKitAtScale() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env };
+
+  const canonDir = path.join(rootDir, 'stages', '02_planning', 'output');
+  fs.mkdirSync(canonDir, { recursive: true });
+  const canonFile = path.join(canonDir, 'canon.md');
+  const origCanon = fs.existsSync(canonFile) ? fs.readFileSync(canonFile, 'utf8') : null;
+
+  const manifestPath = path.join(rootDir, 'manuscript.json');
+  const origManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, 'utf8') : null;
+
+  try {
+    // Generate 300-row synthetic canon with global rules and distinct entities
+    const canonLines = [
+      '# Canon Facts Ledger\n',
+      '## World Rules & Mechanics',
+      '| Entity | Scope | Attribute | Value | First Asserted | Status |',
+      '|---|---|---|---|---|---|',
+      '| Magic Rule | global | Cost | Blood expenditure burns calories | ch 1 | verified |',
+      '| Aether Law | global | Limit | Transmutation requires equal mass | ch 1 | verified |\n',
+      '## Entity Ledger',
+      '| Entity | Attribute | Value | First Asserted | Status |',
+      '|---|---|---|---|---|'
+    ];
+    for (let i = 1; i <= 300; i++) {
+      const ent = i <= 5 ? 'Mara' : i <= 10 ? 'Dov' : `Entity${i}`;
+      canonLines.push(`| ${ent} | Fact ${i} | Crucial detail about fact ${i} in the historical continuity | ch 1 | verified |`);
+    }
+    fs.writeFileSync(canonFile, canonLines.join('\n'), 'utf8');
+
+    // A. Linked Path: Chapter explicitly declares entities ["Mara", "Dov"]
+    fs.writeFileSync(manifestPath, JSON.stringify({
+      schema_version: '2.0.0',
+      title: 'Canon Budget Test',
+      author: 'Tester',
+      chapters: [
+        {
+          id: 1,
+          title: 'Linked Chapter',
+          entities: ['Mara', 'Dov'],
+          status: 'planned'
+        }
+      ]
+    }), 'utf8');
+
+    const linkedOut = execSync(`node ${cliScript} pack-chapter 1`, execOptions);
+    assert(linkedOut.includes('ESTABLISHED CANON (Filtered Relevance)'), '300-row canon: linked chapter emits Filtered Relevance section');
+    assert(linkedOut.includes('Magic Rule') && linkedOut.includes('Blood expenditure'), '300-row canon: linked chapter always includes global world rules');
+    assert(linkedOut.includes('Mara') && linkedOut.includes('Dov'), '300-row canon: linked chapter includes matched entity rows');
+    
+    const linkedTokensMatch = linkedOut.match(/\[ICM Kit Budget: ~([0-9,]+) tokens/);
+    const linkedTokens = linkedTokensMatch ? parseInt(linkedTokensMatch[1].replace(/,/g, ''), 10) : 999999;
+    assert(linkedTokens < 6000, `300-row canon: linked chapter kit stays under 6,000 tokens (actual: ~${linkedTokens})`);
+
+    // B. Unlinked Path: Chapter has no entity links — must degrade gracefully without failing open
+    fs.writeFileSync(manifestPath, JSON.stringify({
+      schema_version: '2.0.0',
+      title: 'Canon Budget Test',
+      author: 'Tester',
+      chapters: [
+        {
+          id: 2,
+          title: 'Unlinked Chapter',
+          status: 'planned'
+        }
+      ]
+    }), 'utf8');
+
+    const unlinkedOut = execSync(`node ${cliScript} pack-chapter 2`, execOptions);
+    assert(unlinkedOut.includes('ESTABLISHED CANON (Degraded Relevance)'), '300-row canon: unlinked chapter degrades gracefully to Degraded Relevance');
+    assert(unlinkedOut.includes('Magic Rule') && unlinkedOut.includes('Blood expenditure'), '300-row canon: unlinked chapter preserves global world rules');
+    assert(unlinkedOut.includes('withheld to maintain ICM drafting kit budget (<6,000 tokens)'), '300-row canon: unlinked chapter states withheld facts count');
+    assert(unlinkedOut.includes('canon query'), '300-row canon: unlinked chapter provides on-demand canon query command');
+
+    const unlinkedTokensMatch = unlinkedOut.match(/\[ICM Kit Budget: ~([0-9,]+) tokens/);
+    const unlinkedTokens = unlinkedTokensMatch ? parseInt(unlinkedTokensMatch[1].replace(/,/g, ''), 10) : 999999;
+    assert(unlinkedTokens < 6000, `300-row canon: unlinked chapter kit stays under 6,000 tokens via degradation (actual: ~${unlinkedTokens})`);
+
+  } catch (e) {
+    assert(false, 'Chapter kit budget management test failed', e.message);
+  } finally {
+    if (origCanon !== null) fs.writeFileSync(canonFile, origCanon, 'utf8');
+    else if (fs.existsSync(canonFile)) fs.unlinkSync(canonFile);
+
     if (origManifest !== null) fs.writeFileSync(manifestPath, origManifest, 'utf8');
     else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
   }
@@ -543,6 +634,7 @@ await testTolerantJsonAndVersioning();
 testStatusStageFilter();
 testBriefStateDump();
 testManuscriptImport();
+testChapterKitAtScale();
 
 console.log('\n----------------------------------------');
 console.log(`Results: ${passed} passed, ${failed} failed`);
