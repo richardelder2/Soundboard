@@ -180,18 +180,18 @@
 
 ## Sprint 4: Reach & Polish
 
-### [ ] T-11 · `sb brief` — Cold-Start State Dump
+### [x] T-11 · `sb brief` — Cold-Start State Dump
 - **Priority:** P3 · Depends on T-09
 - **Tasks:**
   - Create `soundboard brief` CLI command reporting project state facts (chapters, open threads, overdue promises, failed audit flags) without prescribing actions (ICM §5.2).
 
-### [ ] T-12 · Import and Export
+### [x] T-12 · Import and Export
 - **Priority:** P3
 - **Tasks:**
   - Implement `soundboard import <file>` for `.md` and `.docx`, registering chapters with `status: imported`.
   - Implement `soundboard export --format=docx` via pandoc with clear error when pandoc is absent.
 
-### [ ] T-13 · Housekeeping
+### [x] T-13 · Housekeeping
 - **Priority:** P3
 - **Tasks:**
   - Add `"engines": { "node": ">=18" }` to `package.json`.

@@ -420,6 +420,112 @@ async function testManuscriptReport() {
   }
 }
 
+
+// Test 13: Tolerant JSON Parser and Schema Versioning (T-13)
+async function testTolerantJsonAndVersioning() {
+  const sbUrl = pathToFileURL(path.join(rootDir, 'scripts', 'soundboard.js')).href;
+  const { safeParseJson } = await import(sbUrl);
+
+  try {
+    const dirtyJson = `{
+      // Single-line comment
+      "title": "Test Title",
+      /* Multi-line
+         comment */
+      "number": 42,
+    }`;
+    const parsed = safeParseJson(dirtyJson, 'TestDirtyJson');
+    assert(parsed && parsed.title === 'Test Title' && parsed.number === 42, 'safeParseJson tolerantly parses comments and trailing commas');
+
+    const templateRaw = fs.readFileSync(path.join(rootDir, '_config', 'templates', 'manuscript.template.json'), 'utf8');
+    const tpl = JSON.parse(templateRaw);
+    assert(tpl.schema_version === '2.0.0', 'manuscript.template.json includes schema_version 2.0.0');
+  } catch (e) {
+    assert(false, 'Tolerant JSON / schema versioning test failed', e.message);
+  }
+}
+
+// Test 14: Status Stage Filter (T-13)
+function testStatusStageFilter() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+
+  try {
+    const statusOut = execSync(`node ${cliScript} status --stage=02`, execOptions);
+    assert(statusOut.includes('Declared Contract Outputs:') && statusOut.includes('stages/02_planning/output/foolscap.md'), 'Status --stage filter outputs stage-specific contract artifact checklist');
+  } catch (e) {
+    assert(false, 'Status stage filter test failed', e.message);
+  }
+}
+
+// Test 15: Brief Cold-Start State Dump (T-11)
+function testBriefStateDump() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+
+  const manifestPath = path.join(rootDir, 'manuscript.json');
+  const origManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, 'utf8') : null;
+
+  try {
+    fs.writeFileSync(manifestPath, JSON.stringify({
+      schema_version: '2.0.0',
+      title: 'Brief Test Book',
+      author: 'Test Author',
+      form: 'novel',
+      target_words: 60000,
+      chapters: [
+        { id: 1, title: 'Ch 1', status: 'passed', last_audit: 'CLEAN' },
+        { id: 2, title: 'Ch 2', status: 'drafted', last_audit: 'FAIL' }
+      ]
+    }), 'utf8');
+
+    const briefOut = execSync(`node ${cliScript} brief`, execOptions);
+    assert(briefOut.includes('Brief Test Book') && briefOut.includes('1 chapters failed audit') && briefOut.includes('ICM §5.2 State Brief'), 'soundboard brief outputs comprehensive cold-start telemetry facts');
+  } catch (e) {
+    assert(false, 'Brief state dump test failed', e.message);
+  } finally {
+    if (origManifest !== null) fs.writeFileSync(manifestPath, origManifest, 'utf8');
+    else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
+  }
+}
+
+// Test 16: Manuscript Ingestion & Importer (T-12)
+function testManuscriptImport() {
+  const cliScript = fs.existsSync(path.join(rootDir, 'scripts', 'soundboard.js')) ? 'scripts/soundboard.js' : 'scripts/saga.js';
+  const execOptions = { cwd: rootDir, encoding: 'utf8', env: process.env, shell: 'cmd.exe' };
+
+  const fixturePath = path.join(rootDir, 'tests', 'fixtures', 'import_sample.md');
+  fs.mkdirSync(path.dirname(fixturePath), { recursive: true });
+  fs.writeFileSync(fixturePath, '# Chapter 1: The Arrival\nEvelyn stepped onto the rain-slicked platform.\n\n# Chapter 2: The Departure\nJulian turned toward the departing locomotive.\n', 'utf8');
+
+  const manifestPath = path.join(rootDir, 'manuscript.json');
+  const origManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, 'utf8') : null;
+  const chDir = path.join(rootDir, 'stages', '03_drafting', 'output', 'chapters');
+  fs.mkdirSync(chDir, { recursive: true });
+
+  try {
+    const importOut = execSync(`node ${cliScript} import "tests/fixtures/import_sample.md"`, execOptions);
+    assert(importOut.includes('Successfully imported 2 chapter(s)'), 'Importer CLI ingests and splits multi-chapter markdown');
+
+    const ch1Path = path.join(chDir, 'ch01.md');
+    const ch2Path = path.join(chDir, 'ch02.md');
+    assert(fs.existsSync(ch1Path) && fs.existsSync(ch2Path), 'Importer creates individual chapter draft files with frontmatter');
+
+    const manifestAfter = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    assert(manifestAfter.chapters.length === 2 && manifestAfter.chapters[0].status === 'imported', 'Importer registers imported chapters in manuscript.json with status: imported');
+  } catch (e) {
+    assert(false, 'Manuscript import test failed', e.message);
+  } finally {
+    const ch1Path = path.join(chDir, 'ch01.md');
+    const ch2Path = path.join(chDir, 'ch02.md');
+    if (fs.existsSync(ch1Path)) fs.unlinkSync(ch1Path);
+    if (fs.existsSync(ch2Path)) fs.unlinkSync(ch2Path);
+    if (fs.existsSync(fixturePath)) fs.unlinkSync(fixturePath);
+    if (origManifest !== null) fs.writeFileSync(manifestPath, origManifest, 'utf8');
+    else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
+  }
+}
+
 // Run all test groups
 testBOM();
 testOkfLint();
@@ -433,6 +539,10 @@ testFormRouting();
 testStateModel();
 await testStage04GateAndEnforcement();
 await testManuscriptReport();
+await testTolerantJsonAndVersioning();
+testStatusStageFilter();
+testBriefStateDump();
+testManuscriptImport();
 
 console.log('\n----------------------------------------');
 console.log(`Results: ${passed} passed, ${failed} failed`);

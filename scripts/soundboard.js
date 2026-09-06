@@ -15,6 +15,52 @@ export function readText(p) {
   return fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '');
 }
 
+export function getCraftModuleCount() {
+  const craftDir = path.join('_config', 'okf_craft');
+  if (!fs.existsSync(craftDir)) return 92;
+  const nonModules = new Set(['index.md', 'CONTEXT.md', 'SPECIFICATION.md', 'synonyms.md']);
+  return fs.readdirSync(craftDir).filter(f => f.endsWith('.md') && !nonModules.has(f)).length;
+}
+
+export function safeParseJson(rawContent, contextLabel = 'JSON') {
+  if (typeof rawContent !== 'string') return rawContent;
+  let cleaned = rawContent.replace(/^\uFEFF/, '');
+  try {
+    return JSON.parse(cleaned);
+  } catch (initialErr) {
+    // Tolerant parser: strip comments and trailing commas
+    cleaned = cleaned.replace(/\/\*[\s\S]*?\*\//g, '');
+    cleaned = cleaned.replace(/(^|[^:])\/\/.*/g, '$1');
+    cleaned = cleaned.replace(/,(\s*[}\]])/g, '$1');
+
+    try {
+      return JSON.parse(cleaned);
+    } catch (recoveryErr) {
+      const lines = rawContent.split(/\r?\n/);
+      const match = recoveryErr.message.match(/position\s+(\d+)/i);
+      let errorLine = null;
+      let lineNum = 1;
+      if (match) {
+        const pos = parseInt(match[1], 10);
+        let cur = 0;
+        for (let i = 0; i < lines.length; i++) {
+          if (cur + lines[i].length + 1 >= pos) {
+            lineNum = i + 1;
+            errorLine = lines[i];
+            break;
+          }
+          cur += lines[i].length + 1;
+        }
+      }
+      console.error(`\x1b[31mError parsing ${contextLabel} at line ${lineNum}:\x1b[0m ${recoveryErr.message}`);
+      if (errorLine) {
+        console.error(`  > ${errorLine.trim()}`);
+      }
+      throw new Error(`Malformed ${contextLabel}: ${recoveryErr.message}`);
+    }
+  }
+}
+
 const args = process.argv.slice(2);
 const command = args[0];
 const subCommand = args[1];
@@ -152,12 +198,25 @@ function handleInit(targetFolder) {
   console.log(`\n\x1b[32m✔ ${APP_NAME} Workspace successfully initialized! Run "npm install" to configure dependencies.\x1b[0m\n`);
 }
 
-function handleStatus() {
+function handleStatus(stageFilter) {
   printHeader('Soundboard Stage Pipeline Status');
 
-  STAGES.forEach(stage => {
+  const filterArg = stageFilter || args.find(a => a.startsWith('--stage='));
+  const stageTarget = filterArg ? filterArg.replace('--stage=', '').replace(/^0?/, '').padStart(2, '0') : null;
+
+  const activeStages = stageTarget
+    ? STAGES.filter(s => s.startsWith(stageTarget) || s.includes(stageTarget))
+    : STAGES;
+
+  if (stageTarget && activeStages.length === 0) {
+    console.log(`No stage matching "${stageTarget}". Valid stages: 01, 02, 03, 04, 05\n`);
+    return;
+  }
+
+  activeStages.forEach(stage => {
     const stagePath = path.join('stages', stage);
-    const contractExists = fs.existsSync(path.join(stagePath, 'CONTEXT.md'));
+    const contractPath = path.join(stagePath, 'CONTEXT.md');
+    const contractExists = fs.existsSync(contractPath);
     const outputFiles = getFilesRecursive(path.join(stagePath, 'output'));
 
     let statusText = '\x1b[31mNot Started\x1b[0m';
@@ -168,10 +227,34 @@ function handleStatus() {
     }
 
     console.log(`- \x1b[1mStage ${stage}\x1b[0m: ${statusText}`);
+
+    // In drill-down mode, parse outputs declared in contract frontmatter
+    if (stageTarget && contractExists) {
+      const contractText = readText(contractPath);
+      const fmMatch = contractText.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (fmMatch) {
+        const outBlock = fmMatch[1].match(/outputs:\r?\n([\s\S]*?)(?=\r?\n[a-z_]+:|$)/i);
+        if (outBlock) {
+          console.log('    \x1b[1mDeclared Contract Outputs:\x1b[0m');
+          outBlock[1].split(/\r?\n/).filter(l => l.trim().startsWith('-')).forEach(line => {
+            const rawPath = line.trim().replace(/^-\s*/, '').trim();
+            const diskPath = rawPath.replace(/\//g, path.sep);
+            const exists = fs.existsSync(diskPath) || (diskPath.endsWith(path.sep) && fs.existsSync(diskPath.slice(0, -1)));
+            const icon = exists ? '\x1b[32m✔\x1b[0m' : '\x1b[31m✗\x1b[0m';
+            console.log(`      ${icon} ${rawPath}`);
+          });
+        }
+      }
+    }
+
     outputFiles.forEach(file => console.log(`    ↳ \x1b[90m${file}\x1b[0m`));
   });
 
-  printManuscriptStatus();
+  if (!stageTarget) {
+    printManuscriptStatus();
+  } else {
+    console.log('');
+  }
 }
 
 const STATUS_COLORS = { planned: '\x1b[90m', drafted: '\x1b[33m', audited: '\x1b[36m', passed: '\x1b[32m' };
@@ -183,7 +266,7 @@ function printManuscriptStatus() {
   }
   let manifest;
   try {
-    manifest = JSON.parse(readText('manuscript.json'));
+    manifest = safeParseJson(readText('manuscript.json'), 'manuscript.json');
   } catch (e) {
     console.error(`\nCould not parse manuscript.json: ${e.message}`);
     return;
@@ -223,23 +306,24 @@ function printManuscriptStatus() {
 }
 
 function handleBrief() {
-  printHeader('Soundboard Project Brief & Executive Summary');
-  if (!fs.existsSync('manuscript.json')) {
-    console.log('No manuscript.json found. Run Stage 01 onboarding or Stage 02 planning first.');
+  printHeader('Soundboard Project Brief & State Dump (ICM §5.2)');
+  const manifestPath = 'manuscript.json';
+  if (!fs.existsSync(manifestPath)) {
+    console.log('No manuscript.json found. Run Stage 01 onboarding or Stage 02 planning first.\n');
     return;
   }
   let manifest;
   try {
-    manifest = JSON.parse(readText('manuscript.json'));
+    manifest = safeParseJson(readText(manifestPath), 'manuscript.json');
   } catch (e) {
-    console.error(`Could not parse manuscript.json: ${e.message}`);
     return;
   }
   const chapters = manifest.chapters || [];
-  const statusCounts = { planned: 0, drafted: 0, audited: 0, passed: 0 };
+  const statusCounts = { planned: 0, drafted: 0, audited: 0, passed: 0, imported: 0 };
   let totalWords = 0;
   chapters.forEach(c => {
-    statusCounts[c.status || 'planned'] = (statusCounts[c.status || 'planned'] || 0) + 1;
+    const st = c.status || 'planned';
+    statusCounts[st] = (statusCounts[st] || 0) + 1;
     const draftPath = (c.draft_file || '').replace(/\//g, path.sep);
     if (draftPath && fs.existsSync(draftPath)) {
       const raw = readText(draftPath);
@@ -247,19 +331,56 @@ function handleBrief() {
     }
   });
 
-  console.log(`Title:        ${manifest.title || 'Untitled'}`);
-  console.log(`Author:       ${manifest.author || 'Author'}`);
-  console.log(`Target Words: ${manifest.target_words ? manifest.target_words.toLocaleString() : 'N/A'}`);
-  console.log(`Drafted:      ${totalWords.toLocaleString()} words (${manifest.target_words ? Math.round((totalWords / manifest.target_words) * 100) : 0}%)`);
-  console.log(`Chapters:     ${chapters.length} total [Passed: ${statusCounts.passed}, Audited: ${statusCounts.audited}, Drafted: ${statusCounts.drafted}, Planned: ${statusCounts.planned}]`);
+  console.log(`Title:           ${manifest.title || 'Untitled'}`);
+  console.log(`Author:          ${manifest.author || 'Author'}`);
+  console.log(`Form & Target:   ${manifest.form || 'novel'} (${manifest.target_words ? manifest.target_words.toLocaleString() + ' words' : 'no target words set'})`);
+  console.log(`Current Words:   ${totalWords.toLocaleString()} words (${manifest.target_words ? Math.round((totalWords / manifest.target_words) * 100) : 0}% of target)`);
+  console.log(`Chapters:        ${chapters.length} total [Passed: ${statusCounts.passed}, Audited: ${statusCounts.audited}, Drafted: ${statusCounts.drafted}, Imported: ${statusCounts.imported}, Planned: ${statusCounts.planned}]`);
 
-  // Check trackers
-  const trackerDir = path.join('stages', '02_planning', 'output', 'trackers');
-  if (fs.existsSync(trackerDir)) {
-    const trackers = fs.readdirSync(trackerDir).filter(f => f.endsWith('.md'));
-    console.log(`Trackers:     ${trackers.length} active tracker files in ${trackerDir}`);
+  // 1. Thread Ledger facts
+  const threadsPath = path.join('stages', '02_planning', 'output', 'trackers', 'threads.md');
+  if (fs.existsSync(threadsPath)) {
+    const threadContent = readText(threadsPath);
+    const activeThreads = [];
+    threadContent.split(/\r?\n/).forEach(l => {
+      if (l.trim().startsWith('|') && !l.includes('---') && !l.toLowerCase().includes('thread id')) {
+        const cells = l.split('|').map(c => c.trim()).filter(Boolean);
+        if (cells.length >= 6) {
+          activeThreads.push({ id: cells[0], desc: cells[1], status: cells[6] || 'open' });
+        }
+      }
+    });
+    const openThreads = activeThreads.filter(t => t.status.toLowerCase() === 'open');
+    console.log(`Active Threads:  ${openThreads.length} open (${activeThreads.length} total tracked)`);
+    if (openThreads.length > 0) {
+      console.log(`                 Open: ${openThreads.slice(0, 3).map(t => `${t.id} ("${t.desc.slice(0, 20)}")`).join(', ')}${openThreads.length > 3 ? '...' : ''}`);
+    }
+  } else {
+    console.log('Active Threads:  None (trackers/threads.md not initialized)');
   }
-  console.log('');
+
+  // 2. Lore Debt facts
+  const lorePath = path.join('stages', '02_planning', 'output', 'trackers', 'lore_debt.md');
+  if (fs.existsSync(lorePath)) {
+    const loreContent = readText(lorePath);
+    const debts = (loreContent.match(/\|\s*\[[^\]]+\]\s*\|/g) || []).length;
+    console.log(`Lore Debt:       ${debts > 0 ? debts + ' open debt/question entries' : 'None open'}`);
+  }
+
+  // 3. Canon Integrity facts
+  const canonPath = path.join('stages', '02_planning', 'output', 'canon.md');
+  if (fs.existsSync(canonPath)) {
+    const canonContent = readText(canonPath);
+    const unverified = (canonContent.match(/\[unverified\s+ch\d+\]/gi) || []).length;
+    console.log(`Canon Facts:     ${unverified > 0 ? `\x1b[33m${unverified} unverified facts awaiting Stage 04 gate\x1b[0m` : '\x1b[32mAll established facts verified\x1b[0m'}`);
+  }
+
+  // 4. Quality & Audit facts
+  const failedAudits = chapters.filter(c => c.last_audit === 'FAIL');
+  const reviewAudits = chapters.filter(c => c.last_audit === 'REVIEW');
+  console.log(`Audit Status:    ${failedAudits.length > 0 ? `\x1b[31m${failedAudits.length} chapters failed audit (Ch ${failedAudits.map(c => c.id).join(', ')})\x1b[0m` : '\x1b[32m0 failed audit flags\x1b[0m'}${reviewAudits.length > 0 ? ` (${reviewAudits.length} in review)` : ''}`);
+
+  console.log('\n*ICM §5.2 State Brief: cold-start telemetry reports factual state without hardcoded next-action prescribing.*\n');
 }
 
 function getFilesRecursive(dir) {
@@ -645,6 +766,12 @@ async function handleGateCmd(chId, extraArgs) {
 async function handleManuscriptReportCmd(extraArgs) {
   const { runManuscriptReport } = await import('./manuscript_report.js');
   runManuscriptReport(extraArgs);
+}
+
+
+async function handleImportCmd(sourceFile, extraArgs) {
+  const { importManuscript } = await import('./importer.js');
+  importManuscript(sourceFile, extraArgs);
 }
 
 async function handleCompile() {
@@ -1238,7 +1365,7 @@ Usage:
   node scripts/${BIN_NAME}.js init [folder] [--form]  Scaffold workspace (forms: short_story, novella, novel, series)
   node scripts/${BIN_NAME}.js status                 Show the status of each pipeline stage
   node scripts/${BIN_NAME}.js brief                  Executive summary of manuscript progress & state
-  node scripts/${BIN_NAME}.js craft search <query>   Search craft modules (flags: --stage, --genre, --scope, --json)
+  node scripts/${BIN_NAME}.js craft search <query>   Search ${getCraftModuleCount()} craft modules (flags: --stage, --genre, --scope, --json)
   node scripts/${BIN_NAME}.js okf-lint              Validate all craft modules against ICM standards
   node scripts/${BIN_NAME}.js diag [name] [args]     Run diagnostic tools (rhythm, dialogue, tense, etc.)
   node scripts/${BIN_NAME}.js wizard [name] [args]   Run creative wizards (onboard, unstuck, heat, etc.)
@@ -1253,16 +1380,19 @@ Usage:
   node scripts/${BIN_NAME}.js threads                Inspect narrative threads, subplots, and promises
   node scripts/${BIN_NAME}.js gate <chapter>         Evaluate Stage 04 gate verdicts (sole setter of passed)
   node scripts/${BIN_NAME}.js manuscript-report      Comprehensive whole-book narrative & voice report
+  node scripts/${BIN_NAME}.js import <file>          Ingest external .md or .docx into Stage 03 chapters
+  node scripts/${BIN_NAME}.js export [--format=...]  Export manuscript (.html, .docx, .epub)
   node scripts/${BIN_NAME}.js compile [--all]        Compile passed chapters into manuscript.html (+ .epub via pandoc)
   `);
 }
 
+if (process.argv[1] && (process.argv[1].endsWith('soundboard.js') || process.argv[1].endsWith('saga.js') || process.argv[1].endsWith('sb.js'))) {
 switch (command) {
   case 'init':
     handleInit(subCommand);
     break;
   case 'status':
-    handleStatus();
+    handleStatus(subCommand);
     break;
   case 'brief':
   case 'resume':
@@ -1315,6 +1445,12 @@ switch (command) {
   case 'report':
     handleManuscriptReportCmd(args.slice(1));
     break;
+  case 'import':
+    handleImportCmd(subCommand || args[1], args.slice(2));
+    break;
+  case 'export':
+    handleCompile(args.slice(1));
+    break;
   case 'compile':
     handleCompile();
     break;
@@ -1323,4 +1459,6 @@ switch (command) {
   default:
     showHelp();
     break;
+}
+
 }

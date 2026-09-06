@@ -161,18 +161,24 @@ ${bodyHtml}
   fs.writeFileSync(htmlPath, html, 'utf8');
   console.log(`\x1b[32m✔\x1b[0m ${htmlPath} (${chapters.length} chapters, ${totalWords.toLocaleString()} words)`);
 
-  // EPUB via pandoc, when available
+  const wantsDocx = args.includes('--docx') || args.includes('--format=docx');
+  const wantsEpub = args.includes('--epub') || args.includes('--format=epub');
+
+  // Pandoc export
   const probe = spawnSync('pandoc --version', { shell: true, stdio: 'ignore' });
   if (probe.status === 0) {
-    const epubPath = path.join(OUT_DIR, 'manuscript.epub');
     const q = s => `"${String(s).replace(/"/g, '')}"`;
-    let cmd = `pandoc ${q(htmlPath)} -o ${q(epubPath)} --split-level=1 --metadata ${q(`title=${title}`)}`;
-    if (author) cmd += ` --metadata ${q(`author=${author}`)}`;
-    const res = spawnSync(cmd, { shell: true, encoding: 'utf8' });
-    if (res.status === 0) console.log(`\x1b[32m✔\x1b[0m ${epubPath}`);
-    else console.error(`pandoc EPUB export failed: ${(res.stderr || '').trim()}`);
 
-    if (args.includes('--docx')) {
+    if (!wantsDocx || wantsEpub) {
+      const epubPath = path.join(OUT_DIR, 'manuscript.epub');
+      let cmd = `pandoc ${q(htmlPath)} -o ${q(epubPath)} --split-level=1 --metadata ${q(`title=${title}`)}`;
+      if (author) cmd += ` --metadata ${q(`author=${author}`)}`;
+      const res = spawnSync(cmd, { shell: true, encoding: 'utf8' });
+      if (res.status === 0) console.log(`\x1b[32m✔\x1b[0m ${epubPath}`);
+      else console.error(`pandoc EPUB export failed: ${(res.stderr || '').trim()}`);
+    }
+
+    if (wantsDocx) {
       const docxPath = path.join(OUT_DIR, 'manuscript.docx');
       let docxCmd = `pandoc ${q(htmlPath)} -o ${q(docxPath)} --metadata ${q(`title=${title}`)}`;
       if (author) docxCmd += ` --metadata ${q(`author=${author}`)}`;
@@ -181,7 +187,12 @@ ${bodyHtml}
       else console.error(`pandoc DOCX export failed: ${(docxRes.stderr || '').trim()}`);
     }
   } else {
-    console.log('pandoc not found — HTML only. Install pandoc (https://pandoc.org) for EPUB and DOCX export.');
+    if (wantsDocx || wantsEpub) {
+      console.log(`\x1b[33mNote: Exporting to ${wantsDocx ? '.docx' : '.epub'} requires pandoc (https://pandoc.org).\x1b[0m`);
+      console.log(`Your manuscript has been compiled to HTML at ${htmlPath}, which can be opened directly in Microsoft Word and saved as .docx.`);
+    } else {
+      console.log('pandoc not found — HTML only. Install pandoc (https://pandoc.org) for EPUB and DOCX export.');
+    }
   }
 }
 
