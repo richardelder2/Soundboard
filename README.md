@@ -3,7 +3,7 @@
 </p>
 
 <h2 align="center">The Author's Intelligent Sounding Board &amp; Novel Production Studio</h2>
-<p align="center"><em>Turn your AI coding assistant into an Executive Writing Concierge, Master Story Architect, and Tireless Line Editor.</em></p>
+<p align="center"><em>A disciplined workspace and structural sounding board for novelists collaborating with AI agents.</em></p>
 
 <p align="center">
   <a href="https://github.com/richardelder2/saga-icm/actions"><img src="https://img.shields.io/github/actions/workflow/status/richardelder2/saga-icm/audit.yml?branch=main&amp;label=CI%20Audit&amp;logo=github" alt="CI Status" /></a>
@@ -16,18 +16,18 @@
 
 ---
 
-## Writing a Novel is Hard. Writing One With Raw AI is Exhausting.
+## Writing a Novel is Hard. Writing One With Raw AI is Frustrating.
 
-If you have ever tried writing a novel with ChatGPT or Claude in a web browser, you know the frustration:
+If you have tried using ChatGPT or Claude in a web browser to write long-form fiction, you have probably run into the same familiar walls:
 
-* **The Amnesia Wall:** By Chapter 4, the AI forgets that your mentor character died, hallucinates a new eye color for the protagonist, and abandons your subplots.
-* **The Web Chat Silo:** You spend half your time copying and pasting text back and forth between a browser window and Google Docs or Microsoft Word, losing track of versions and formatting.
-* **The "AI Slop" Voice:** Every dramatic moment collapses into melodramatic cliché: *"a testament to"*, *"shivers down spines"*, or characters who suddenly stop in the middle of a battle to give a philosophical speech about hope.
-* **Cardboard Characters:** Antagonists apologize too easily, conflicts resolve symmetrically in two paragraphs, and every character speaks in the exact same polite cadence.
+* **The Amnesia Problem:** Around Chapter 3 or 4, the model begins forgetting earlier plot turns, subtly changing character details, or dropping established subplots.
+* **The Web Chat Silo:** You spend half your energy copying and pasting snippets between a chat window and Google Docs or Microsoft Word, quickly losing track of drafts and version history.
+* **The "AI Prose" Trap:** Left uncalibrated, language models gravitate toward predictable rhythms, melodramatic clichés (*"a testament to..."*, *"shivers down spines"*), and characters who resolve deep conflict with neat, tidy apologies.
+* **Lack of Narrative Architecture:** AI is great at generating sentences, but weak at long-term dramatic pacing, moral stakes, and structural tension.
 
-**Soundboard fixes this permanently.** 
+**Soundboard doesn't pretend to write your book for you.** Writing a good novel still takes real human taste, emotional vulnerability, and hard editorial decisions. 
 
-Soundboard is an agent-native novel production studio that gets you **out of flimsy web chat boxes** and onto **your own computer where your writing actually lives**—in clean, future-proof plain markdown files that you 100% own.
+What Soundboard does is provide a **disciplined studio environment on your own computer**—getting you out of fragile web chat windows and into clean, plain markdown files you fully own. It gives your AI agent the memory, structure, and craft rules it needs to be a truly helpful sounding board instead of a chaotic autocomplete engine.
 
 <p align="center">
   <img src="assets/soundboard_hero_banner.jpg" alt="Soundboard Studio Workstation" width="100%" />
@@ -35,73 +35,78 @@ Soundboard is an agent-native novel production studio that gets you **out of fli
 
 ---
 
-## Meet Your Executive Writing Concierge
+## How It Works: A Structural Scaffold for Your Story
 
-With Soundboard, you are not writing prompt engineering formulas or managing vector databases. You are having an ongoing creative dialogue with an **Executive Novel Writing Concierge** operating inside your favorite agent harness (**Claude Code**, **Google Antigravity**, **Cursor**, or **Gemini CLI**).
+When you collaborate with an AI coding agent (such as **Claude Code**, **Google Antigravity**, **Cursor**, or **Gemini CLI**), the agent is only as helpful as the context it can see. Overload it with unstructured notes, and it gets confused; starve it of context, and it drifts.
 
-* **You bring the spark, the characters, and the vision.**
-* **Soundboard brings the memory, the structural integrity, and the editorial rigor.**
+Soundboard acts as the structural spine for your project:
+* **You bring the soul, the premise, and the creative vision.**
+* **Soundboard keeps the canon organized, the chapter beats focused, and the voice consistent.**
 
-Behind the scenes, Soundboard equips your agent with an **infallible memory** (an immutable canon ledger), an **editorial quality gate** that audits prose sentence-by-sentence, and a **92-module literary craft brain** synthesizing the equations of storytelling masters: Shawn Coyne (*Story Grid*), John Truby (*The Anatomy of Story*), Brandon Sanderson, K.M. Weiland, and Dwight Swain.
+Behind the scenes, Soundboard manages:
+1. **A Single-Source Canon Ledger:** An auditable, plain-text record of established world rules, character traits, and active story threads so facts stay straight across 80,000 words.
+2. **Anti-Drift Voice Anchoring:** Calibrates active chapter drafting against your chosen voice samples and the trailing prose of previous chapters to help prevent stylistic decay.
+3. **92 Modular Craft Guides:** Focused reference modules in `_config/okf_craft/` synthesizing practical techniques from Shawn Coyne (*Story Grid*), John Truby (*Anatomy of Story*), Brandon Sanderson, K.M. Weiland, and Dwight Swain.
 
 ---
 
 ## The 5 Creative Studio Workspaces
 
-Soundboard organizes your book's journey across five dedicated creative workspaces, taking you from the first vague idea to a finished, Kindle-ready manuscript:
+Soundboard breaks a book project into five manageable, sequential workspaces:
 
 <p align="center">
   <img src="assets/pipeline_workflow.svg" alt="Soundboard 5 Creative Workspaces Flowchart" width="100%" />
 </p>
 
 ### 1. 🛋️ The Discovery Lounge (Stage 01 · Onboarding)
-No staring at a blank page. Your concierge conducts a warm, relaxed interview about your premise, character sparks, world rules, and preferred genre tropes. It builds your **Story Bible**, maps character relationships, and seeds an **In-World Allowlist** so in-world vocabulary is never mistaken for AI cliché.
+A focused brainstorming session to get your story off the ground. Your agent interviews you about your premise, core cast, world dynamics, and genre expectations. It organizes everything into a clear **Story Bible** and creates an **In-World Allowlist** so your world's unique terminology isn't accidentally flagged as cliché.
 
 ### 2. 📋 The Storyboard Wall (Stage 02 · Planning)
-Before writing prose, you and your concierge map the architecture of the book on a virtual storyboard. You generate a **1-Page Foolscap Roadmap**, schedule obligatory genre scenes that readers expect, layer parallel subplots, and break the entire novel into granular, scene-by-scene beats.
+Before jumping into prose, map your book's spine on a virtual storyboard. You establish a **1-Page Foolscap Roadmap**, outline key obligatory genre scenes, balance subplots, and break your narrative into concrete, chapter-by-chapter beat sheets.
 
 ### 3. ✍️ The Writing Desk (Stage 03 · Drafting)
-Enter pure creative flow. You choose how you want to work on a chapter-by-chapter basis:
-* **Co-Writing Mode:** You brainstorm the scene beats with your agent, and the concierge drafts vivid, voice-calibrated scenes for your review.
-* **Solo-Writing Mode:** You write the prose yourself. Your concierge acts as workspace custodian—formatting frontmatter, tracking word counts, and updating your production ledger.
-* **Anti-Drift Voice Anchors:** Every chapter kit is automatically calibrated against the final 500 words of the previous chapter and your chosen voice exemplars, ensuring your voice stays consistent from Chapter 1 to Chapter 30.
+Write in whatever way fits your personal creative rhythm:
+* **Co-Writing:** Brainstorm scene beats with your agent and have it draft scenes against your voice guide for your live review and iteration.
+* **Solo-Writing:** Write the prose yourself. Your agent functions as workspace custodian—formatting frontmatter, tracking word counts, and updating your production ledger.
+* **Anti-Drift Anchoring:** Every drafting packet includes the last 500 words of the previous chapter to help maintain consistent tone and psychic distance.
 
 ### 4. 🔍 The Editorial Desk (Stage 04 · Diagnostics)
-Your tireless, tough-love developmental and line editor. 
-* **Like an experienced human editor:** It listens for sentence cadence, identifies pacing sags in the middle of scenes, flags out-of-character dialogue, and points out melodramatic AI tells.
-* **Better than a human editor:** It has instantaneous recall across an 85,000-word manuscript, catches contradictions in seconds, never gets tired, and is available 24/7 without a $3,000 developmental editing invoice.
-* **Collaborative Revision Playbooks:** If an audit spots an issue, your concierge doesn't just complain—it presents you with 2–3 creative revision options to choose from.
+A thorough, automated first-pass editorial sweep before you share your drafts with beta readers:
+* **Continuity Check:** Scans proper nouns and cross-references established facts to catch contradictory eyes, timeline hiccups, or orphaned names.
+* **Cadence & Rhythm Review:** Analyzes sentence length variation and paragraph rhythm to identify monotonous patches.
+* **AI Tell Scanner:** Flags common synthetic phrasing patterns and overused tropes so you can replace them with authentic human voice.
+* **Collaborative Revision:** When issues are found, your agent suggests 2–3 creative options for resolving them rather than rewriting your work.
 
 ### 5. 🖨️ The Printing Press (Stage 05 · Publishing)
-Once every chapter clears the editorial desk, one command compiles your manuscript into clean, beautifully typeset **HTML** and reader-ready **EPUB** files ready for Kindle, Apple Books, or submission to literary agents.
+Once your chapters have passed their editorial checks, a single command compiles your manuscript into clean, reader-ready **HTML** and standard **EPUB** formats—ready for e-readers, formatting tools, or submission.
 
 ---
 
-## 30-Second Quickstart (For Creative Writers)
+## Quickstart for Writers
 
-You never have to touch a terminal command or edit a config file to write with Soundboard.
+You don't need programming experience, command-line skills, or complicated setup to use Soundboard:
 
-1. **Download or Clone** this folder onto your computer.
-2. **Open the folder** in **Claude Code**, **Google Antigravity**, **Cursor**, or **Gemini CLI**.
-3. **Say in chat:**
-   > *"Read AGENTS.md and let's brainstorm a new novel."*
-4. **Relax and create.** Your agent immediately takes on the role of your Executive Writing Concierge, walking you through Stage 01 at your own pace.
+1. **Clone or download** this repository to a folder on your computer.
+2. **Open the folder** in **Claude Code**, **Google Antigravity**, **Cursor**, or your preferred agent tool.
+3. **Start the conversation in chat:**
+   > *"Read AGENTS.md and let's brainstorm my novel."*
+4. Your agent will read the contracts and walk you through Stage 01 at your own pace.
 
 ---
 
-## What It Looks Like Under the Hood
+## What It Looks Like Behind the Scenes
 
-While you remain immersed in chat, your agent executes mechanical, zero-dependency tools behind the scenes to track your book's state and protect continuity:
+While you focus on the creative story in chat, your agent uses lightweight, zero-dependency mechanical tools to track state and maintain continuity:
 
-### The Real-Time Production Console
-Your agent monitors book progress, chapter statuses, and word counts through the live telemetry console:
+### The Production Console
+Your agent monitors project progression, word count targets, and chapter states through a clean status summary:
 
 <p align="center">
   <img src="assets/terminal_status.svg" alt="Soundboard Live Telemetry Console" width="100%" />
 </p>
 
-### The Editorial Quality Review
-Before any chapter is approved for publication, your concierge runs it through the editorial diagnostics suite:
+### The Editorial Diagnostic Scan
+Before marking any chapter as ready, your agent runs a diagnostic sweep to catch continuity slips and cadence issues:
 
 <p align="center">
   <img src="assets/terminal_audit.svg" alt="Soundboard Editorial Review Suite" width="100%" />
@@ -109,15 +114,15 @@ Before any chapter is approved for publication, your concierge runs it through t
 
 ---
 
-## The 92-Module Narrative Craft Brain
+## The 92-Module Craft Reference Library
 
-Soundboard doesn't just check grammar; it understands the deep mechanics of dramatic storytelling. Embedded in `_config/okf_craft/` is a library of **92 modular craft engines** synthesizing:
-* **The Story Grid (Shawn Coyne):** 5 Commandments of the Micro-Scene and macro value shifts.
-* **The Anatomy of Story (John Truby):** 22-step moral arguments and 4-corner opposition matrices.
+Soundboard provides your agent with explicit, codified reference cards in `_config/okf_craft/` covering time-tested storytelling principles:
+* **The Story Grid (Shawn Coyne):** The 5 Commandments of the Micro-Scene and macro value shifts.
+* **The Anatomy of Story (John Truby):** Moral arguments, designing principles, and 4-corner opposition.
 * **Sanderson's Laws of Magic:** Systematic worldbuilding, costs, and escalating consequences.
 * **Character Arc Anatomy (K.M. Weiland):** The Lie characters believe, the Wound, the Want vs. the Need.
-* **Swain MRUs (Dwight Swain):** Motivation-Reaction Units that control pacing velocity and tension.
-* **The Universal Narrative Rosetta Stone:** Speak in *Save the Cat!*, *Hero's Journey*, *Story Grid*, or *Dan Harmon* terms—your agent instantly understands and mirrors your preferred vocabulary.
+* **Swain MRUs (Dwight Swain):** Motivation-Reaction Units for micro-pacing and dramatic tension.
+* **Universal Narrative Rosetta Stone:** Whether you think in *Save the Cat!*, *Hero's Journey*, or *Story Grid* terms, your agent understands and mirrors your preferred vocabulary.
 
 ---
 
