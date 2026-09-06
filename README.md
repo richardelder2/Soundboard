@@ -133,7 +133,6 @@ For developers, technical authors, or curious creators who want to peek into the
 * 📖 **[The Science of Narrative Authenticity](docs/methodology.md):** The *StoryScope* research, why plain folders beat vector databases, and the Interpretable Context Methodology (ICM).
 * ⚙️ **[Technical Architecture & CLI Reference](docs/architecture.md):** The 5-stage state machine, data schemas (`manuscript.json`, `canon.md`), and zero-dependency mechanical CLI.
 * 📚 **[Narrative Craft Encyclopedia & Rosetta Stone](docs/craft_encyclopedia.md):** Complete catalog of the 92 OKF craft cards, theory lineages, and symptom-based craft search.
-* 🎬 **[YouTube Creator Feature Brief](docs/youtube_feature_pitch.md):** 10-minute video walkthrough and talking points for **@thenextnewthingai**.
 * 🤝 **[Contributing Guide](CONTRIBUTING.md):** Architectural invariants, zero-dependency requirements, and PR checklists.
 
 ---
