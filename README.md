@@ -2,7 +2,7 @@
   <img src="assets/soundboard_logo.png" alt="Soundboard — Narrative Production Studio" width="480" />
 </p>
 
-<h3 align="center">The Author's Intelligent Sounding Board &amp; Novel Engineering Studio</h3>
+<h3 align="center">The Author's Intelligent Sounding Board &amp; Novel Production Studio</h3>
 <p align="center"><em>Powered by the SAGA Pipeline &amp; Interpretable Context Methodology (ICM)</em></p>
 
 <p align="center">

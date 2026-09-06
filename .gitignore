@@ -2,3 +2,14 @@ node_modules/
 .env
 stages/*/output/
 .claude/settings.local.json
+setup/deep_research/
+scripts/claude-*.ps1
+ROADMAP_ROUND2.md
+SAGA_ICM_OVERVIEW.md
+
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
